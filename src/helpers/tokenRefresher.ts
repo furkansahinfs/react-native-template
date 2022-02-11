@@ -13,13 +13,13 @@ async function tokenRefresher() {
   const userCredentials = getUserCredentials();
   // request new token
   const response: any = await RefreshToken(userCredentials.access_token);
-  if (response?.token) {
+  if (response?.access_token) {
     // save credentials to the keychain
-    await setUserCredentials(response.token);
+    await setUserCredentials(response.access_token);
     // and set the redux with new data
     await loadUserCredentialsToRedux();
     // set access_token
-    api.setToken(response.token);
+    api.setToken(response.access_token);
     return true;
   } else {
     console.log('TokenRefresher delete', response);

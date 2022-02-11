@@ -123,15 +123,15 @@ export default class ApiHelper {
         success: true,
         status: response.status,
       };
-    } else if (response.status === 401) {
+    } else if (response.status === 401 && response.config.url !== '/auth/login') {
       return await ReRequest(response.config);
     } else {
       return {
         data: response.data,
         error:
-          response.data.error.message !== undefined
+          response?.data?.error?.message !== undefined
             ? response.data.error.message
-            : response.data.message !== undefined
+            : response?.data?.message !== undefined
             ? response.data.message
             : 'Error',
         success: false,
