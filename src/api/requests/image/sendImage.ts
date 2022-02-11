@@ -1,4 +1,4 @@
-import { FileProps } from '../../../assets';
+import { FileProps, IResponse } from '../../../assets';
 import api from '../../index';
 
 const sendImage = async (photo: FileProps) => {
@@ -10,7 +10,7 @@ const sendImage = async (photo: FileProps) => {
     .POST(path, body, {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
-    .then((result: any) => {
+    .then((result: IResponse) => {
       if (result.status === 200) {
         return true;
       } else {

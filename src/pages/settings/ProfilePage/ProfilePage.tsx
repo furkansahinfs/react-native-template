@@ -109,7 +109,7 @@ const ProfilePage = () => {
       phone,
       address,
     };
-    let result = null;
+    let result: any = 'Error';
     if (isProfileSet) {
       result = await updateProfileData(newProfileInfo);
     } else {

@@ -4,7 +4,7 @@ import { Linking } from 'react-native';
  * The function provides to open the given website if exists
  * @param url : string
  */
-function goWebsite(url:string) {
+function goWebsite(url: string) {
   if (url) {
     if (!url.startsWith('http://') && !url.startsWith('https://')) {
       url = 'https://' + url;

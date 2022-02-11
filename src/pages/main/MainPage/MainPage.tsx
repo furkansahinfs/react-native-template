@@ -10,7 +10,7 @@ import styles from './MainPage.styles';
 const MainPage = () => {
   const [file, setFile] = useState<FileProps | null>(null);
   const { colors } = useTheme();
-  //TODO address control
+
   return (
     <SafeAreaView style={[styles.safeAreaView, { backgroundColor: colors.background }]}>
       <ScrollView style={styles.safeAreaView} contentContainerStyle={styles.scrollView}>

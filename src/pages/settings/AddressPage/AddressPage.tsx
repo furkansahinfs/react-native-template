@@ -10,7 +10,7 @@ import styles from './AddressPage.styles';
 import { MarkerView } from './MarkerView';
 import { useTheme } from '../../../theme';
 
-export default function AddressPage() {
+const AddressPage = () => {
   const [initialRegion, setInitialRegion] = useState<RegionProps>(TestData.initialRegion);
   const [selectedLocation, setSelectedLocation] = useState<RegionProps>();
   const mapRef = useRef();
@@ -67,3 +67,5 @@ export default function AddressPage() {
     </SafeAreaView>
   );
 }
+
+export default AddressPage;

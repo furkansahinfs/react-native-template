@@ -10,6 +10,13 @@ export interface ItemProps {
   type: string;
 }
 
+export interface IResponse {
+  data: any;
+  error?: string;
+  success: boolean;
+  status: number;
+}
+
 export interface NotificationEntity {
   content: string | undefined | null;
   heading: string | undefined | null;

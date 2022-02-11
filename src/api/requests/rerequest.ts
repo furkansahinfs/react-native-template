@@ -1,8 +1,9 @@
 import api from '../index';
 import { deleteUserCredentials, tokenRefresher } from '../../helpers/';
 import { navigate } from '../../navigation';
+import { IResponse } from '../../assets';
 
-const controlResponse = async (response: any) => {
+const controlResponse = async (response: IResponse) => {
   if (response.status === 200) {
     return {
       data: response.data,
@@ -13,10 +14,21 @@ const controlResponse = async (response: any) => {
     console.log('Rerequest delete', response);
     await deleteUserCredentials();
     navigate('Login');
+    return {
+      data: { error: 'Unauthorized' },
+      error: 'Unauthorized',
+      success: false,
+      status: 401,
+    };
   } else {
     return {
       data: response.data,
-      error: response.data.message !== undefined ? response.data.message : 'Error',
+      error:
+        response.data.error.message !== undefined
+          ? response.data.error.message
+          : response.data.message !== undefined
+          ? response.data.message
+          : 'Error',
       success: false,
       status: response.status,
     };
@@ -38,6 +50,7 @@ const refresh = async (config: object) => {
   } else {
     return {
       data: { error: 'Unauthorized' },
+      error: 'Unauthorized',
       success: false,
       status: 401,
     };

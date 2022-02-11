@@ -1,13 +1,16 @@
-import { SignupProps } from '../../../assets';
+import { IResponse, SignupProps } from '../../../assets';
 import api from '../../index';
 
-const register = async ({ email, password }: SignupProps) => {
-  const path = '/signup';
+const register = async ({ email, name, password, phone, surname }: SignupProps) => {
+  const path = '/auth/register';
   const json = {
-    email: email,
-    password: password,
+    email,
+    name,
+    password,
+    phone,
+    surname,
   };
-  return await api.POST(path, json, {}).then((result: any) => {
+  return await api.POST(path, json, {}).then((result: IResponse) => {
     if (result.success) {
       return result.data;
     } else {

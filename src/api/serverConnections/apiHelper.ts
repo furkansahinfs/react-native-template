@@ -128,7 +128,12 @@ export default class ApiHelper {
     } else {
       return {
         data: response.data,
-        error: response.data.message !== undefined ? response.data.message : 'Error',
+        error:
+          response.data.error.message !== undefined
+            ? response.data.error.message
+            : response.data.message !== undefined
+            ? response.data.message
+            : 'Error',
         success: false,
         status: response.status,
       };

@@ -5,7 +5,7 @@ import {
   getLanguage,
   loadLanguageToRedux,
   loadThemeToRedux,
-  setOneSignal
+  setOneSignal,
 } from '../../../helpers';
 import styles from './SplashPage.styles';
 import OneSignal from 'react-native-onesignal';
