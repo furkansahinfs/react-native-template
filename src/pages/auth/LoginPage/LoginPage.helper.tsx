@@ -32,7 +32,8 @@ function validateLoginInputs(email: string, password: string) {
 }
 
 interface ResponseProps {
-  token: string;
+  refresh_token: string;
+  access_token: string;
 }
 
 /**
@@ -41,11 +42,11 @@ interface ResponseProps {
  */
 async function saveUserCredentials(response: ResponseProps) {
   // Set the storage credentials to the keychain
-  await setUserCredentials(response.token);
+  await setUserCredentials(response.refresh_token);
   // Load credentials to the redux
   await loadUserCredentialsToRedux();
   // set access_token
-  api.setToken(response.token);
+  api.setToken(response.access_token);
 }
 
 /**
