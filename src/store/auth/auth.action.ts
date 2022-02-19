@@ -9,9 +9,9 @@ import {
   AUTH_REMOVE_TOKEN,
 } from './auth.types';
 
-export const authAddToken = (access_token: string): AuthAddTokenAction => ({
+export const authAddToken = (refresh_token: string): AuthAddTokenAction => ({
   type: AUTH_ADD_TOKEN,
-  payload: { access_token },
+  payload: { refresh_token },
 });
 
 export const authAddDevice = (deviceid: string): AuthAddDeviceAction => ({

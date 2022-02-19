@@ -11,8 +11,10 @@ function setOneSignal() {
 
   OneSignal.getDeviceState().then((state) => {
     console.log(state);
-    console.log('OneSignal Device ID :', state.userId);
-    store.dispatch(authAddDevice(state.userId)); // Update deviceId from reducer
+    console.log('OneSignal Device ID :', state?.userId);
+    if (state) {
+      store.dispatch(authAddDevice(state.userId)); // Update deviceId from reducer
+    }
   });
 
   //Prompt for push on iOS

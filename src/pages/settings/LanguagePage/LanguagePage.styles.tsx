@@ -6,25 +6,32 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontStyle: 'normal',
     fontWeight: 'normal',
-    paddingTop: '4%',
     fontSize: scale(20),
-    color: 'white',
   },
 
   logo: {
     width: scale(200),
     height: scale(150),
-    borderColor: 'white',
-    borderWidth: 2,
-    marginVertical: scale(50),
-    borderRadius: scale(5),
+    borderRadius: scale(40),
     alignSelf: 'center',
     justifyContent: 'center',
   },
 
-  view: {
+  safeAreaView: {
     flex: 1,
-    backgroundColor: '#3454fc',
+    display: 'flex',
+  },
+
+  touchableOpacity: {
+    margin: scale(30),
+  },
+
+  view: {
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    flexGrow: 1,
+    flexWrap: 'wrap',
   },
 });
 

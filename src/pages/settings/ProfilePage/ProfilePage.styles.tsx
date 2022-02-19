@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
   theme: {
     flexDirection: 'row',
     alignSelf: 'center',
-    borderWidth: 0.5,
-    borderRadius: scale(10),
+    borderWidth: 1,
+    borderRadius: scale(30),
     padding: scale(10),
     marginVertical: scale(20),
   },

@@ -4,10 +4,9 @@ export {
   LogoutRequest,
   GetProfileInfoRequest,
   NewActivationRequest,
-  ProfilePictureRequest,
   RefreshToken,
   SendImageRequest,
-  SetProfileInfoRequest,
+  SetProfilePictureRequest,
   SignupRequest,
   UpdateProfileInfoRequest,
 } from './requests';

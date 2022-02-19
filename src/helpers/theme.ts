@@ -41,4 +41,13 @@ export async function setTheme(theme: string) {
   }
 }
 
-export default getTheme;
+/**
+ * The function change theme choice for Redux and AsyncStorage
+ */
+export async function changeTheme() {
+  const reduxTheme = getTheme();
+  const isDarkMode = reduxTheme === 'DARK';
+  await setTheme(isDarkMode ? 'LIGHT' : 'DARK').then(async () => {
+    await loadThemeToRedux();
+  });
+}

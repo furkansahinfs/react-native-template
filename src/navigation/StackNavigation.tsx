@@ -8,8 +8,7 @@ import {
   SplashPage,
 } from '../pages';
 import { createStackNavigator } from '@react-navigation/stack';
-
-import TabNavigation from './TabNavigation';
+import DrawerNavigation from './DrawerNavigation';
 
 const Stack = createStackNavigator();
 
@@ -22,7 +21,7 @@ function MyStack() {
       />
       <Stack.Screen name="Language" component={LanguagePage} />
       <Stack.Screen name="Login" component={LoginPage} />
-      <Stack.Screen name="Main" component={TabNavigation} />
+      <Stack.Screen name="Main" component={DrawerNavigation} />
       <Stack.Screen name="Signup" component={SignupPage} />
       <Stack.Screen name="Splash" component={SplashPage} />
       <Stack.Screen name="Address" component={AddressPage} />

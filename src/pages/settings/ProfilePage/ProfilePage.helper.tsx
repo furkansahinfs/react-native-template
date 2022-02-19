@@ -1,39 +1,19 @@
 import DocumentPicker from 'react-native-document-picker';
 import {
-  ProfileInfoRequest,
-  ProfilePictureRequest,
-  SetProfileInfoRequest,
+  GetProfileInfoRequest,
+  SetProfilePictureRequest,
   UpdateProfileInfoRequest,
 } from '../../../api';
 import { FileProps, ProfileData } from '../../../assets';
-import { deleteUserCredentials, loadThemeToRedux, setTheme } from '../../../helpers';
-import { navigationReset } from '../../../navigation';
-
-/**
- * Remove the user credentials from the AsyncStorage
- * and redux, navigate user to the splash screen
- */
-export async function logout() {
-  await deleteUserCredentials();
-  navigationReset('Splash');
-
-  // Delete device id from db
-  /*await LogoutRequest().then(async (result: any) => {
-    if (result) {
-      await deleteUserCredentials();
-      navigationReset('Splash');
-    } else {
-      Toast(result, false);
-    }
-  });*/
-}
+import { Toast } from '../../../components';
+import { I18N } from '../../../locales';
 
 /**
  * Get profile information from api
  *
  */
 export async function getProfileData() {
-  return await ProfileInfoRequest();
+  return await GetProfileInfoRequest();
 }
 
 /**
@@ -61,18 +41,19 @@ export async function pickImage() {
  * @param photo FileProps
  * @returns boolean
  */
-export async function setPicture(photo: FileProps | undefined) {
+export async function setPicture(
+  photo: FileProps | undefined,
+  setIsChanged: (bool: boolean) => void,
+) {
   if (photo !== undefined) {
-    return await ProfilePictureRequest(photo);
+    const result = await SetProfilePictureRequest(photo);
+    if (result) {
+      Toast(I18N.t('profilePage.profilePhotoChangedMessage'), false);
+      setIsChanged(false);
+    } else {
+      Toast(result, false);
+    }
   }
-}
-
-/**
- * Send the profile info to the API to save
- * @param info ProfileData
- */
-export async function saveProfileData(info: ProfileData) {
-  return await SetProfileInfoRequest(info);
 }
 
 /**
@@ -81,14 +62,4 @@ export async function saveProfileData(info: ProfileData) {
  */
 export async function updateProfileData(info: ProfileData) {
   return await UpdateProfileInfoRequest(info);
-}
-
-/**
- * The function sets theme choice for Redux and AsyncStorage
- * @param isDarkMode boolean
- */
-export async function setAppTheme(isDarkMode: boolean) {
-  await setTheme(isDarkMode ? 'DARK' : 'LIGHT').then(async () => {
-    await loadThemeToRedux();
-  });
 }

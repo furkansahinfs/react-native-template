@@ -1,7 +1,7 @@
 import { FileProps, IResponse } from '../../../assets';
 import api from '../../index';
 
-const profilePicture = async (photo: FileProps) => {
+const setProfilePicture = async (photo: FileProps) => {
   const path = '/users/me/picture';
   const body = new FormData();
   body.append('file', photo);
@@ -14,9 +14,9 @@ const profilePicture = async (photo: FileProps) => {
       if (result.status === 200) {
         return true;
       } else {
-        return false;
+        return result.error;
       }
     });
 };
 
-export default profilePicture;
+export default setProfilePicture;

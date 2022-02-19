@@ -37,7 +37,7 @@ interface ResponseProps {
 }
 
 /**
- * The function saves the user credentials (access_token) to the keychain
+ * The function saves the user credentials (refresh_token) to the keychain
  * @param response {token:"xxxx"}
  */
 async function saveUserCredentials(response: ResponseProps) {
@@ -60,7 +60,7 @@ async function saveUserCredentials(response: ResponseProps) {
 export async function login(email: string, password: string) {
   if (validateLoginInputs(email, password)) {
     const response: any = await LoginRequest(email, password);
-    if (!response?.token) {
+    if (!response?.access_token) {
       Toast(response, false);
     } else {
       await saveUserCredentials(response);

@@ -10,13 +10,6 @@ export interface ItemProps {
   type: string;
 }
 
-export interface IResponse {
-  data: any;
-  error?: string;
-  success: boolean;
-  status: number;
-}
-
 export interface NotificationEntity {
   content: string | undefined | null;
   heading: string | undefined | null;
@@ -33,6 +26,13 @@ export interface Point {
   lng: number;
 }
 
+export interface IResponse {
+  data: any;
+  error?: string;
+  success: boolean;
+  status: number;
+}
+
 export interface RegionProps {
   latitude: number;
   longitude: number;
@@ -46,7 +46,14 @@ export interface ProfileData {
   name?: string;
   phone?: string;
   profile_picture?: string;
+  surname?: string;
   address?: string;
+}
+
+export interface ChangeableProfileData {
+  name?: string;
+  phone?: string;
+  surname?: string;
 }
 
 export interface SignupProps {

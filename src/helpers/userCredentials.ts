@@ -1,11 +1,13 @@
 import * as Keychain from 'react-native-keychain';
-import api from '../api';
+import api, { LogoutRequest } from '../api';
+import { Toast } from '../components';
+import { navigationReset } from '../navigation';
 import store from '../store';
 import { authAddToken, authRemoveToken } from '../store/auth';
 
 /**
  * Get the user credentials using redux
- * {access_token: string, deviceid: string}
+ * {refresh_token: string, deviceid: string}
  *
  */
 export function getUserCredentials() {
@@ -18,24 +20,24 @@ export function getUserCredentials() {
  *
  */
 export async function loadUserCredentialsToRedux() {
-  const access_token_keychain = await Keychain.getInternetCredentials('CREDENTIALS');
-  if (access_token_keychain) {
-    store.dispatch(authAddToken(access_token_keychain.password)); // Update user credentials from reducer
+  const refresh_token_keychain = await Keychain.getInternetCredentials('CREDENTIALS');
+  if (refresh_token_keychain) {
+    store.dispatch(authAddToken(refresh_token_keychain.password)); // Update user credentials from reducer
   } else {
-    store.dispatch(authRemoveToken()); // Clear access token of user credentials from reducer
+    store.dispatch(authRemoveToken()); // Clear refresh token of user credentials from reducer
     api.setToken(''); // set api token
   }
 }
 
 /**
- * Get the access_token as parameter
+ * Get the refresh_token as parameter
  * Save it to the keychain
  *
- * @param access_token
+ * @param refresh_token
  */
-export async function setUserCredentials(access_token: string) {
+export async function setUserCredentials(refresh_token: string) {
   // Store the credentials
-  await Keychain.setInternetCredentials('CREDENTIALS', 'access_token', access_token);
+  await Keychain.setInternetCredentials('CREDENTIALS', 'refresh_token', refresh_token);
 }
 
 /**
@@ -48,4 +50,20 @@ export async function deleteUserCredentials() {
   await Keychain.resetInternetCredentials('CREDENTIALS');
   store.dispatch(authRemoveToken());
   api.setToken('');
+}
+
+/**
+ * Remove the user credentials from the AsyncStorage
+ * and redux, navigate user to the splash screen
+ */
+export async function logout() {
+  // Delete device id from db
+  await LogoutRequest().then(async (result: any) => {
+    if (result === true) {
+      await deleteUserCredentials();
+      navigationReset('Splash');
+    } else {
+      Toast(result, false);
+    }
+  });
 }

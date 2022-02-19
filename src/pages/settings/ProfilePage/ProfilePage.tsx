@@ -1,26 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Image, SafeAreaView, ScrollView, Text, View } from 'react-native';
-import { Switch } from 'react-native-paper';
+import { Image, SafeAreaView, ScrollView, View } from 'react-native';
 import { DocumentPickerResponse } from 'react-native-document-picker';
-import { getTheme } from '../../../helpers';
-import {
-  ActivityIndicator,
-  BigTextInput,
-  DefaultIcon,
-  TextButton,
-  TextInput,
-  Toast,
-} from '../../../components';
+import { ActivityIndicator, DefaultIcon, TextButton, TextInput, Toast } from '../../../components';
 import { I18N } from '../../../locales';
-import { FileProps, Images, ProfileData } from '../../../assets';
-import {
-  getProfileData,
-  pickImage,
-  setAppTheme,
-  saveProfileData,
-  logout,
-  updateProfileData,
-} from './ProfilePage.helper';
+import { ChangeableProfileData, FileProps, Images, ProfileData } from '../../../assets';
+import { getProfileData, pickImage, updateProfileData, setPicture } from './ProfilePage.helper';
 import styles from './ProfilePage.styles';
 import { stylesGlobal } from '../../../styles';
 import useTheme from '../../../theme/useTheme';
@@ -34,37 +18,18 @@ const ProfilePage = () => {
   const [profilePictureUrl, setProfilePictureUrl] = useState('');
   const [photo, setPhoto] = useState<FileProps>();
   const [profileData, setProfileData] = useState<ProfileData>();
-  const [fullname, setFullname] = useState<string>('');
-  const [phone, setPhone] = useState<string>('');
-  const [address, setAddress] = useState<string>('');
+  let changeableProfileData: ChangeableProfileData = { name: '', phone: '', surname: '' };
   const [isChanged, setIsChanged] = useState<boolean>(false);
-  const [isDarkModeOn, setIsDarkModeOn] = useState<boolean>(false);
-  const [isProfileSet, setIsProfileSet] = useState<boolean>(false);
   const [showLoading, setShowLoading] = useState<boolean>(false);
 
   const { colors } = useTheme();
   const globalStyles = stylesGlobal(colors);
 
   useEffect(() => {
-    getAppTheme();
     (async () => {
       await fetchProfile();
     })();
   }, []);
-
-  const onToggleSwitch = async () => {
-    await setAppTheme(!isDarkModeOn).then(() => {
-      getAppTheme();
-    });
-  };
-
-  /**
-   * The function gets theme choice from Redux
-   */
-  function getAppTheme() {
-    const reduxTheme = getTheme();
-    setIsDarkModeOn(reduxTheme === 'DARK');
-  }
 
   /**
    * The function gets profile data from API
@@ -74,7 +39,6 @@ const ProfilePage = () => {
     setShowLoading(true);
     const data = await getProfileData();
     setProfileData(data);
-    setIsProfileSet(data !== null);
     setProfilePictureUrl(data?.profile_picture);
     setShowLoading(false);
   }
@@ -104,19 +68,10 @@ const ProfilePage = () => {
    */
   async function save() {
     setShowLoading(true);
-    const newProfileInfo = {
-      fullname,
-      phone,
-      address,
-    };
-    let result: any = 'Error';
-    if (isProfileSet) {
-      result = await updateProfileData(newProfileInfo);
-    } else {
-      result = await saveProfileData(newProfileInfo);
-    }
+    const result = await updateProfileData(changeableProfileData);
+
     if (result === true) {
-      Toast(I18N.t('profilePage.profileChangedMessage'), false);
+      Toast(I18N.t('profilePage.profileInfoChangedMessage'), false);
       await fetchProfile();
     } else {
       Toast(result, false);
@@ -126,25 +81,31 @@ const ProfilePage = () => {
 
   const labelArray = [
     {
-      text: I18N.t('profilePage.name') + ' ' + I18N.t('profilePage.surname'),
+      text: I18N.t('profilePage.name'),
       icon: 'user',
       value: profileData?.name,
-      func: (val: string) => setFullname(val),
+      func: (val: string) => {
+        changeableProfileData.name = val;
+      },
+      bigText: false,
+    },
+    {
+      text: I18N.t('profilePage.surname'),
+      icon: 'user',
+      value: profileData?.surname,
+      func: (val: string) => {
+        changeableProfileData.surname = val;
+      },
       bigText: false,
     },
     {
       text: I18N.t('profilePage.phone'),
       icon: 'phone',
       value: profileData?.phone,
-      func: (val: string) => setPhone(val),
+      func: (val: string) => {
+        changeableProfileData.phone = val;
+      },
       bigText: false,
-    },
-    {
-      text: I18N.t('profilePage.address'),
-      icon: 'phone',
-      value: profileData?.phone,
-      func: (val: string) => setPhone(val),
-      bigText: true,
     },
   ];
 
@@ -157,13 +118,6 @@ const ProfilePage = () => {
       >
         <View>
           <View style={styles.topView}>
-            <View style={styles.rightIcons}>
-              <DefaultIcon
-                color={'white'}
-                name={'angle-double-right'}
-                onPressFunction={async () => await logout()}
-              />
-            </View>
             <View style={styles.imageView}>
               <View style={[styles.icon, styles.editIcon]}>
                 <DefaultIcon color={'black'} name={'camera'} onPressFunction={pick} />
@@ -183,7 +137,7 @@ const ProfilePage = () => {
                   <DefaultIcon
                     color={'black'}
                     name={'cloud-upload'}
-                    onPressFunction={() => console.log('profile picture change')}
+                    onPressFunction={async () => await setPicture(photo, setIsChanged)}
                   />
                 </View>
               )}
@@ -193,15 +147,7 @@ const ProfilePage = () => {
           <View style={[styles.profileDataView, { backgroundColor: colors.background }]}>
             <View>
               {labelArray.map((element, index) => {
-                return element.bigText ? (
-                  <View key={index} style={styles.textInput}>
-                    <BigTextInput
-                      func={(value) => setAddress(value)}
-                      placeholderText={element.text}
-                      val={profileData?.address}
-                    />
-                  </View>
-                ) : (
+                return (
                   <View key={index} style={styles.textInput}>
                     <TextInput
                       func={(value) => element.func(value)}
@@ -216,25 +162,14 @@ const ProfilePage = () => {
               })}
 
               <View style={globalStyles.buttonMargin}>
-                <TextButton onPressFunction={save} text={I18N.t('profilePage.save')} />
+                <TextButton onPressFunction={save} text={I18N.t('profilePage.saveProfileInfo')} />
               </View>
-
               <View style={globalStyles.rect} />
-              <View style={globalStyles.buttonMargin}>
-                <TextButton
-                  onPressFunction={() => navigate('Language', { page: 'Main' })}
-                  text={I18N.t('profilePage.selectLanguage')}
-                />
-              </View>
               <View style={globalStyles.buttonMargin}>
                 <TextButton
                   onPressFunction={() => navigate('Address')}
                   text={I18N.t('profilePage.changeLocation')}
                 />
-              </View>
-              <View style={[styles.theme, { borderColor: colors.border }]}>
-                <Text style={globalStyles.centerText}>{I18N.t('profilePage.darkTheme')}</Text>
-                <Switch value={isDarkModeOn} onValueChange={onToggleSwitch} />
               </View>
             </View>
 

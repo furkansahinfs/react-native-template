@@ -2,7 +2,7 @@ import { IResponse } from '../../../assets';
 import api from '../../index';
 
 const getProfileInfo = async () => {
-  const path = '/userinformation';
+  const path = '/users/me';
 
   return await api.GET(path, {}).then((result: IResponse) => {
     if (result.status === 200) {

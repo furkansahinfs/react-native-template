@@ -1,10 +1,9 @@
 const en = {
-  addressPage: {
-    cancel: 'Cancel',
-    changeAddress: 'Do you want to change your address ?',
-    header: 'Address',
-    ok: 'OK',
-    selectedLocation: 'Selected Location',
+  drawer: {
+    darkTheme: 'Dark Theme',
+    lightTheme: 'Light Theme',
+    logout: 'Logout',
+    selectLanguage: 'Select Language',
   },
   dropdownMenu: {
     noChoice: 'No Choice',
@@ -25,7 +24,7 @@ const en = {
 
   imageSelector: {
     closeModal: 'Close',
-    selectPhoto: 'Select A Photo',
+    selectPhoto: 'Select Photo',
   },
   loginPage: {
     email: 'Email',
@@ -46,14 +45,13 @@ const en = {
   profilePage: {
     address: 'Address',
     changeLocation: 'Change Location',
-    darkTheme: 'Dark Theme',
     email: 'Email',
     name: 'Name',
     noInfo: 'No Info',
     phone: 'Phone',
-    profileChangedMessage: 'Profile info is changed.',
-    save: 'Save',
-    selectLanguage: 'Select Language',
+    profileInfoChangedMessage: 'Profile info is changed.',
+    profilePhotoChangedMessage: 'Profile Photo is changed.',
+    saveProfileInfo: 'Save Profile Info',
     surname: 'Surname',
   },
   signupPage: {
@@ -79,7 +77,6 @@ const en = {
   tabbar: {
     main: 'Main',
     profile: 'Profile',
-    configuration: 'Configuration',
   },
   days: {
     monday: 'Monday',

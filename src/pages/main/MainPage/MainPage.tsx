@@ -8,7 +8,7 @@ import { sendPhoto } from './MainPage.helper';
 import styles from './MainPage.styles';
 
 const MainPage = () => {
-  const [file, setFile] = useState<FileProps | null>(null);
+  const [files, setFiles] = useState<Array<FileProps>>([]);
   const { colors } = useTheme();
 
   return (
@@ -16,14 +16,16 @@ const MainPage = () => {
       <ScrollView style={styles.safeAreaView} contentContainerStyle={styles.scrollView}>
         <View style={styles.view}>
           <ImageSelector
-            file={file}
-            setFile={(selectedFile: FileProps | null) => setFile(selectedFile)}
+            files={files}
+            mediaType={'photo'}
+            multiple={true}
+            setFiles={(selectedFile: Array<FileProps>) => setFiles(selectedFile)}
           />
-          {file && (
+          {files.length > 0 && (
             <Button
               text={I18N.t('mainPage.sendPhoto')}
               onPressFunction={async () => {
-                await sendPhoto(file);
+                await sendPhoto(files);
               }}
               mode={'contained'}
               hasMarginVertical={true}

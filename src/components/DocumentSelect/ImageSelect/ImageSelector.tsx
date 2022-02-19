@@ -10,15 +10,17 @@ import { I18N } from '../../../locales';
 import { FileProps } from '../../../assets';
 
 interface ImageSelectorProps {
-  file: FileProps | null;
-  setFile: (file: FileProps | null) => void;
+  files: Array<FileProps>;
+  mediaType: 'video' | 'photo';
+  multiple: boolean;
+  setFiles: (files: Array<FileProps>) => void;
 }
 
-const ImageSelector = ({ file, setFile }: ImageSelectorProps) => {
+const ImageSelector = ({ files, mediaType, multiple, setFiles }: ImageSelectorProps) => {
   const [isModalVisible, setModalVisible] = useState<boolean>(false);
   let options: ImageLibraryOptions = {
-    selectionLimit: 1,
-    mediaType: 'photo',
+    selectionLimit: multiple ? 0 : 1,
+    mediaType: mediaType,
   };
 
   const launchCamera = async () => {
@@ -26,8 +28,15 @@ const ImageSelector = ({ file, setFile }: ImageSelectorProps) => {
     if (isGranted) {
       const response = await ImagePicker.launchCamera(options);
       console.log('launchCamera', response);
+      const selectedFiles: Array<FileProps> = [];
       if (response.assets !== undefined && response.assets?.length > 0) {
-        setFile(response.assets[0].uri ? getFilePropsObject(response.assets[0]) : null);
+        response.assets.forEach((element) => {
+          if (element.uri) {
+            const elementFile = getFilePropsObject(element);
+            files.push(elementFile);
+          }
+        });
+        setFiles(selectedFiles.concat(files));
       }
     }
   };
@@ -35,8 +44,15 @@ const ImageSelector = ({ file, setFile }: ImageSelectorProps) => {
   const launchImageLibrary = async () => {
     const response = await ImagePicker.launchImageLibrary(options);
     console.log('launchLibrary', response);
+    const selectedFiles: Array<FileProps> = [];
     if (response.assets !== undefined && response.assets?.length > 0) {
-      setFile(response.assets[0].uri ? getFilePropsObject(response.assets[0]) : null);
+      response.assets.forEach((element) => {
+        if (element.uri) {
+          const elementFile = getFilePropsObject(element);
+          selectedFiles.push(elementFile);
+        }
+      });
+      setFiles(selectedFiles.concat(files));
     }
   };
 
@@ -44,16 +60,33 @@ const ImageSelector = ({ file, setFile }: ImageSelectorProps) => {
     return {
       uri: selectedFile.uri,
       type: selectedFile.type,
-      name: selectedFile.fileName,
+      name:
+        mediaType === 'video'
+          ? selectedFile.fileName + '.' + selectedFile.type.split('/')[1]
+          : selectedFile.fileName,
     };
   }
 
-  const renderFileUri = () => {
+  function deleteImage(deletedFile: FileProps) {
+    const filteredFiles: Array<FileProps> = files.filter(function (value) {
+      return value.uri !== deletedFile.uri;
+    });
+
+    setFiles(filteredFiles);
+  }
+
+  const renderFilesUri = () => {
     return (
-      <View style={styles.ImageSections}>
-        <Image source={{ uri: file?.uri }} style={styles.images} />
-        <Icon name={'times'} onPressFunction={() => setFile(null)} />
-      </View>
+      <ScrollView horizontal={true}>
+        {files.map((value, index) => {
+          return (
+            <View style={styles.ImageSections} key={index}>
+              <Image source={{ uri: value?.uri }} style={styles.images} />
+              <Icon name={'times'} onPressFunction={() => deleteImage(value)} />
+            </View>
+          );
+        })}
+      </ScrollView>
     );
   };
 
@@ -70,7 +103,7 @@ const ImageSelector = ({ file, setFile }: ImageSelectorProps) => {
               launchImageLibrary={launchImageLibrary}
             />
 
-            {file !== null && renderFileUri()}
+            {files !== null && renderFilesUri()}
             <TextButton
               onPressFunction={() => setModalVisible(true)}
               text={I18N.t('imageSelector.selectPhoto')}

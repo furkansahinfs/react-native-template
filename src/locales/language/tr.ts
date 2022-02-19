@@ -1,10 +1,9 @@
 const tr = {
-  addressPage: {
-    cancel: 'İptal',
-    changeAddress: 'Adresinizı değiştirmek istiyor musunuz ?',
-    header: 'Adres',
-    ok: 'Tamam',
-    selectedLocation: 'Seçilen Lokasyon',
+  drawer: {
+    darkTheme: 'Koyu Tema',
+    lightTheme: 'Açık Tema',
+    logout: 'Çıkış Yap',
+    selectLanguage: 'Dil Değiştir',
   },
   dropdownMenu: {
     noChoice: 'Seçenek Yok',
@@ -44,14 +43,13 @@ const tr = {
   profilePage: {
     address: 'Adres',
     changeLocation: 'Lokasyon Değiştir',
-    darkTheme: 'Koyu Tema',
     email: 'E-posta',
     name: 'Ad',
     noInfo: 'Bilgi yok',
     phone: 'Telefon',
-    profileChangedMessage: 'Profil bilgileri değiştirildi.',
-    save: 'Kaydet',
-    selectLanguage: 'Dil Seç',
+    profileInfoChangedMessage: 'Profil bilgileri değiştirildi.',
+    profilePhotoChangedMessage: 'Profil fotoğrafı değiştirildi.',
+    saveProfileInfo: 'Profil Bilgilerini Kaydet',
     surname: 'Soyad',
   },
   signupPage: {
@@ -74,7 +72,6 @@ const tr = {
   tabbar: {
     main: 'Ana Sayfa',
     profile: 'Profil',
-    configuration: 'Configuration',
   },
   days: {
     monday: 'Pazartesi',

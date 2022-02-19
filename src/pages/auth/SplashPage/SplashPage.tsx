@@ -10,7 +10,7 @@ import {
 import styles from './SplashPage.styles';
 import OneSignal from 'react-native-onesignal';
 import { NotificationEntity } from '../../../assets/interfaces';
-import { navigate, navigationReset } from '../../../navigation';
+import { navigationReset } from '../../../navigation';
 
 const SplashPage = () => {
   let isAuth = false;
@@ -46,9 +46,7 @@ const SplashPage = () => {
         sent_at: new Date().toISOString(),
         sent_by: 'OneSignal',
       };
-      navigate('Notification', {
-        notification: notificationEntity,
-      });
+      console.log(notificationEntity);
     });
   }
 

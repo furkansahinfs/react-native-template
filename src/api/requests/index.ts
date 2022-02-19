@@ -9,8 +9,7 @@ export {
 export { SendImageRequest } from './image';
 export {
   GetProfileInfoRequest,
-  ProfilePictureRequest,
-  SetProfileInfoRequest,
+  SetProfilePictureRequest,
   UpdateProfileInfoRequest,
 } from './profile';
 export { default as ReRequest } from './rerequest';

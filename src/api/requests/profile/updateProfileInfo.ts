@@ -1,13 +1,13 @@
-import { IResponse, ProfileData } from '../../../assets';
+import { ChangeableProfileData, IResponse } from '../../../assets';
 import api from '../../index';
 
-const updateProfileInfo = async (info: ProfileData) => {
+const updateProfileInfo = async (info: ChangeableProfileData) => {
   const path = '/userinformation/update';
 
   const json = {
-    full_name: info.name,
+    name: info.name,
+    surname: info.surname,
     phone: info.phone,
-    address: info.address,
   };
   return await api.POST(path, json, {}).then((result: IResponse) => {
     if (result.status === 200) {

@@ -1,20 +1,33 @@
 import { FileProps, IResponse } from '../../../assets';
 import api from '../../index';
 
-const sendImage = async (photo: FileProps) => {
-  const path = '/image';
-  const body = new FormData();
-  body.append('image', photo);
+const sendImage = async (photos: Array<FileProps>) => {
+  const path = '/rentals';
+  const formData = new FormData();
+  photos.forEach((element) => {
+    formData.append('files', element);
+  });
+
+  const obj = {
+    address: 'ASD',
+    name: 'ASD',
+    type: 'ASD',
+  };
+
+  formData.append('body', {
+    string: JSON.stringify(obj),
+    type: 'application/json',
+  });
 
   return await api
-    .POST(path, body, {
+    .POST(path, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
     .then((result: IResponse) => {
       if (result.status === 200) {
-        return true;
+        return result.data;
       } else {
-        return false;
+        return result.error;
       }
     });
 };

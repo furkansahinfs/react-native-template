@@ -8,7 +8,7 @@ import {
 } from './auth.types';
 
 const initialState: AuthState = {
-  access_token: '',
+  refresh_token: '',
   deviceid: '',
 };
 
@@ -17,11 +17,11 @@ export default function authReducer(state = initialState, action: AuthAction): A
     case AUTH_CLEAR:
       return { ...initialState };
     case AUTH_REMOVE_TOKEN:
-      return { ...state, access_token: '' };
+      return { ...state, refresh_token: '' };
     case AUTH_ADD_DEVICE:
       return { ...state, deviceid: action.payload.deviceid };
     case AUTH_ADD_TOKEN:
-      return { ...state, access_token: action.payload.access_token };
+      return { ...state, refresh_token: action.payload.refresh_token };
     default:
       return state;
   }
