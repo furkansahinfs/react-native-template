@@ -6,7 +6,6 @@ import { RegionProps } from '../../../assets/interfaces';
  * Get user address information if exists from api
  */
 export async function getUserAddress() {
-  //return await GetSchoolBusStopsRequest(schoolBusId, new Date(selectedDate), direction.toString());
   return {
     latitude: 38.4237,
     longitude: 27.7828,

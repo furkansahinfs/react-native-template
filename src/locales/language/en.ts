@@ -1,4 +1,11 @@
 const en = {
+  addressPage: {
+    cancel: 'Cancel',
+    changeAddress: 'Do you want to change your address ?',
+    header: 'Address',
+    ok: 'OK',
+    selectedLocation: 'Selected Location',
+  },
   drawer: {
     darkTheme: 'Dark Theme',
     lightTheme: 'Light Theme',

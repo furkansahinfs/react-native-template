@@ -2,7 +2,7 @@ import { ChangeableProfileData, IResponse } from '../../../assets';
 import api from '../../index';
 
 const updateProfileInfo = async (info: ChangeableProfileData) => {
-  const path = '/userinformation/update';
+  const path = '/users/me/update';
 
   const json = {
     name: info.name,

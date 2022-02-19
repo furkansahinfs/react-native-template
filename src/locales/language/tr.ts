@@ -1,4 +1,11 @@
 const tr = {
+  addressPage: {
+    cancel: 'İptal',
+    changeAddress: 'Adresinizı değiştirmek istiyor musunuz ?',
+    header: 'Adres',
+    ok: 'Tamam',
+    selectedLocation: 'Seçilen Lokasyon',
+  },
   drawer: {
     darkTheme: 'Koyu Tema',
     lightTheme: 'Açık Tema',
