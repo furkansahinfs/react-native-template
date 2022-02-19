@@ -12,7 +12,7 @@ async function isAuthenticated() {
   // get credentials from redux
   const userCredentials = getUserCredentials();
   if (!userCredentials.refresh_token) {
-    return true;
+    return false;
   } else {
     // if is authenticated, refresh token
     return await tokenRefresher();
