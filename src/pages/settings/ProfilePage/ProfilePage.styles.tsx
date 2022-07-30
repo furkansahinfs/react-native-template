@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     alignSelf: 'center',
     borderColor: 'white',
+    backgroundColor:'white',
     borderWidth: scale(5),
     borderRadius: scale(40),
   },
@@ -54,15 +55,6 @@ const styles = StyleSheet.create({
 
   textInput: {
     marginHorizontal: '3%',
-  },
-
-  theme: {
-    flexDirection: 'row',
-    alignSelf: 'center',
-    borderWidth: 1,
-    borderRadius: scale(30),
-    padding: scale(10),
-    marginVertical: scale(20),
   },
 
   topView: {

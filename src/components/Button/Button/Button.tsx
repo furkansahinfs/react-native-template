@@ -26,7 +26,7 @@ const Button = ({ onPressFunction, text, mode, hasMarginVertical, widthFit }: Bu
       mode={mode}
       onPress={onPressFunction}
     >
-      {text.toLocaleUpperCase()}
+      {text.toLocaleLowerCase('TR')}
     </NativeButton>
   );
 };

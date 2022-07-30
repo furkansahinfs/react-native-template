@@ -1,4 +1,4 @@
-import { IResponse, SignupProps } from '../../../assets';
+import { IResponse, SignupProps } from '../../../interface';
 import api from '../../index';
 
 const register = async ({ email, name, password, phone, surname }: SignupProps) => {

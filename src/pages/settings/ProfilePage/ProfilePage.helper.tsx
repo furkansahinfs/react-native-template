@@ -1,10 +1,9 @@
-import DocumentPicker from 'react-native-document-picker';
 import {
   GetProfileInfoRequest,
   SetProfilePictureRequest,
   UpdateProfileInfoRequest,
 } from '../../../api';
-import { FileProps, ProfileData } from '../../../assets';
+import { FileProps, ProfileData } from '../../../interface';
 import { Toast } from '../../../components';
 import { I18N } from '../../../locales';
 
@@ -14,26 +13,6 @@ import { I18N } from '../../../locales';
  */
 export async function getProfileData() {
   return await GetProfileInfoRequest();
-}
-
-/**
- * Pick image using DocumentPicker
- * @returns DocumentPickerResponse | null
- */
-export async function pickImage() {
-  // Pick one file
-  try {
-    return await DocumentPicker.pickSingle({
-      type: [DocumentPicker.types.images],
-    });
-  } catch (err) {
-    if (DocumentPicker.isCancel(err)) {
-      // User cancelled the picker, exit any dialogs or menus and move on
-      return null;
-    } else {
-      return null;
-    }
-  }
 }
 
 /**

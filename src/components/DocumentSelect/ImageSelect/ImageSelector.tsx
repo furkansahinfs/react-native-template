@@ -1,22 +1,31 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import * as ImagePicker from 'react-native-image-picker';
 import { ImageLibraryOptions } from 'react-native-image-picker';
-import { Image, StatusBar, SafeAreaView, ScrollView, View } from 'react-native';
+import { Image, ScrollView, View, TouchableOpacity } from 'react-native';
 import styles from './ImageSelector.style';
 import { requestCameraPermission } from './ImageSelector.helper';
-import { Icon, TextButton } from '../..';
+import { DefaultIcon, Icon } from '../..';
 import ModalView from './Subcomponents/ModalView';
-import { I18N } from '../../../locales';
-import { FileProps } from '../../../assets';
+import { FileProps } from '../../../interface';
+import VideoPlayer from 'react-native-video-controls';
 
 interface ImageSelectorProps {
   files: Array<FileProps>;
   mediaType: 'video' | 'photo';
   multiple: boolean;
   setFiles: (files: Array<FileProps>) => void;
+  OpenModalView?: React.ReactNode;
+  renderImages?: boolean;
 }
 
-const ImageSelector = ({ files, mediaType, multiple, setFiles }: ImageSelectorProps) => {
+const ImageSelector = ({
+  files,
+  mediaType,
+  multiple,
+  setFiles,
+  OpenModalView,
+  renderImages,
+}: ImageSelectorProps) => {
   const [isModalVisible, setModalVisible] = useState<boolean>(false);
   let options: ImageLibraryOptions = {
     selectionLimit: multiple ? 0 : 1,
@@ -27,7 +36,6 @@ const ImageSelector = ({ files, mediaType, multiple, setFiles }: ImageSelectorPr
     const isGranted = await requestCameraPermission();
     if (isGranted) {
       const response = await ImagePicker.launchCamera(options);
-      console.log('launchCamera', response);
       const selectedFiles: Array<FileProps> = [];
       if (response.assets !== undefined && response.assets?.length > 0) {
         response.assets.forEach((element) => {
@@ -43,7 +51,6 @@ const ImageSelector = ({ files, mediaType, multiple, setFiles }: ImageSelectorPr
 
   const launchImageLibrary = async () => {
     const response = await ImagePicker.launchImageLibrary(options);
-    console.log('launchLibrary', response);
     const selectedFiles: Array<FileProps> = [];
     if (response.assets !== undefined && response.assets?.length > 0) {
       response.assets.forEach((element) => {
@@ -77,43 +84,57 @@ const ImageSelector = ({ files, mediaType, multiple, setFiles }: ImageSelectorPr
 
   const renderFilesUri = () => {
     return (
-      <ScrollView horizontal={true}>
+      <ScrollView
+        horizontal={true}
+        persistentScrollbar={true}
+        pagingEnabled // Enable paging
+        decelerationRate={0} // Disable deceleration
+        snapToAlignment="center" // Snap to the center
+      >
         {files.map((value, index) => {
-          return (
-            <View style={styles.ImageSections} key={index}>
-              <Image source={{ uri: value?.uri }} style={styles.images} />
-              <Icon name={'times'} onPressFunction={() => deleteImage(value)} />
-            </View>
-          );
+          if (value.type.includes('video')) {
+            return (
+              <View style={styles.ImageSections} key={index}>
+                <VideoPlayer
+                  key={index}
+                  source={{ uri: value.uri }}
+                  disableBack
+                  paused
+                  style={styles.videoStyle}
+                />
+                <Icon name={'times'} onPressFunction={() => deleteImage(value)} />
+              </View>
+            );
+          } else {
+            return (
+              <View style={styles.ImageSections} key={index}>
+                <Image source={{ uri: value?.uri }} style={styles.images} />
+                <Icon name={'times'} onPressFunction={() => deleteImage(value)} />
+              </View>
+            );
+          }
         })}
       </ScrollView>
     );
   };
 
   return (
-    <Fragment>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView>
-          <View style={styles.body}>
-            <ModalView
-              isModalVisible={isModalVisible}
-              setModalVisible={setModalVisible}
-              launchCamera={launchCamera}
-              launchImageLibrary={launchImageLibrary}
-            />
+    <View>
+      <ModalView
+        isModalVisible={isModalVisible}
+        setModalVisible={setModalVisible}
+        launchCamera={launchCamera}
+        launchImageLibrary={launchImageLibrary}
+      />
 
-            {files !== null && renderFilesUri()}
-            <TextButton
-              onPressFunction={() => setModalVisible(true)}
-              text={I18N.t('imageSelector.selectPhoto')}
-              hasMarginVertical={true}
-              widthFit={true}
-            />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </Fragment>
+      {files !== null && renderImages && renderFilesUri()}
+      {OpenModalView === undefined && (
+        <DefaultIcon color={'black'} name={'camera'} onPressFunction={() => setModalVisible(true)} />
+      )}
+      {OpenModalView !== undefined && (
+        <TouchableOpacity onPress={() => setModalVisible(true)} children={OpenModalView} />
+      )}
+    </View>
   );
 };
 

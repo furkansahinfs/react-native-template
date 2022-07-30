@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { Image, SafeAreaView, ScrollView, View } from 'react-native';
-import { DocumentPickerResponse } from 'react-native-document-picker';
-import { ActivityIndicator, DefaultIcon, TextButton, TextInput, Toast } from '../../../components';
+import { Image, ScrollView, Text, View } from 'react-native';
+import {
+  ActivityIndicator,
+  CustomSafeAreaView,
+  DefaultIcon,
+  ImageSelector,
+  TextButton,
+  TextInput,
+  Toast,
+} from '../../../components';
 import { I18N } from '../../../locales';
-import { ChangeableProfileData, FileProps, Images, ProfileData } from '../../../assets';
-import { getProfileData, pickImage, updateProfileData, setPicture } from './ProfilePage.helper';
+import { Images } from '../../../assets';
+import { ChangeableProfileData, FileProps, ProfileData } from '../../../interface';
+import { getProfileData, updateProfileData, setPicture } from './ProfilePage.helper';
 import styles from './ProfilePage.styles';
 import { stylesGlobal } from '../../../styles';
 import useTheme from '../../../theme/useTheme';
-import { navigate } from '../../../navigation';
 
-//TODO NEED BIG REFACTORING
-//TODO NEED BIG REFACTORING
 //TODO NEED BIG REFACTORING
 
 const ProfilePage = () => {
   const [profilePictureUrl, setProfilePictureUrl] = useState('');
-  const [photo, setPhoto] = useState<FileProps>();
+  const [photo, setPhoto] = useState<Array<FileProps>>([]);
   const [profileData, setProfileData] = useState<ProfileData>();
   let changeableProfileData: ChangeableProfileData = { name: '', phone: '', surname: '' };
   const [isChanged, setIsChanged] = useState<boolean>(false);
@@ -41,26 +46,6 @@ const ProfilePage = () => {
     setProfileData(data);
     setProfilePictureUrl(data?.profile_picture);
     setShowLoading(false);
-  }
-
-  /**
-   * The function gets the picked image by invoking pickImage() of the helper
-   * If result is not null, set necessary things
-   * setPhoto is necessary to declare file for when you send file to the API
-   * setIsChanged adjusts to show save button.
-   */
-  async function pick() {
-    const result: DocumentPickerResponse | null = await pickImage();
-    if (result !== null) {
-      //ignore errors, type is wrong in node files
-      setProfilePictureUrl(result.uri);
-      setPhoto({
-        uri: result.uri,
-        type: result.type,
-        name: result.name,
-      });
-      setIsChanged(true);
-    }
   }
 
   /**
@@ -109,75 +94,86 @@ const ProfilePage = () => {
     },
   ];
 
+  const selectPhotoFunction = (selectedFiles: Array<FileProps>) => {
+    if (selectedFiles.length > 0) {
+      setPhoto(selectedFiles);
+      setProfilePictureUrl(selectedFiles[0]?.uri);
+      setIsChanged(true);
+    }
+  };
+
   return (
-    <SafeAreaView style={[styles.safeAreaView, { backgroundColor: colors.background }]}>
-      <ScrollView
-        nestedScrollEnabled={true}
-        keyboardShouldPersistTaps={'handled'}
-        style={styles.scrollView}
-      >
-        <View>
-          <View style={styles.topView}>
-            <View style={styles.imageView}>
-              <View style={[styles.icon, styles.editIcon]}>
-                <DefaultIcon color={'black'} name={'camera'} onPressFunction={pick} />
-              </View>
-              <Image
-                style={styles.image}
-                source={
-                  profilePictureUrl
-                    ? {
-                        uri: profilePictureUrl,
-                      }
-                    : Images.defaultProfilePicture
-                }
-              />
-              {isChanged && (
-                <View style={[styles.icon, styles.saveIcon]}>
-                  <DefaultIcon
-                    color={'black'}
-                    name={'cloud-upload'}
-                    onPressFunction={async () => await setPicture(photo, setIsChanged)}
+    <CustomSafeAreaView
+      InnerView={
+        <ScrollView
+          nestedScrollEnabled={true}
+          keyboardShouldPersistTaps={'handled'}
+          style={styles.scrollView}
+        >
+          <View>
+            <View style={styles.topView}>
+              <View style={styles.imageView}>
+                <View style={[styles.icon, styles.editIcon]}>
+                  <ImageSelector
+                    files={photo}
+                    mediaType={'photo'}
+                    multiple={false}
+                    setFiles={(selectedFiles: Array<FileProps>) =>
+                      selectPhotoFunction(selectedFiles)
+                    }
                   />
                 </View>
-              )}
-            </View>
-          </View>
 
-          <View style={[styles.profileDataView, { backgroundColor: colors.background }]}>
-            <View>
-              {labelArray.map((element, index) => {
-                return (
-                  <View key={index} style={styles.textInput}>
-                    <TextInput
-                      func={(value) => element.func(value)}
-                      iconName={element.icon}
-                      keyboardType={'default'}
-                      placeholderText={element.text}
-                      secureText={false}
-                      val={element.value}
+                <Image
+                  style={styles.image}
+                  source={
+                    profilePictureUrl
+                      ? {
+                          uri: profilePictureUrl,
+                        }
+                      : Images.defaultProfilePicture
+                  }
+                />
+                {isChanged && (
+                  <View style={[styles.icon, styles.saveIcon]}>
+                    <DefaultIcon
+                      color={colors.icon}
+                      name={'cloud-upload'}
+                      onPressFunction={async () => await setPicture(photo[0], setIsChanged)}
                     />
                   </View>
-                );
-              })}
-
-              <View style={globalStyles.buttonMargin}>
-                <TextButton onPressFunction={save} text={I18N.t('profilePage.saveProfileInfo')} />
-              </View>
-              <View style={globalStyles.rect} />
-              <View style={globalStyles.buttonMargin}>
-                <TextButton
-                  onPressFunction={() => navigate('Address')}
-                  text={I18N.t('profilePage.changeLocation')}
-                />
+                )}
               </View>
             </View>
 
-            {showLoading && <ActivityIndicator />}
+            <View style={[styles.profileDataView, { backgroundColor: colors.background }]}>
+              <View>
+                {labelArray.map((element, index) => {
+                  return (
+                    <View key={index} style={styles.textInput}>
+                      <TextInput
+                        func={(value) => element.func(value)}
+                        iconName={element.icon}
+                        keyboardType={'default'}
+                        placeholderText={element.text}
+                        secureText={false}
+                        val={element.value}
+                      />
+                    </View>
+                  );
+                })}
+
+                <View style={globalStyles.buttonMargin}>
+                  <TextButton onPressFunction={save} text={I18N.t('profilePage.saveProfileInfo')} />
+                </View>
+              </View>
+
+              {showLoading && <ActivityIndicator />}
+            </View>
           </View>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+        </ScrollView>
+      }
+    />
   );
 };
 export default ProfilePage;

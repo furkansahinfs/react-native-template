@@ -7,6 +7,7 @@ export {
   SignupRequest,
 } from './auth/';
 export { SendImageRequest } from './image';
+export { GetLocationsRequest, GetLocationOfGivenPlaceRequest, GetPlacesRequest } from './location';
 export {
   GetProfileInfoRequest,
   SetProfilePictureRequest,

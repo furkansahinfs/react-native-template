@@ -4,7 +4,6 @@ import { Icon } from '../../../../components';
 import { stylesGlobal } from '../../../../styles';
 import { useTheme } from '../../../../theme';
 import styles from './ModalView.styles';
-import { Button } from '../../..';
 import { I18N } from '../../../../locales';
 import { TextButton } from '../../../Button';
 

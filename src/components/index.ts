@@ -1,10 +1,14 @@
 export { ActivityIndicator } from './ActivityIndicator';
 export { BackButton, BackButtonInHeader, Button, TextButton } from './Button';
 export { CheckBox } from './CheckBox';
+export { CustomSafeAreaView } from './CustomView';
 export { ImageSelector } from './DocumentSelect';
+export { Error } from './Error';
 export { DropdownMenu } from './Dropdown';
 export { Header } from './Header';
-export { DefaultIcon } from './Icon/DefaultIcon';
-export { Icon } from './Icon';
-export { BigTextInput, DisabledTextInput, TextInput } from './Input';
+export { DefaultIcon, Icon } from './Icon';
+export { BigTextInput, DisabledTextInput, FlatTextInput, TextInput } from './Input';
+export { DefaultLabel, LabelWithIcon } from './Label';
 export { Toast } from './Notify';
+export { FilterSearch } from './Search';
+export { SearchBar } from './SearchBar';

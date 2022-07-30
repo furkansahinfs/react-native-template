@@ -2,7 +2,7 @@ import api from '../../index';
 import { API_CLIENT_ID } from '@env';
 import store from '../../../store';
 import { updateDeviceId } from '../../../helpers';
-import { IResponse } from '../../../assets/interfaces';
+import { IResponse } from '../../../interface';
 
 async function getDeviceId() {
   let device_id = store.getState().userCredentials.deviceid;
@@ -30,7 +30,7 @@ const login = async (email: string, password: string) => {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     })
     .then((result: IResponse) => {
-      if (result.status === 200) {
+      if (result.success) {
         return result.data;
       } else {
         return result.error;

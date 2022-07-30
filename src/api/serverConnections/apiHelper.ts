@@ -45,8 +45,7 @@ export default class ApiHelper {
     this.lang = lang;
   };
 
-  POST = (path: string, data: any, config: {}) => {
-    console.log('POST', path, data);
+  POST = (path: string, data: any, config?: {}) => {
     return this.api
       .post(path, data, config)
       .then((response: any) => {
@@ -68,8 +67,7 @@ export default class ApiHelper {
       });
   };
 
-  GET = (path: string, config: {}) => {
-    console.log('GET', path);
+  GET = (path: string, config?: {}) => {
     return this.api
       .get(path, config)
       .then((response: any) => {
@@ -80,7 +78,7 @@ export default class ApiHelper {
       });
   };
 
-  PUT = (path: string, data: any, config: {}) => {
+  PUT = (path: string, data: any, config?: {}) => {
     return this.api
       .put(path, data, config)
       .then((response: any) => {
@@ -91,7 +89,7 @@ export default class ApiHelper {
       });
   };
 
-  PATCH = (path: string, data: any, config: {}) => {
+  PATCH = (path: string, data: any, config?: {}) => {
     return this.api
       .patch(path, data, config)
       .then((response: any) => {
@@ -117,7 +115,7 @@ export default class ApiHelper {
   };
 
   controlResponse = async (response: any) => {
-    if (response.status === 200) {
+    if (response.status >= 200 && response.status <= 208) {
       return {
         data: response.data,
         success: true,

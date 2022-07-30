@@ -11,7 +11,8 @@ interface TextInputProps {
   keyboardType: KeyboardTypeOptions;
   func: (text: string) => void;
   secureText: boolean;
-  iconName: string;
+  iconName?: string;
+  multiline?: boolean;
 }
 
 const TextInput = ({
@@ -21,6 +22,7 @@ const TextInput = ({
   func,
   secureText,
   iconName,
+  multiline,
 }: TextInputProps) => {
   const { colors } = useTheme();
   return (
@@ -30,6 +32,7 @@ const TextInput = ({
       value={val}
       keyboardType={keyboardType}
       secureTextEntry={secureText}
+      multiline={multiline !== undefined ? multiline : false}
       style={styles.input}
       theme={{
         colors: {
@@ -42,9 +45,11 @@ const TextInput = ({
       }}
       onChangeText={func}
       left={
-        <NativeTextInput.Icon
-          name={() => <Icon name={iconName} color="#7999FD" size={styles.iconSize.height} />}
-        />
+        iconName ? (
+          <NativeTextInput.Icon
+            name={() => <Icon name={iconName} color="#7999FD" size={styles.iconSize.height} />}
+          />
+        ) : null
       }
     />
   );

@@ -1,10 +1,10 @@
 import api from '../index';
 import { deleteUserCredentials, tokenRefresher } from '../../helpers/';
 import { navigate } from '../../navigation';
-import { IResponse } from '../../assets';
+import { IResponse } from '../../interface';
 
 const controlResponse = async (response: IResponse) => {
-  if (response.status === 200) {
+  if (response.status >= 200 && response.status <= 208) {
     return {
       data: response.data,
       success: true,

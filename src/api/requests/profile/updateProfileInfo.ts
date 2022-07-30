@@ -1,4 +1,4 @@
-import { ChangeableProfileData, IResponse } from '../../../assets';
+import { ChangeableProfileData, IResponse } from '../../../interface';
 import api from '../../index';
 
 const updateProfileInfo = async (info: ChangeableProfileData) => {
@@ -10,7 +10,7 @@ const updateProfileInfo = async (info: ChangeableProfileData) => {
     phone: info.phone,
   };
   return await api.POST(path, json, {}).then((result: IResponse) => {
-    if (result.status === 200) {
+    if (result.success) {
       return true;
     } else {
       return result.error;

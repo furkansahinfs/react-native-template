@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     borderRadius: scale(10),
   },
   widthAll: {
-    width: '100%',
+    width: '90%',
   },
 });
 

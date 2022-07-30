@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, ScrollView, View } from 'react-native';
-import { FileProps } from '../../../assets';
-import { Button, ImageSelector } from '../../../components';
+import { FileProps } from '../../../interface';
+import { Button, CustomSafeAreaView, ImageSelector } from '../../../components';
 import { I18N } from '../../../locales';
 import { useTheme } from '../../../theme';
 import { sendPhoto } from './MainPage.helper';
@@ -12,7 +12,7 @@ const MainPage = () => {
   const { colors } = useTheme();
 
   return (
-    <SafeAreaView style={[styles.safeAreaView, { backgroundColor: colors.background }]}>
+    <CustomSafeAreaView InnerView={
       <ScrollView style={styles.safeAreaView} contentContainerStyle={styles.scrollView}>
         <View style={styles.view}>
           <ImageSelector
@@ -32,8 +32,8 @@ const MainPage = () => {
             />
           )}
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </ScrollView>}
+    />
   );
 };
 export default MainPage;

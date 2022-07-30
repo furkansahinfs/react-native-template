@@ -1,5 +1,5 @@
 import { SendImageRequest } from '../../../api';
-import { FileProps } from '../../../assets';
+import { FileProps } from '../../../interface';
 import { Toast } from '../../../components';
 
 /**

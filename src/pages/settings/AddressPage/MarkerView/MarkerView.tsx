@@ -1,7 +1,7 @@
 import React from 'react';
 import { Marker } from 'react-native-maps';
 import { I18N } from '../../../../locales';
-import { RegionProps } from '../../../../assets/interfaces';
+import { RegionProps } from '../../../../interface';
 
 interface IMarkerView {
   location: RegionProps;

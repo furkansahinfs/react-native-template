@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Text, SafeAreaView } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 import { Card } from 'react-native-elements';
-import { ActivityIndicator, BackButton, Button, TextInput } from '../../../components';
+import { ActivityIndicator, BackButton, Button, CustomSafeAreaView, TextInput } from '../../../components';
 import { I18N } from '../../../locales';
 import { register, validateSignupInputs } from './SignupPage.helper';
 import styles from './SignupPage.styles';
@@ -34,7 +34,7 @@ const SignupPage = () => {
   }
 
   return (
-    <SafeAreaView style={{ backgroundColor: colors.background }}>
+    <CustomSafeAreaView InnerView={
       <View style={[styles.mainView, { backgroundColor: colors.background }]}>
         <ScrollView nestedScrollEnabled={true} keyboardShouldPersistTaps={'handled'}>
           <BackButton color={colors.icon} />
@@ -86,92 +86,12 @@ const SignupPage = () => {
             </Card>
           </View>
         </ScrollView>
-      </View>
 
-      {showLoading && <ActivityIndicator />}
-    </SafeAreaView>
+        {showLoading && <ActivityIndicator />}
+      </View>
+    } 
+    />
+
   );
 };
-
 export default SignupPage;
-//const [isInfoPage, setIsInfoPage] = useState(false);
-//const [name, setName] = useState('');
-//const [surname, setSurname] = useState('');
-//const [phone, setPhone] = useState('');
-
-/**
-   * The function validates the email and password,
-   * if validation is successful, render the info page
-   * to get name, surname, password
-
-  function goInfoPage() {
-    const areSignupInputsValid = validateSignupInputs(
-      email,
-      password,
-      confirmPassword,
-    );
-    setIsInfoPage(areSignupInputsValid);
-  }*/
-
-/**
-   * If info inputs are validated, connect to the server and signup user
-
-  async function signUp() {
-    const areSignupInfosValid = validateInfoInputs(name, surname);
-    if (areSignupInfosValid) {
-      const json = {
-        email,
-        name,
-        password,
-        phone,
-        surname,
-      };
-      await Register(json, navigation);
-    }
-  }*/
-
-/*
-<View style={{display: isInfoPage === true ? 'flex' : 'none'}}>
-  <TextInput
-    func={value => setName(value)}
-    iconName={'italic'}
-    keyboardType={'default'}
-    placeholderText={I18N.t('signupPage.name')}
-    secureText={false}
-    val={name}
-  />
-
-  <TextInput
-    func={value => setSurname(value)}
-    iconName={'italic'}
-    keyboardType={'default'}
-    placeholderText={I18N.t('signupPage.surname')}
-    secureText={false}
-    val={surname}
-  />
-
-  <TextInput
-    func={value => setPhone(value)}
-    iconName={'phone'}
-    keyboardType={'phone-pad'}
-    placeholderText={I18N.t('signupPage.phone')}
-    secureText={false}
-    val={phone}
-  />
-
-  <View style={globalStyles.buttonMargin}>
-    <Button
-      mode={'contained'}
-      text={I18N.t('signupPage.next')}
-      onPressFunction={() => goInfoPage()}
-    />
-  </View>
-
-  <View style={globalStyles.buttonMargin}>
-    <TextButton
-      onPressFunction={() => setIsInfoPage(false)}
-      text={I18N.t('signupPage.back')}
-    />
-  </View>
-</View>;
-*/

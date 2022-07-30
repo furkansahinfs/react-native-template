@@ -1,15 +1,4 @@
-export {
-  ForgetPasswordRequest,
-  LoginRequest,
-  LogoutRequest,
-  GetProfileInfoRequest,
-  NewActivationRequest,
-  RefreshToken,
-  SendImageRequest,
-  SetProfilePictureRequest,
-  SignupRequest,
-  UpdateProfileInfoRequest,
-} from './requests';
+export * from './requests';
 
 import { ApiHelper } from './serverConnections/';
 import { API_URL } from '@env';

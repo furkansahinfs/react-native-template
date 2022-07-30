@@ -18,11 +18,17 @@ const styles = StyleSheet.create({
   },
   images: {
     alignSelf: 'center',
-    width: scale(200),
-    height: scale(200),
+    width: scale(300),
+    height: scale(250),
     borderColor: 'black',
     borderWidth: 1,
     marginHorizontal: scale(3),
+  },
+
+  videoStyle: {
+    width: scale(350),
+    height: scale(250),
+    alignSelf: 'center',
   },
 });
 

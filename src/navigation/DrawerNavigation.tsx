@@ -6,7 +6,6 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
-
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './TabNavigation.style';
 import { I18N } from '../locales';
@@ -77,6 +76,7 @@ function AppDrawer() {
         drawerInactiveTintColor: colors.text,
         headerTintColor: colors.text,
         headerStyle: { backgroundColor: colors.background },
+        unmountOnBlur: false,
       }}
       drawerContent={(props: any) => <CustomDrawerContent {...props} />}
     >

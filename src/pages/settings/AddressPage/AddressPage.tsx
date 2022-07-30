@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { SafeAreaView, View } from 'react-native';
 import MapView from 'react-native-maps';
-import { Header } from '../../../components';
+import { CustomSafeAreaView, Header } from '../../../components';
 import { I18N } from '../../../locales';
 import { TestData } from '../../../assets';
 import { RegionProps } from '../../../assets/interfaces';
@@ -41,10 +41,9 @@ const AddressPage = () => {
   }
 
   return (
-    <SafeAreaView style={{ backgroundColor: colors.background }}>
+    <CustomSafeAreaView InnerView={
       <View>
         <Header back={true} title={I18N.t('addressPage.header')} />
-
         <MapView
           ref={mapRef}
           initialRegion={initialRegion}
@@ -63,8 +62,9 @@ const AddressPage = () => {
             </View>
           )}
         </MapView>
-      </View>
-    </SafeAreaView>
+      </View>}
+    />
+
   );
 }
 

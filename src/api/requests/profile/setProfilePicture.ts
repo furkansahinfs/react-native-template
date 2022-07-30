@@ -1,4 +1,4 @@
-import { FileProps, IResponse } from '../../../assets';
+import { FileProps, IResponse } from '../../../interface';
 import api from '../../index';
 
 const setProfilePicture = async (photo: FileProps) => {
@@ -11,7 +11,7 @@ const setProfilePicture = async (photo: FileProps) => {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
     .then((result: IResponse) => {
-      if (result.status === 200) {
+      if (result.success) {
         return true;
       } else {
         return result.error;

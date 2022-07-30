@@ -9,7 +9,7 @@ import {
 } from '../../../helpers';
 import styles from './SplashPage.styles';
 import OneSignal from 'react-native-onesignal';
-import { NotificationEntity } from '../../../assets/interfaces';
+import { NotificationEntity } from '../../../interface';
 import { navigationReset } from '../../../navigation';
 
 const SplashPage = () => {

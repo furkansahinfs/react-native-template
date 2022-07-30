@@ -1,5 +1,14 @@
 export { formatDate, getNumberOfDay } from './date';
-export { call, getDirection, goWebsite } from './functions';
+export {
+  call,
+  getGPSLocation,
+  getValueText,
+  getDirection,
+  getObjectValue,
+  goWebsite,
+  objectValueChange,
+} from './functions';
+export { findPhotos, findVideos } from './imageFunctions';
 export { default as isAuthenticated } from './isAuthenticated';
 export { getLanguage, loadLanguageToRedux, setLanguage } from './language';
 

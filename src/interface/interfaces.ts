@@ -4,11 +4,26 @@ export interface FileProps {
   name: string;
 }
 
+export interface GottenFileProps {
+  id: number;
+  file: string;
+  created_at: string;
+}
+
+
 export interface ItemProps {
   name: string;
   size: string;
   type: string;
 }
+
+
+export interface LocationProps {
+  id: number;
+  name: string;
+  parent?: LocationProps;
+}
+
 
 export interface NotificationEntity {
   content: string | undefined | null;
@@ -24,6 +39,13 @@ export interface NotificationEntity {
 export interface Point {
   lat: number;
   lng: number;
+}
+
+export interface PositionProps {
+  llng: number;
+  rlng: number;
+  tlat: number;
+  blat: number;
 }
 
 export interface IResponse {

@@ -5,15 +5,21 @@ import { useTheme } from '../../theme';
 import styles from './Icon.styles';
 
 interface IconProps {
-  onPressFunction: () => void;
+  onPressFunction?: () => void;
   name: string;
+  size?: number;
 }
 
-const IconView = ({ onPressFunction, name }: IconProps) => {
+const IconView = ({ onPressFunction, name, size }: IconProps) => {
   const { colors } = useTheme();
   return (
-    <TouchableOpacity onPress={onPressFunction}>
-      <Icon name={name} size={styles.iconStyle.height} style={styles.button} color={colors.icon} />
+    <TouchableOpacity onPress={onPressFunction !== undefined ? onPressFunction : () => null}>
+      <Icon
+        name={name}
+        size={size ? size : styles.iconStyle.height}
+        style={styles.button}
+        color={colors.icon}
+      />
     </TouchableOpacity>
   );
 };

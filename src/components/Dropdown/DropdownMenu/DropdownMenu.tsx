@@ -3,6 +3,9 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { CheckBox } from '../..';
 import { I18N } from '../../../locales';
 import { useTheme } from '../../../theme';
+import { ActivityIndicator } from '../../ActivityIndicator';
+import { Icon } from '../../Icon';
+import { FilterSearch } from '../../Search';
 import { styles } from './DropdownMenu.style';
 
 //TODO Refactoring
@@ -19,15 +22,19 @@ const DropdownMenu = (props: IDropdownMenu) => {
     titleKey,
     multipleChoiceDropdownTitle,
     loading,
+    searchBar,
   } = props;
   const [expandState, setExpandState] = useState<any>(false);
   const [renderAgain, setRenderAgain] = useState<any>(false);
   const [selectedChoices, setSelectedChoices] = useState<any>({});
   const [choiceTitles, setChoiceTitles] = useState<any>({});
+  const [renderSearchBar, setRenderSearchBar] = useState<any>(searchBar);
+  const [filteredChoices, setFilteredChoices] = useState<any>([]);
   const { colors } = useTheme();
 
   useEffect(() => {
     initChoiceStatus();
+    setRenderSearchBar(searchBar);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [choices]);
 
@@ -69,7 +76,6 @@ const DropdownMenu = (props: IDropdownMenu) => {
     });
     setChoice(newSelectedChoices);
     setSelectedChoices(currentChoices);
-
     setRenderAgain(!renderAgain);
   };
 
@@ -100,17 +106,17 @@ const DropdownMenu = (props: IDropdownMenu) => {
   };
 
   const renderChoices = () => {
-    const choiceList = choices;
+    const choiceList = renderSearchBar ? filteredChoices : choices;
 
     if (choiceList.length !== 0) {
       return (
         expandState && (
           <View>
-            {choices.map((choice: any, i: number) => {
+            {choiceList.map((choice: any, i: number) => {
               return (
                 <View key={i} style={styles.multipleChoiceContainer}>
                   <CheckBox
-                    checked={currentChoice === choice}
+                    checked={currentChoice === choice || currentChoice[itemKey] === choice[itemKey]}
                     onPressFunction={() => {
                       if (currentChoice === choice) {
                         setChoice(null);
@@ -136,11 +142,12 @@ const DropdownMenu = (props: IDropdownMenu) => {
   };
 
   const renderMultipleChoices = () => {
-    if (choices.length !== 0) {
+    const choiceList = renderSearchBar ? filteredChoices : choices;
+    if (choiceList.length !== 0) {
       return (
         expandState && (
           <View>
-            {choices.map((choice: any, i: number) => {
+            {choiceList.map((choice: any, i: number) => {
               const key = itemKey ? choice[itemKey] : choice;
               return (
                 <View key={i} style={styles.multipleChoiceContainer}>
@@ -163,21 +170,57 @@ const DropdownMenu = (props: IDropdownMenu) => {
     }
   };
 
+  const renderSearchBarComponent = () => {
+    return (
+      expandState && (
+        <View>
+          {itemKey ? (
+            <FilterSearch
+              setFilteredList={(filtered) => setFilteredChoices(filtered)}
+              unfilteredList={choices}
+              searchKeys={[titleKey ? titleKey : 'name', 'fullName']}
+              containerStyle={styles.searchBarContainer}
+              textStyle={[styles.searchBarText, { color: colors.text }]}
+            />
+          ) : (
+            <FilterSearch
+              setFilteredList={(filtered) => setFilteredChoices(filtered)}
+              unfilteredList={choices}
+              containerStyle={styles.searchBarContainer}
+              textStyle={[styles.searchBarText, { color: colors.text }]}
+            />
+          )}
+        </View>
+      )
+    );
+  };
+
   const renderContent = () => {
     if (!loading) {
-      return <>{multipleChoice ? renderMultipleChoices() : renderChoices()}</>;
+      return (
+        <View>
+          {renderSearchBar && renderSearchBarComponent()}
+          {multipleChoice ? renderMultipleChoices() : renderChoices()}
+        </View>
+      );
+    } else {
+      return <ActivityIndicator />;
     }
   };
 
   return (
-    <View style={styles.container}>
+    <View>
       <TouchableOpacity
         disabled={loading}
         style={[styles.categoryHeaderStyle, { borderColor: colors.border }]}
         onPress={() => setExpandState(!expandState)}
         activeOpacity={1}
       >
-        <Text style={[styles.categoryNameStyle, { color: colors.text }]}>{getTitle()}</Text>
+        <Text style={{ color: colors.text }}>{dropdownTitle}</Text>
+        <View style={styles.titleView}>
+          <Text style={[styles.categoryNameStyle, { color: colors.text }]}>{getTitle()}</Text>
+          <Icon name={expandState ? 'arrow-up' : 'arrow-down'} />
+        </View>
       </TouchableOpacity>
       {renderContent()}
     </View>
@@ -195,6 +238,7 @@ interface IDropdownMenu {
   itemKey: any;
   titleKey?: any;
   loading?: boolean;
+  searchBar?: boolean;
 }
 
 export default DropdownMenu;

@@ -4,15 +4,21 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from '../Icon.styles';
 
 interface IconProps {
-  onPressFunction: () => void;
+  onPressFunction?: () => void;
   name: string;
   color: string;
+  size?: number;
 }
 
-const DefaultIconView = ({ onPressFunction, name, color }: IconProps) => {
+const DefaultIconView = ({ onPressFunction, name, color, size }: IconProps) => {
   return (
     <TouchableOpacity onPress={onPressFunction}>
-      <Icon name={name} size={styles.iconStyle.height} color={color} />
+      <Icon
+        name={name}
+        size={size ? size : styles.iconStyle.height}
+        color={color}
+        onPress={onPressFunction}
+      />
     </TouchableOpacity>
   );
 };

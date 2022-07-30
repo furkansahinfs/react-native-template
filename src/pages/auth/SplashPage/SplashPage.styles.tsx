@@ -3,20 +3,18 @@ import { scale } from 'react-native-size-matters';
 
 const styles = StyleSheet.create({
   logo: {
-    width: '20%',
-    height: '20%',
-    backgroundColor: 'white',
+    width: scale(120),
+    height: scale(120),
+    aspectRatio: 1,
     borderRadius: scale(30),
-    alignSelf: 'center',
-    justifyContent: 'center',
   },
 
   headText: {
     fontStyle: 'normal',
-    fontWeight: 'normal',
-    paddingTop: '4%',
+    fontWeight: 'bold',
+    paddingTop: scale(20),
     fontSize: scale(20),
-    color: 'white',
+    color: 'black',
   },
 
   view: {
@@ -24,7 +22,7 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#3454fc',
+    backgroundColor: 'white',
   },
 });
 

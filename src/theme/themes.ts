@@ -1,11 +1,12 @@
 const MyDefaultTheme = {
   dark: false,
   colors: {
-    background: '#f7f7f7',
+    background: '#fcfcfc',
     background2: '#eff3f4',
     border: '#858585',
     button: '#3454fc',
     card: '#ffffff',
+    cardSeconday: '#eff3f4',
     notification: '#ff3b30',
     primary: '#007aff',
     secondary: '#E7EAF6',
@@ -18,6 +19,7 @@ const MyDefaultTheme = {
     disabled: 'black',
     placeholder: 'black',
     backdrop: 'black',
+    shadow: 'grey',
   },
 };
 
@@ -25,10 +27,11 @@ const MyDarkTheme = {
   dark: true,
   colors: {
     background: '#000000',
-    background2: '#000000',
+    background2: '#080808',
     border: '#ffffff',
     button: '#3454fc',
-    card: '#0a0a0a',
+    card: '#1c1c1c',
+    cardSeconday: '#303337',
     notification: '#ff453a',
     primary: '#0a84ff',
     secondary: '#242424',
@@ -41,6 +44,7 @@ const MyDarkTheme = {
     disabled: 'black',
     placeholder: 'white',
     backdrop: 'black',
+    shadow: 'white',
   },
 };
 export { MyDarkTheme, MyDefaultTheme };
