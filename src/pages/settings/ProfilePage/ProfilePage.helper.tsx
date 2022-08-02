@@ -1,44 +1,16 @@
-import {
-  GetProfileInfoRequest,
-  SetProfilePictureRequest,
-  UpdateProfileInfoRequest,
-} from '../../../api';
-import { FileProps, ProfileData } from '../../../interface';
+import { SendImageRequest } from '../../../api';
+import { FileProps } from '../../../interface';
 import { Toast } from '../../../components';
-import { I18N } from '../../../locales';
 
 /**
- * Get profile information from api
- *
+ * The function send the shelf photo to the API
+ * @param photos Array<FileProps>
  */
-export async function getProfileData() {
-  return await GetProfileInfoRequest();
-}
-
-/**
- * Send the selected image to the API to save image as profile picture
- * @param photo FileProps
- * @returns boolean
- */
-export async function setPicture(
-  photo: FileProps | undefined,
-  setIsChanged: (bool: boolean) => void,
-) {
-  if (photo !== undefined) {
-    const result = await SetProfilePictureRequest(photo);
-    if (result) {
-      Toast(I18N.t('profilePage.profilePhotoChangedMessage'), false);
-      setIsChanged(false);
-    } else {
-      Toast(result, false);
-    }
+export async function sendPhoto(photos: Array<FileProps>) {
+  const response: any = await SendImageRequest(photos);
+  if (typeof response === 'string' || response instanceof String) {
+    Toast(response.toString(), false);
+  } else {
+    Toast(JSON.stringify(response), true);
   }
-}
-
-/**
- * Send the updated profile info to the API to save
- * @param info ProfileData
- */
-export async function updateProfileData(info: ProfileData) {
-  return await UpdateProfileInfoRequest(info);
 }

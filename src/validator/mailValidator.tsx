@@ -10,7 +10,7 @@ function validate(email: string) {
   let errorMessage = '';
 
   if (!email) {
-    errorMessage += I18N.t('signupPage.emptyEmail') + '\n';
+    errorMessage += I18N.t('pages.signupPage.emptyEmail') + '\n';
   }
 
   const isVaild = !errorMessage;

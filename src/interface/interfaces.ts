@@ -10,20 +10,17 @@ export interface GottenFileProps {
   created_at: string;
 }
 
-
 export interface ItemProps {
   name: string;
   size: string;
   type: string;
 }
 
-
 export interface LocationProps {
   id: number;
   name: string;
   parent?: LocationProps;
 }
-
 
 export interface NotificationEntity {
   content: string | undefined | null;
@@ -39,6 +36,12 @@ export interface NotificationEntity {
 export interface Point {
   lat: number;
   lng: number;
+}
+
+export interface MarkerLessDetailedProps {
+  id: number;
+  name: string;
+  point: Point;
 }
 
 export interface PositionProps {

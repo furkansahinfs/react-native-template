@@ -29,7 +29,7 @@ function MainPageTabs() {
         })}
         options={{
           unmountOnBlur: true,
-          tabBarLabel: I18N.t('tabbar.main'),
+          tabBarLabel: I18N.t('navigation.tabbar.main'),
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home" color={color} size={styles.iconSize.height} />
           ),
@@ -43,7 +43,7 @@ function MainPageTabs() {
         })}
         options={{
           unmountOnBlur: true,
-          tabBarLabel: I18N.t('tabbar.profile'),
+          tabBarLabel: I18N.t('navigation.tabbar.profile'),
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="account-settings"

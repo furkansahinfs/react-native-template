@@ -7,6 +7,7 @@ export {
   getObjectValue,
   goWebsite,
   objectValueChange,
+  ramdaObjectValueChange,
 } from './functions';
 export { findPhotos, findVideos } from './imageFunctions';
 export { default as isAuthenticated } from './isAuthenticated';

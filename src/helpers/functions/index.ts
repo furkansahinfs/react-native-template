@@ -5,3 +5,4 @@ export { default as getDirection } from './getDirection';
 export { default as getObjectValue } from './getObjectValue';
 export { default as goWebsite } from './goWebsite';
 export { default as objectValueChange } from './objectValueChange';
+export { default as ramdaObjectValueChange } from './ramdaObjectValueChange';

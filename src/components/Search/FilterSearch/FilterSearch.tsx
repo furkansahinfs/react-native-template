@@ -11,9 +11,9 @@ export const FilterSearch = (props: IFilterSearch) => {
     setFilteredList(unfilteredList);
   }, []);
 
-  const getFilter = (unfilteredList: any, input: any) => {
+  const getFilter = (unfilteredListParam: any, input: any) => {
     const trimmedInput: string = input.split(' ').join('').toLocaleUpperCase('TR');
-    const filteredList = unfilteredList.filter(function (el: any) {
+    const filteredList = unfilteredListParam.filter(function (el: any) {
       if (!searchKeys) {
         const stringToBeSearched = el.split(' ').join('').toLocaleUpperCase('TR');
         return (

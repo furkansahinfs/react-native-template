@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {
-  AddressPage,
   ForgetPasswordAndActivationPage,
   LanguagePage,
   LoginPage,
@@ -14,7 +13,12 @@ const Stack = createStackNavigator();
 
 function MyStack() {
   return (
-    <Stack.Navigator headerMode="none" initialRouteName="Splash">
+    <Stack.Navigator
+      initialRouteName="Splash"
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Stack.Screen
         name="ForgetPasswordAndActivation"
         component={ForgetPasswordAndActivationPage}
@@ -24,7 +28,6 @@ function MyStack() {
       <Stack.Screen name="Main" component={DrawerNavigation} />
       <Stack.Screen name="Signup" component={SignupPage} />
       <Stack.Screen name="Splash" component={SplashPage} />
-      <Stack.Screen name="Address" component={AddressPage} />
     </Stack.Navigator>
   );
 }

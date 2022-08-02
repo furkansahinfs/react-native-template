@@ -50,10 +50,12 @@ const ForgetPassword = ({ route }: IForgetPassword) => {
               {selectedTab === 'ForgetPassword' && (
                 <View style={styles.welcomeText}>
                   <Text style={globalStyles.headText}>
-                    {I18N.t('forgetPasswordAndActiovationPage.forgetPasswordHead').toUpperCase()}
+                    {I18N.t(
+                      'pages.forgetPasswordAndActiovationPage.forgetPasswordHead',
+                    ).toUpperCase()}
                   </Text>
                   <Text style={globalStyles.bodyText}>
-                    {I18N.t('forgetPasswordAndActiovationPage.forgetPasswordBody')}
+                    {I18N.t('pages.forgetPasswordAndActiovationPage.forgetPasswordBody')}
                   </Text>
                 </View>
               )}
@@ -61,10 +63,12 @@ const ForgetPassword = ({ route }: IForgetPassword) => {
               {selectedTab === 'NewActivationMail' && (
                 <View style={styles.welcomeText}>
                   <Text style={globalStyles.headText}>
-                    {I18N.t('forgetPasswordAndActiovationPage.newActivationHead').toUpperCase()}
+                    {I18N.t(
+                      'pages.forgetPasswordAndActiovationPage.newActivationHead',
+                    ).toUpperCase()}
                   </Text>
                   <Text style={globalStyles.bodyText}>
-                    {I18N.t('forgetPasswordAndActiovationPage.newActivationBody')}
+                    {I18N.t('pages.forgetPasswordAndActiovationPage.newActivationBody')}
                   </Text>
                 </View>
               )}
@@ -76,7 +80,7 @@ const ForgetPassword = ({ route }: IForgetPassword) => {
                     onPress={() => setSelectedTab('ForgetPassword')}
                   >
                     <Text style={getTextStyle('ForgetPassword')}>
-                      {I18N.t('forgetPasswordAndActiovationPage.forgetPassword')}
+                      {I18N.t('pages.forgetPasswordAndActiovationPage.forgetPassword')}
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
@@ -84,7 +88,7 @@ const ForgetPassword = ({ route }: IForgetPassword) => {
                     onPress={() => setSelectedTab('NewActivationMail')}
                   >
                     <Text style={getTextStyle('NewActivationMail')}>
-                      {I18N.t('forgetPasswordAndActiovationPage.newActivation')}
+                      {I18N.t('pages.forgetPasswordAndActiovationPage.newActivation')}
                     </Text>
                   </TouchableOpacity>
                 </View>
@@ -93,7 +97,7 @@ const ForgetPassword = ({ route }: IForgetPassword) => {
                     func={(value) => setEmail(value)}
                     iconName={'envelope'}
                     keyboardType={'default'}
-                    placeholderText={I18N.t('forgetPasswordAndActiovationPage.email')}
+                    placeholderText={I18N.t('pages.forgetPasswordAndActiovationPage.email')}
                     secureText={false}
                     val={email}
                   />
@@ -102,7 +106,7 @@ const ForgetPassword = ({ route }: IForgetPassword) => {
                     <Button
                       mode={'contained'}
                       onPressFunction={async () => await send(email, selectedTab)}
-                      text={I18N.t('forgetPasswordAndActiovationPage.send')}
+                      text={I18N.t('pages.forgetPasswordAndActiovationPage.send')}
                     />
                   </View>
                 </View>

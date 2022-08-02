@@ -18,7 +18,7 @@ const Drawer = createDrawerNavigator();
 const getThemeLabel = () => {
   const selectedTheme = getTheme();
   const isDark = selectedTheme === 'DARK';
-  return isDark ? I18N.t('drawer.lightTheme') : I18N.t('drawer.darkTheme');
+  return isDark ? I18N.t('navigation.drawer.lightTheme') : I18N.t('navigation.drawer.darkTheme');
 };
 
 interface IDrawerItemComponent {
@@ -44,12 +44,12 @@ function CustomDrawerContent(props: any) {
     <DrawerContentScrollView {...props} style={{ backgroundColor: colors.background }}>
       <DrawerItemList {...props} />
       <DrawerItemComponent
-        labelName={I18N.t('drawer.selectLanguage')}
+        labelName={I18N.t('navigation.drawer.selectLanguage')}
         onPress={() => navigate('Language', { page: 'Main' })}
       />
       <DrawerItemComponent labelName={getThemeLabel()} onPress={async () => await changeTheme()} />
       <DrawerItemComponent
-        labelName={I18N.t('drawer.logout')}
+        labelName={I18N.t('navigation.drawer.logout')}
         onPress={async () => await logout()}
       />
     </DrawerContentScrollView>
@@ -84,8 +84,8 @@ function AppDrawer() {
         name="Home"
         component={MainPage}
         options={{
-          drawerLabel: I18N.t('tabbar.main'),
-          headerTitle: I18N.t('tabbar.main'),
+          drawerLabel: I18N.t('navigation.tabbar.main'),
+          headerTitle: I18N.t('navigation.tabbar.main'),
           drawerIcon: () => <DrawerIcon iconName={'home'} />,
         }}
       />
@@ -93,8 +93,8 @@ function AppDrawer() {
         name="Profile"
         component={ProfilePage}
         options={{
-          drawerLabel: I18N.t('tabbar.profile'),
-          headerTitle: I18N.t('tabbar.profile'),
+          drawerLabel: I18N.t('navigation.tabbar.profile'),
+          headerTitle: I18N.t('navigation.tabbar.profile'),
           drawerIcon: () => <DrawerIcon iconName={'account-settings'} />,
         }}
       />

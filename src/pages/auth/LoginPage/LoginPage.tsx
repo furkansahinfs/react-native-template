@@ -36,8 +36,10 @@ const LoginPage = () => {
           <ScrollView nestedScrollEnabled={true} keyboardShouldPersistTaps={'handled'}>
             <View style={styles.view}>
               <View style={styles.welcomeText}>
-                <Text style={globalStyles.headText}>{I18N.t('loginPage.hello').toUpperCase()}</Text>
-                <Text style={globalStyles.bodyText}>{I18N.t('loginPage.loginBody')}</Text>
+                <Text style={globalStyles.headText}>
+                  {I18N.t('pages.loginPage.hello').toUpperCase()}
+                </Text>
+                <Text style={globalStyles.bodyText}>{I18N.t('pages.loginPage.loginBody')}</Text>
               </View>
 
               <Card containerStyle={globalStyles.card}>
@@ -46,7 +48,7 @@ const LoginPage = () => {
                     func={(value) => setEmail(value)}
                     iconName={'envelope'}
                     keyboardType={'default'}
-                    placeholderText={I18N.t('loginPage.email')}
+                    placeholderText={I18N.t('pages.loginPage.email')}
                     secureText={false}
                     val={email}
                   />
@@ -55,7 +57,7 @@ const LoginPage = () => {
                     func={(value) => setPassword(value)}
                     iconName={'key'}
                     keyboardType={'default'}
-                    placeholderText={I18N.t('loginPage.password')}
+                    placeholderText={I18N.t('pages.loginPage.password')}
                     secureText={true}
                     val={password}
                   />
@@ -68,7 +70,7 @@ const LoginPage = () => {
                       })
                     }
                   >
-                    {I18N.t('loginPage.forgetPassword')}
+                    {I18N.t('pages.loginPage.forgetPassword')}
                   </Text>
 
                   <Text
@@ -79,19 +81,19 @@ const LoginPage = () => {
                       })
                     }
                   >
-                    {I18N.t('loginPage.newActivation')}
+                    {I18N.t('pages.loginPage.newActivation')}
                   </Text>
                   <View style={globalStyles.buttonMargin}>
                     <Button
                       mode={'contained'}
                       onPressFunction={async () => await loginClick()}
-                      text={I18N.t('loginPage.loginButton')}
+                      text={I18N.t('pages.loginPage.loginButton')}
                     />
                   </View>
                   <View style={globalStyles.buttonMargin}>
                     <TextButton
                       onPressFunction={() => navigate('Signup')}
-                      text={I18N.t('loginPage.signupButton')}
+                      text={I18N.t('pages.loginPage.signupButton')}
                     />
                   </View>
                 </View>

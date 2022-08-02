@@ -20,6 +20,8 @@ interface ILocation {
   parent?: any;
 }
 
+//TODO Refactoring
+
 const undefinedLocation: ILocation = { name: '', id: -1 };
 
 const SelectLocation = ({ location, rentalLocation }: ISelectLocation) => {

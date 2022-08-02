@@ -17,6 +17,6 @@ export async function send(email: string, selectedTab: string) {
       Toast(response, false);
     }
   } else {
-    Toast(I18N.t('forgetPasswordAndActiovationPage.emptyEmail'), false);
+    Toast(I18N.t('pages.forgetPasswordAndActiovationPage.emptyEmail'), false);
   }
 }

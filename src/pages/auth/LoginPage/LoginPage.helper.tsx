@@ -14,11 +14,11 @@ import { navigationReset } from '../../../navigation';
 function validateLoginInputs(email: string, password: string) {
   let errorMessage = '';
   if (!email) {
-    errorMessage += I18N.t('loginPage.emptyEmail') + '\n';
+    errorMessage += I18N.t('pages.loginPage.emptyEmail') + '\n';
   }
 
   if (!password) {
-    errorMessage += I18N.t('loginPage.emptyPassword') + '\n';
+    errorMessage += I18N.t('pages.loginPage.emptyPassword') + '\n';
   }
 
   const isValidated = !errorMessage;

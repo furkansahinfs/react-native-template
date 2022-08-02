@@ -4,7 +4,7 @@ import { ImageLibraryOptions } from 'react-native-image-picker';
 import { Image, ScrollView, View, TouchableOpacity } from 'react-native';
 import styles from './ImageSelector.style';
 import { requestCameraPermission } from './ImageSelector.helper';
-import { DefaultIcon, Icon } from '../..';
+import { Icon } from '../..';
 import ModalView from './Subcomponents/ModalView';
 import { FileProps } from '../../../interface';
 import VideoPlayer from 'react-native-video-controls';
@@ -129,7 +129,7 @@ const ImageSelector = ({
 
       {files !== null && renderImages && renderFilesUri()}
       {OpenModalView === undefined && (
-        <DefaultIcon color={'black'} name={'camera'} onPressFunction={() => setModalVisible(true)} />
+        <Icon name={'camera'} onPressFunction={() => setModalVisible(true)} />
       )}
       {OpenModalView !== undefined && (
         <TouchableOpacity onPress={() => setModalVisible(true)} children={OpenModalView} />

@@ -3,7 +3,7 @@ import { Toast } from '../../../components';
 import { I18N } from '../../../locales/language';
 import { SignupRequest } from '../../../api';
 import { navigate } from '../../../navigation';
-import { SignupProps } from '../../../assets';
+import { SignupProps } from '../../../interface';
 
 /**
  * The function controls that given email and password are valid
@@ -42,11 +42,11 @@ export function validateInfoInputs(name: string, surname: string) {
   let errorMessage = '';
 
   if (!name) {
-    errorMessage += I18N.t('signupPage.emptyName') + '\n';
+    errorMessage += I18N.t('pages.signupPage.emptyName') + '\n';
   }
 
   if (!surname) {
-    errorMessage += I18N.t('signupPage.emptySurname') + '\n';
+    errorMessage += I18N.t('pages.signupPage.emptySurname') + '\n';
   }
 
   const isValidated = !errorMessage;
@@ -70,7 +70,7 @@ export async function register(json: SignupProps) {
   if (!response?.email) {
     Toast(response, true);
   } else {
-    Toast(I18N.t('signupPage.signupSuccessfull'), true);
+    Toast(I18N.t('pages.signupPage.signupSuccessfull'), true);
     navigate('Login');
   }
 }

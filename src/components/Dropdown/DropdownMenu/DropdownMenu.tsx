@@ -8,7 +8,7 @@ import { Icon } from '../../Icon';
 import { FilterSearch } from '../../Search';
 import { styles } from './DropdownMenu.style';
 
-//TODO Refactoring
+//TODO NEED BIG Refactoring
 
 const DropdownMenu = (props: IDropdownMenu) => {
   const {
@@ -136,7 +136,9 @@ const DropdownMenu = (props: IDropdownMenu) => {
       );
     } else {
       return (
-        expandState && <Text style={styles.choiceStyle}>{I18N.t('dropdownMenu.noChoice')}</Text>
+        expandState && (
+          <Text style={styles.choiceStyle}>{I18N.t('components.dropdownMenu.noChoice')}</Text>
+        )
       );
     }
   };
@@ -165,7 +167,9 @@ const DropdownMenu = (props: IDropdownMenu) => {
       );
     } else {
       return (
-        expandState && <Text style={styles.choiceStyle}>{I18N.t('dropdownMenu.noChoice')}</Text>
+        expandState && (
+          <Text style={styles.choiceStyle}>{I18N.t('components.dropdownMenu.noChoice')}</Text>
+        )
       );
     }
   };

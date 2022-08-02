@@ -60,7 +60,7 @@ const ModalView = ({
             onPressFunction={() => {
               setModalVisible(!isModalVisible);
             }}
-            text={I18N.t('imageSelector.closeModal')}
+            text={I18N.t('components.imageSelector.closeModal')}
             widthFit={true}
             hasMarginVertical={true}
           />
