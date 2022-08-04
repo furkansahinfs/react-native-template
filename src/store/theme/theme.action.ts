@@ -1,11 +1,14 @@
-import { LightOnAction, DarkOnAction, LIGHT, DARK } from './theme.types';
+import { createAction } from '@reduxjs/toolkit';
+import { LIGHT, DARK } from './theme.types';
 
-export const lightOn = (): LightOnAction => ({
-  type: LIGHT,
-  payload: { theme: 'LIGHT' },
+export const lightOn = createAction(LIGHT, function prepare() {
+  return {
+    payload: { theme: 'LIGHT' },
+  };
 });
 
-export const darkOn = (): DarkOnAction => ({
-  type: DARK,
-  payload: { theme: 'DARK' },
+export const darkOn = createAction(DARK, function prepare() {
+  return {
+    payload: { theme: 'DARK' },
+  };
 });

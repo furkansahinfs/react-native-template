@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { StatusBar, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import MapView from 'react-native-map-clustering';
 import { useFocusEffect } from '@react-navigation/native';
 import { CustomSafeAreaView, Icon } from '../../../components';
@@ -22,7 +22,7 @@ export default function MainPage() {
   });
   const [markers, setMarkers] = useState<Array<MarkerLessDetailedProps>>([]);
 
-  const { colors, dark } = useTheme();
+  const { colors } = useTheme();
   const globalStyles = stylesGlobal(colors);
 
   useFocusEffect(
@@ -62,38 +62,35 @@ export default function MainPage() {
     <CustomSafeAreaView
       InnerView={
         <View>
-          <StatusBar barStyle={dark ? 'light-content' : 'dark-content'} />
-          <View>
-            <MapView
-              ref={mapRef}
-              initialRegion={region}
-              onMapReady={async () => await findCoordinates(setRegion, mapRef)}
-              onRegionChangeComplete={handlePositionChange}
-              showsUserLocation={true}
-              showsMyLocationButton={false}
-              zoomEnabled={true}
-              style={styles.map}
-            >
-              {MarkerView({
-                //This is not JSX element
-                callout: (markerId: number) => console.log(markerId, ' is clicked'),
-                click: (parkMarker: MarkerLessDetailedProps) =>
-                  handleMarkerChange(parkMarker, mapRef),
-                markers: markers,
-              })}
-            </MapView>
+          <MapView
+            ref={mapRef}
+            initialRegion={region}
+            onMapReady={async () => await findCoordinates(setRegion, mapRef)}
+            onRegionChangeComplete={handlePositionChange}
+            showsUserLocation={true}
+            showsMyLocationButton={false}
+            zoomEnabled={true}
+            style={styles.map}
+          >
+            {MarkerView({
+              //This is not JSX element
+              callout: (markerId: number) => console.log(markerId, ' is clicked'),
+              click: (parkMarker: MarkerLessDetailedProps) =>
+                handleMarkerChange(parkMarker, mapRef),
+              markers: markers,
+            })}
+          </MapView>
 
-            <TouchableOpacity
-              onPress={async () => await findCoordinates(setRegion, mapRef)}
-              style={[styles.userLocationButton, { backgroundColor: colors.background }]}
-            >
-              <Icon
-                name={'map-pin'}
-                size={globalStyles.iconSize.height}
-                onPressFunction={async () => await findCoordinates(setRegion, mapRef)}
-              />
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity
+            onPress={async () => await findCoordinates(setRegion, mapRef)}
+            style={[styles.userLocationButton, { backgroundColor: colors.background }]}
+          >
+            <Icon
+              name={'map-pin'}
+              size={globalStyles.iconSize.height}
+              onPressFunction={async () => await findCoordinates(setRegion, mapRef)}
+            />
+          </TouchableOpacity>
         </View>
       }
     />

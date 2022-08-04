@@ -1,14 +1,18 @@
-import { ThemeAction, ThemeState, DARK, LIGHT } from './theme.types';
+import { createReducer } from '@reduxjs/toolkit';
+import { darkOn, lightOn } from './theme.action';
+import { ThemeState } from './theme.types';
 
 const initialState: ThemeState = { theme: 'LIGHT' };
 
-export default function themeReducer(state = initialState, action: ThemeAction): ThemeState {
-  switch (action.type) {
-    case DARK:
-      return { ...state, ...action.payload };
-    case LIGHT:
-      return { ...state, ...action.payload };
-    default:
-      return state;
-  }
-}
+export const themeReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(lightOn, (state, action) => {
+      state.theme = action.payload.theme;
+    })
+    .addCase(darkOn, (state, action) => {
+      state.theme = action.payload.theme;
+    })
+    .addDefaultCase((state, action) => {
+      state = action.payload;
+    });
+});

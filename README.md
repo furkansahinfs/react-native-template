@@ -23,7 +23,8 @@
 - react-native-onesignal
 - axios
 - redux
-- redux-thunk
+- reduxjs/toolkit
+- react-native-maps
 
 
 ## Project Folder Hierarchy
@@ -35,6 +36,7 @@
       ├── components        // reusable components
       ├── helpers           // project wide helper functions
       ├── hooks             // project wide react hooks
+      ├── interface         // interfaces & types
       ├── locales           // translations
       ├── navigation        // navigation configuration for pages
       ├── pages             // pages to be showed by react-navigation

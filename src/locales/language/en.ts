@@ -20,7 +20,6 @@ const en = {
       profile: 'Profile',
     },
   },
-
   pages: {
     addressPage: {
       cancel: 'Cancel',
