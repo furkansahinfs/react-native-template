@@ -2,15 +2,6 @@ import { StyleSheet } from 'react-native';
 import { scale } from 'react-native-size-matters';
 
 const styles = StyleSheet.create({
-  filterButton: {
-    width: '10%',
-    height: 67,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderTopWidth: 1,
-  },
-
   mainView: {
     height: '100%',
   },
