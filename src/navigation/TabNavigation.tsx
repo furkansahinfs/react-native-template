@@ -13,12 +13,13 @@ function MainPageTabs() {
   return (
     <Tab.Navigator
       initialRouteName="Main"
-      tabBarOptions={{
-        activeTintColor: colors.text,
-        inactiveTintColor: '#95a5a6',
-        keyboardHidesTabBar: false,
-        showLabel: false,
-        style: [styles.bottomBar, { backgroundColor: colors.background }],
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: colors.text,
+        tabBarInactiveTintColor: '#95a5a6',
+        tabBarHideOnKeyboard: false,
+        tabBarShowLabel: false,
+        tabBarStyle: [styles.bottomBar, { backgroundColor: colors.background }],
       }}
     >
       <Tab.Screen
