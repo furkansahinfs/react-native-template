@@ -12,7 +12,7 @@ function MainPageTabs() {
   const { colors } = useTheme();
   return (
     <Tab.Navigator
-      initialRouteName="Main"
+      initialRouteName="Home"
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: colors.text,
@@ -23,7 +23,7 @@ function MainPageTabs() {
       }}
     >
       <Tab.Screen
-        name="Main"
+        name="Home"
         component={MainPage}
         listeners={({ navigation }) => ({
           blur: () => navigation.setParams({ screen: undefined }),

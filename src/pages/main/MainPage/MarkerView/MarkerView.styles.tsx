@@ -1,22 +1,38 @@
-import { StyleSheet, Dimensions } from 'react-native';
-
-const window = Dimensions.get('window');
+import { StyleSheet } from 'react-native';
+import { scale } from 'react-native-size-matters';
 
 const styles = StyleSheet.create({
+  clickedMarker: {
+    backgroundColor: 'white',
+    padding: scale(15),
+    paddingRight: 0,
+    alignSelf: 'center',
+    borderRadius: scale(100),
+    borderWidth: scale(1),
+    borderColor: 'orange',
+  },
+
   parkIcon: {
-    height: Math.sqrt(window.width * window.fontScale) * 2,
-    width: Math.sqrt(window.width * window.fontScale),
-    resizeMode: 'contain',
+    height: scale(57),
+    width: scale(45),
+  },
+
+  row: {
+    flexDirection: 'row',
+    paddingBottom: scale(20),
   },
 
   slotText: {
     textAlign: 'center',
     textAlignVertical: 'center',
     alignSelf: 'flex-end',
-    marginLeft: 1,
-    paddingVertical: 1,
-    paddingHorizontal: 5,
-    fontSize: 11,
+    left: scale(-10),
+    bottom: scale(-10),
+    width: scale(30),
+    height: scale(30),
+    borderRadius: scale(15),
+    fontSize: scale(15),
+    color: 'black',
     fontWeight: 'bold',
     backgroundColor: 'orange',
   },

@@ -39,8 +39,8 @@ export interface Point {
 }
 
 export interface MarkerLessDetailedProps {
+  count: number;
   id: number;
-  name: string;
   point: Point;
 }
 

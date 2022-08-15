@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { View } from 'react-native';
 import { FileProps } from '../../../interface';
 import { Button, CustomSafeAreaView, ImageSelector } from '../../../components';
 import { I18N } from '../../../locales';

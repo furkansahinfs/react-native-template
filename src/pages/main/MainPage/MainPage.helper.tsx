@@ -4,6 +4,23 @@ import { TestData } from '../../../assets';
 import { MarkerLessDetailedProps, PositionProps, RegionProps } from '../../../interface';
 import { Toast } from '../../../components';
 import { I18N } from '../../../locales';
+import { GetParkingsRequest } from '../../../api';
+
+export async function getMarkers(coordinates: PositionProps) {
+  const result = await GetParkingsRequest(coordinates, 'LESS');
+  return result instanceof Array ? result : [];
+}
+
+export function calculateScreenPolygon(reg: RegionProps) {
+  const localPosition = {
+    tlat: reg.latitude + reg.latitudeDelta / 2,
+    blat: reg.latitude - reg.latitudeDelta / 2,
+    llng: reg.longitude - reg.longitudeDelta / 2,
+    rlng: reg.longitude + reg.longitudeDelta / 2,
+  };
+
+  return localPosition;
+}
 
 /**
  * The function gets the user's location from GPS
