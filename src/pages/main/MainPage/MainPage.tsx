@@ -5,13 +5,8 @@ import { useFocusEffect } from '@react-navigation/native';
 import { CustomSafeAreaView, Icon } from '../../../components';
 import { TestData } from '../../../assets';
 import { MarkerLessDetailedProps, PositionProps, RegionProps } from '../../../interface';
-import {
-  calculateScreenPolygon,
-  findCoordinates,
-  getMarkers,
-  handleMarkerChange,
-  handleRegionChange,
-} from './MainPage.helper';
+import { findCoordinates, handleMarkerChange, handleRegionChange } from './MainPage.helper';
+import { stylesGlobal } from '../../../styles/';
 import { MarkerView } from './MarkerView/';
 import { useTheme } from '../../../theme';
 import styles from './MainPage.styles';
@@ -26,17 +21,16 @@ export default function MainPage() {
     rlng: 0,
   });
   const [markers, setMarkers] = useState<Array<MarkerLessDetailedProps>>([]);
-  const [selectedMarker, setSelectedMarker] = useState<MarkerLessDetailedProps>();
 
   const { colors } = useTheme();
+  const globalStyles = stylesGlobal(colors);
 
   useFocusEffect(
     useCallback(() => {
       let isActive = true;
       const fetch = async () => {
         if (isActive) {
-          const localPosition = calculateScreenPolygon(region);
-          await getData(localPosition);
+          await getData();
         }
       };
 
@@ -47,14 +41,18 @@ export default function MainPage() {
     }, []),
   );
 
-  async function getData(reg: PositionProps) {
-    const gottenMarkers = await getMarkers(reg);
-    setMarkers(gottenMarkers);
+  async function getData(reg?: PositionProps) {
+    console.log(reg);
   }
 
   async function handlePositionChange(reg: RegionProps) {
     handleRegionChange(reg, setPosition);
-    const localPosition = calculateScreenPolygon(reg);
+    const localPosition = {
+      tlat: reg.latitude + reg.latitudeDelta / 2,
+      blat: reg.latitude - reg.latitudeDelta / 2,
+      llng: reg.longitude - reg.longitudeDelta / 2,
+      rlng: reg.longitude + reg.longitudeDelta / 2,
+    };
     setTimeout(async () => {
       await getData(localPosition);
     }, 500);
@@ -74,17 +72,13 @@ export default function MainPage() {
             zoomEnabled={true}
             style={styles.map}
           >
-            {markers.map((park: MarkerLessDetailedProps, index) => (
-              <MarkerView
-                key={index}
-                isSelected={park.id === selectedMarker?.id}
-                click={(parkMarker: MarkerLessDetailedProps) => {
-                  handleMarkerChange(parkMarker, mapRef);
-                  setSelectedMarker(park);
-                }}
-                park={park}
-              />
-            ))}
+            {MarkerView({
+              //This is not JSX element
+              callout: (markerId: number) => console.log(markerId, ' is clicked'),
+              click: (parkMarker: MarkerLessDetailedProps) =>
+                handleMarkerChange(parkMarker, mapRef),
+              markers: markers,
+            })}
           </MapView>
 
           <TouchableOpacity
@@ -93,7 +87,7 @@ export default function MainPage() {
           >
             <Icon
               name={'map-pin'}
-              size={styles.iconSize.height}
+              size={globalStyles.iconSize.height}
               onPressFunction={async () => await findCoordinates(setRegion, mapRef)}
             />
           </TouchableOpacity>

@@ -2,12 +2,19 @@ import { StyleSheet } from 'react-native';
 import { scale } from 'react-native-size-matters';
 
 const styles = StyleSheet.create({
-  iconSize: {
-    height: scale(15),
+  mainView: {
+    height: '100%',
   },
 
   map: {
     height: '100%',
+  },
+
+  topBar: {
+    width: '100%',
+    position: 'absolute',
+    zIndex: 1,
+    elevation: 1,
   },
 
   userLocationButton: {
