@@ -220,10 +220,10 @@ const DropdownMenu = (props: IDropdownMenu) => {
         onPress={() => setExpandState(!expandState)}
         activeOpacity={1}
       >
-        <Text style={{ color: colors.text }}>{dropdownTitle}</Text>
+        {dropdownTitle && <Text style={{ color: colors.text }}>{dropdownTitle}</Text>}
         <View style={styles.titleView}>
           <Text style={[styles.categoryNameStyle, { color: colors.text }]}>{getTitle()}</Text>
-          <Icon name={expandState ? 'arrow-up' : 'arrow-down'} />
+          <Icon name={expandState ? 'angle-up' : 'angle-down'} />
         </View>
       </TouchableOpacity>
       {renderContent()}
@@ -234,7 +234,7 @@ const DropdownMenu = (props: IDropdownMenu) => {
 interface IDropdownMenu {
   choices: Array<any>;
   currentChoice: any;
-  dropdownTitle: string;
+  dropdownTitle?: string;
   setChoice: (choice: any) => any;
   closeOnSelection?: boolean;
   multipleChoice?: boolean;

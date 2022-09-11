@@ -4,33 +4,6 @@ import api, { LoginRequest } from '../../../api';
 import { loadUserCredentialsToRedux, setUserCredentials } from '../../../helpers';
 import { navigationReset } from '../../../navigation';
 
-/**
- * The function controls that given email and password to login are empty or not
- * If empty, display a Toast
- * @param email
- * @param password
- * @returns validation result : boolean
- */
-function validateLoginInputs(email: string, password: string) {
-  let errorMessage = '';
-  if (!email) {
-    errorMessage += I18N.t('pages.loginPage.emptyEmail') + '\n';
-  }
-
-  if (!password) {
-    errorMessage += I18N.t('pages.loginPage.emptyPassword') + '\n';
-  }
-
-  const isValidated = !errorMessage;
-  if (!isValidated) {
-    errorMessage = errorMessage.replace(/\n$/, '');
-    Toast(errorMessage, true);
-    return false;
-  }
-
-  return true;
-}
-
 interface ResponseProps {
   refresh_token: string;
   access_token: string;
@@ -58,13 +31,41 @@ async function saveUserCredentials(response: ResponseProps) {
  * @param password : user password
  */
 export async function login(email: string, password: string) {
-  if (validateLoginInputs(email, password)) {
-    const response: any = await LoginRequest(email, password);
-    if (!response?.access_token) {
-      Toast(response, false);
-    } else {
-      await saveUserCredentials(response);
-      navigationReset('Main');
-    }
+  const response: any = await LoginRequest(email, password);
+  if (!response?.access_token) {
+    Toast(response, false);
+  } else {
+    await saveUserCredentials(response);
+    navigationReset('Main');
   }
 }
+
+export interface InputProp {
+  name: 'email' | 'password';
+  placeHolder: string;
+  type: string;
+  errors: string;
+  rules: Object;
+  iconName: string;
+  isSecureInput: boolean;
+}
+export const inputArray: Array<InputProp> = [
+  {
+    name: 'email',
+    placeHolder: I18N.t('pages.loginPage.input.email'),
+    type: 'textinput',
+    errors: I18N.t('pages.loginPage.error.email'),
+    rules: { required: true },
+    iconName: 'envelope',
+    isSecureInput: false,
+  },
+  {
+    name: 'password',
+    placeHolder: I18N.t('pages.loginPage.input.password'),
+    type: 'textinput',
+    errors: I18N.t('pages.loginPage.error.password'),
+    rules: { required: true },
+    iconName: 'key',
+    isSecureInput: true,
+  },
+];

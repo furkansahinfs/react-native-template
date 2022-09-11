@@ -3,7 +3,6 @@ import { scale } from 'react-native-size-matters';
 
 export const styles = StyleSheet.create({
   categoryHeaderStyle: {
-    borderBottomWidth: scale(1),
     margin: scale(7),
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -11,8 +10,6 @@ export const styles = StyleSheet.create({
 
   categoryNameStyle: {
     marginTop: scale(5),
-    fontSize: scale(17),
-    fontWeight: 'bold',
     alignItems: 'flex-start',
     flex: 1,
   },

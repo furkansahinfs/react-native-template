@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: scale(100),
     borderWidth: scale(1),
-    borderColor: 'orange',
+    borderColor: 'blue',
   },
 
   parkIcon: {
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     fontSize: scale(15),
     color: 'black',
     fontWeight: 'bold',
-    backgroundColor: 'orange',
+    backgroundColor: 'blue',
   },
 });
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, ScrollView, Text } from 'react-native';
 import { Card } from 'react-native-elements';
+import { Controller, useForm } from 'react-hook-form';
 import {
   ActivityIndicator,
   Button,
@@ -9,25 +10,34 @@ import {
   TextInput,
 } from '../../../components/';
 import { I18N } from '../../../locales';
-import { login } from './LoginPage.helper';
+import { inputArray, InputProp, login } from './LoginPage.helper';
 import styles from './LoginPage.styles';
 import { stylesGlobal } from '../../../styles/';
 import { useTheme } from '../../../theme';
 import { navigate } from '../../../navigation';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [showLoading, setShowLoading] = useState(false);
 
   const { colors } = useTheme();
   const globalStyles = stylesGlobal(colors);
 
-  async function loginClick() {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  const onSubmit = async (data: { email: string; password: string }) => {
     setShowLoading(true);
-    await login(email, password);
+    await login(data.email, data.password);
     setShowLoading(false);
-  }
+  };
 
   return (
     <CustomSafeAreaView
@@ -44,23 +54,28 @@ const LoginPage = () => {
 
               <Card containerStyle={globalStyles.card}>
                 <View>
-                  <TextInput
-                    func={(value) => setEmail(value)}
-                    iconName={'envelope'}
-                    keyboardType={'default'}
-                    placeholderText={I18N.t('pages.loginPage.email')}
-                    secureText={false}
-                    val={email}
-                  />
-
-                  <TextInput
-                    func={(value) => setPassword(value)}
-                    iconName={'key'}
-                    keyboardType={'default'}
-                    placeholderText={I18N.t('pages.loginPage.password')}
-                    secureText={true}
-                    val={password}
-                  />
+                  {inputArray.map((input: InputProp) => {
+                    return (
+                      <View style={styles.inputContainer} key={input.name}>
+                        <Controller
+                          control={control}
+                          rules={input.rules}
+                          render={({ field: { onChange, value } }) => (
+                            <TextInput
+                              placeholderText={input.placeHolder}
+                              secureText={input.isSecureInput}
+                              func={onChange}
+                              val={value}
+                              keyboardType="default"
+                              iconName={input.iconName}
+                            />
+                          )}
+                          name={input.name}
+                        />
+                        {errors[input.name] && <Text style={styles.errorText}>{input.errors}</Text>}
+                      </View>
+                    );
+                  })}
 
                   <Text
                     style={[styles.forgetPasswordAndActivation, { color: colors.text }]}
@@ -86,7 +101,7 @@ const LoginPage = () => {
                   <View style={globalStyles.buttonMargin}>
                     <Button
                       mode={'contained'}
-                      onPressFunction={async () => await loginClick()}
+                      onPressFunction={handleSubmit(onSubmit)}
                       text={I18N.t('pages.loginPage.loginButton')}
                     />
                   </View>

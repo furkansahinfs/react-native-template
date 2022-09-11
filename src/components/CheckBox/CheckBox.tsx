@@ -6,17 +6,32 @@ import styles from './CheckBox.styles';
 interface CheckboxProps {
   onPressFunction: () => void;
   checked: boolean;
-  title: string;
+  title?: string;
   widthFit?: boolean;
+  extraStyle?: any;
+  right?: boolean;
 }
 
-const CheckBox = ({ onPressFunction, checked, title, widthFit }: CheckboxProps) => {
+const CheckBox = ({
+  onPressFunction,
+  checked,
+  title,
+  widthFit,
+  extraStyle,
+  right,
+}: CheckboxProps) => {
   const { colors } = useTheme();
   return (
     <NativeCheckBox
       title={title}
+      right={right}
       textStyle={{ color: colors.text }}
-      containerStyle={[styles.box, { borderColor: colors.border }, widthFit ? {} : styles.widthAll]}
+      containerStyle={[
+        styles.box,
+        { borderColor: colors.border },
+        widthFit ? {} : styles.widthAll,
+        extraStyle,
+      ]}
       checked={checked}
       onPress={onPressFunction}
     />

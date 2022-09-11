@@ -2,6 +2,11 @@ import { StyleSheet } from 'react-native';
 import { scale } from 'react-native-size-matters';
 
 const styles = StyleSheet.create({
+  errorText: {
+    marginBottom: scale(10),
+    color: 'red',
+  },
+
   forgetPasswordAndActivation: {
     fontStyle: 'normal',
     textDecorationLine: 'underline',
@@ -10,6 +15,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: '1%',
     fontSize: scale(14),
+  },
+
+  inputContainer: {
+    width: '85%',
+    alignSelf: 'center',
   },
 
   mainView: {
