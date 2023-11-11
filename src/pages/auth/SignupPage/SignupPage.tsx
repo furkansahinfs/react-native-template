@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import i18next from 'i18next';
+import { useForm } from 'react-hook-form';
 import {
   ActivityIndicator,
   BackButton,
   CustomSafeAreaView,
   DefaultIcon,
   Toast,
-} from '../../../components';
-import { I18N } from '../../../locales';
-import styles from './SignupPage.styles';
-import { stylesGlobal } from '../../../styles/';
-import { useTheme } from '../../../theme';
-import { useForm } from 'react-hook-form';
-import { register } from './SignupPage.helper';
-import { SignupForm } from './SignupForm';
-import { CommunicationPreferences } from './CommunicationPreferences';
+} from 'src/components';
+import { stylesGlobal } from 'src/styles/';
+import { useTheme } from 'src/theme';
 import { Aggrements } from './Aggrements';
+import { CommunicationPreferences } from './CommunicationPreferences';
+import { SignupForm } from './SignupForm';
+import { register } from './SignupPage.helper';
+import styles from './SignupPage.styles';
 
 const SignupPage = () => {
   const [showLoading, setShowLoading] = useState<boolean>(false);
@@ -47,7 +47,7 @@ const SignupPage = () => {
       await register(data);
       setShowLoading(false);
     } else {
-      Toast(I18N.t('pages.signupPage.error.passwordNotMatched'), false);
+      Toast(i18next.t('pages.signupPage.error.passwordNotMatched'), false);
     }
   };
 
@@ -58,13 +58,12 @@ const SignupPage = () => {
           <ScrollView
             nestedScrollEnabled={true}
             keyboardShouldPersistTaps={'handled'}
-            contentContainerStyle={styles.scrollView}
-          >
+            contentContainerStyle={styles.scrollView}>
             <BackButton color={colors.icon} />
             <View style={styles.textView}>
-              <Text style={globalStyles.headText}>{I18N.t('pages.signupPage.signupHead')}</Text>
+              <Text style={globalStyles.headText}>{i18next.t('pages.signupPage.signupHead')}</Text>
               <Text style={[globalStyles.bodyText, styles.bodyText]}>
-                {I18N.t('pages.signupPage.signupBody')}
+                {i18next.t('pages.signupPage.signupBody')}
               </Text>
             </View>
 
@@ -79,7 +78,7 @@ const SignupPage = () => {
               <DefaultIcon
                 color="white"
                 name="arrow-right"
-                onPressFunction={handleSubmit(onSubmit)}
+                onPress={handleSubmit(onSubmit)}
                 size={styles.nextIcon.iconSize}
               />
             </TouchableOpacity>

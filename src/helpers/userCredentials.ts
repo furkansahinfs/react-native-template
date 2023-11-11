@@ -1,9 +1,9 @@
 import * as Keychain from 'react-native-keychain';
-import api, { LogoutRequest } from '../api';
-import { Toast } from '../components';
-import { navigationReset } from '../navigation';
-import store from '../store';
-import { authAddToken, authRemoveToken } from '../store/auth';
+import api, { LogoutRequest } from 'src/api';
+import { Toast } from 'src/components';
+import { navigationReset } from 'src/navigation';
+import store from 'src/store';
+import { authAddToken, authRemoveToken } from 'src/store/auth';
 
 /**
  * Get the user credentials using redux

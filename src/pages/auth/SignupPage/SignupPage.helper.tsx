@@ -1,8 +1,8 @@
-import { Toast } from '../../../components';
-import { I18N } from '../../../locales/language';
-import { SignupRequest } from '../../../api';
-import { navigate } from '../../../navigation';
-import { SignupProps } from '../../../interface';
+import i18next from 'i18next';
+import { SignupRequest } from 'src/api';
+import { Toast } from 'src/components';
+import { SignupProps } from 'src/interface';
+import { navigate } from 'src/navigation';
 
 /**
  * The function requests to the API to register user.
@@ -15,7 +15,7 @@ export async function register(json: SignupProps) {
   if (!response?.email) {
     Toast(response, true);
   } else {
-    Toast(I18N.t('pages.signupPage.signupSuccessfull'), true);
+    Toast(i18next.t('pages.signupPage.signupSuccessfull'), true);
     navigate('Login');
   }
 }

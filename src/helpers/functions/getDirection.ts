@@ -11,7 +11,7 @@ function getDirection(latitude: number, longitude: number) {
       Linking.openURL('http://maps.apple.com/?daddr=' + latitude + ',' + longitude);
     },
     android: () => {
-      Linking.openURL('http://maps.google.com/?daddr=' + latitude + ',' + longitude).catch((err) =>
+      Linking.openURL('http://maps.google.com/?daddr=' + latitude + ',' + longitude).catch(err =>
         console.error('An error occurred', err),
       );
     },
@@ -20,7 +20,7 @@ function getDirection(latitude: number, longitude: number) {
   if (go) {
     go();
   } else {
-    Linking.openURL('http://maps.google.com/?daddr=' + latitude + ',' + longitude).catch((err) =>
+    Linking.openURL('http://maps.google.com/?daddr=' + latitude + ',' + longitude).catch(err =>
       console.error('An error occurred', err),
     );
   }

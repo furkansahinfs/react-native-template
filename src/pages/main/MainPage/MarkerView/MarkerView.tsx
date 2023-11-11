@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import { Marker } from 'react-native-maps';
-import { Images } from '../../../../assets';
-import { MarkerLessDetailedProps } from '../../../../interface';
+import { Images } from 'src/assets';
+import { MarkerLessDetailedProps } from 'src/interface';
 import styles from './MarkerView.styles';
 
 interface Props {
@@ -24,8 +24,7 @@ const MarkerView = ({ park, isSelected, click }: Props) => {
       onPress={() => {
         handleClick(park);
       }}
-      tracksViewChanges={isSelected}
-    >
+      tracksViewChanges={isSelected}>
       <View style={[styles.row, isSelected ? styles.clickedMarker : {}]}>
         <Image source={Images.marker} style={styles.parkIcon} />
         <Text style={styles.slotText}>{park.count}</Text>

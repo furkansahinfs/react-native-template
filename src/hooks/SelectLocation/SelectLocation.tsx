@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
-import { DropdownMenu } from '../../components';
-import { I18N } from '../../locales';
+import i18next from 'i18next';
+import { DropdownMenu } from 'src/components';
 import {
   getCityOfExistingLocation,
   getDistrictOfExistingLocation,
@@ -97,7 +97,7 @@ const SelectLocation = ({ location, rentalLocation }: ISelectLocation) => {
       <DropdownMenu
         choices={cities}
         currentChoice={selectedCity ? selectedCity : undefinedLocation}
-        dropdownTitle={I18N.t('selectLocationHook.selectCity')}
+        dropdownTitle={i18next.t('selectLocationHook.selectCity')}
         setChoice={(choice: ILocation) => {
           setSelectedCity(choice);
           adjustChoices('city', choice);
@@ -111,7 +111,7 @@ const SelectLocation = ({ location, rentalLocation }: ISelectLocation) => {
       <DropdownMenu
         choices={districts}
         currentChoice={selectedDistrict ? selectedDistrict : undefinedLocation}
-        dropdownTitle={I18N.t('selectLocationHook.selectDistrict')}
+        dropdownTitle={i18next.t('selectLocationHook.selectDistrict')}
         setChoice={(choice: ILocation) => {
           setSelectedDistrict(choice);
           adjustChoices('district', choice);
@@ -125,7 +125,7 @@ const SelectLocation = ({ location, rentalLocation }: ISelectLocation) => {
       <DropdownMenu
         choices={neighborhoods}
         currentChoice={selectedNeighborhood ? selectedNeighborhood : undefinedLocation}
-        dropdownTitle={I18N.t('selectLocationHook.selectNeighborhood')}
+        dropdownTitle={i18next.t('selectLocationHook.selectNeighborhood')}
         setChoice={(choice: ILocation) => {
           setSelectedNeighborhood(choice);
           adjustChoices('neighborhood', choice);

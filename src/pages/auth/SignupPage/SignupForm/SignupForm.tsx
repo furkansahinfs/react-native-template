@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { DropdownMenu, TextInput } from '../../../../components';
-import { I18N } from '../../../../locales';
-import styles from './SignupForm.styles';
-import { useTheme } from '../../../../theme';
+import { Text, TouchableOpacity, View } from 'react-native';
+import i18next from 'i18next';
 import { Controller } from 'react-hook-form';
 import DatePicker from 'react-native-date-picker';
+import { DropdownMenu, TextInput } from 'src/components';
+import { useTheme } from 'src/theme';
 import { inputArray, InputProp } from './SignupForm.helper';
+import styles from './SignupForm.styles';
 
 interface SignupFormProps {
   control: any;
@@ -28,7 +28,7 @@ const SignupForm = ({ control, errors }: SignupFormProps) => {
                 <TextInput
                   placeholderText={input.placeHolder}
                   secureText={input?.isSecureText ? input.isSecureText : false}
-                  func={onChange}
+                  onChangeText={onChange}
                   val={value}
                   keyboardType="default"
                 />
@@ -49,8 +49,7 @@ const SignupForm = ({ control, errors }: SignupFormProps) => {
                 <>
                   <TouchableOpacity
                     style={[styles.dateTextInput, { borderColor: colors.border }]}
-                    onPress={() => setOpenDateModal(true)}
-                  >
+                    onPress={() => setOpenDateModal(true)}>
                     <Text>{value ? new Date(value).toDateString() : input.placeHolder}</Text>
                   </TouchableOpacity>
 
@@ -59,7 +58,7 @@ const SignupForm = ({ control, errors }: SignupFormProps) => {
                     open={openDateModal}
                     mode={'date'}
                     date={value ? new Date(value) : new Date()}
-                    onConfirm={(date) => {
+                    onConfirm={date => {
                       setOpenDateModal(false);
                       onChange(date);
                     }}
@@ -88,7 +87,7 @@ const SignupForm = ({ control, errors }: SignupFormProps) => {
                     currentChoice={
                       value
                         ? {
-                            title: I18N.t('pages.signupPage.choice.' + value),
+                            title: i18next.t('pages.signupPage.choice.' + value),
                             value: value,
                           }
                         : {
@@ -98,7 +97,7 @@ const SignupForm = ({ control, errors }: SignupFormProps) => {
                     }
                     itemKey={'value'}
                     titleKey={'title'}
-                    setChoice={(choice) => onChange(choice.value)}
+                    setChoice={choice => onChange(choice.value)}
                     closeOnSelection={true}
                   />
                 </View>

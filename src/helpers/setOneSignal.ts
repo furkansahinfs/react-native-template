@@ -1,7 +1,7 @@
 import { ONESIGNAL_APP_ID } from '@env';
 import OneSignal from 'react-native-onesignal';
-import { authAddDevice } from '../store/auth';
-import store from '../store';
+import store from 'src/store';
+import { authAddDevice } from 'src/store/auth';
 
 function setOneSignal() {
   //OneSignal Init Code
@@ -9,7 +9,7 @@ function setOneSignal() {
   OneSignal.setAppId(ONESIGNAL_APP_ID);
   //END OneSignal Init Code
 
-  OneSignal.getDeviceState().then((state) => {
+  OneSignal.getDeviceState().then(state => {
     console.log(state);
     console.log('OneSignal Device ID :', state?.userId);
     if (state) {
@@ -18,11 +18,11 @@ function setOneSignal() {
   });
 
   //Prompt for push on iOS
-  OneSignal.promptForPushNotificationsWithUserResponse((response) => {
+  OneSignal.promptForPushNotificationsWithUserResponse(response => {
     console.log('Prompt response:', response);
   });
   //Method for handling notifications received while app in foreground
-  OneSignal.setNotificationWillShowInForegroundHandler((notificationReceivedEvent) => {
+  OneSignal.setNotificationWillShowInForegroundHandler(notificationReceivedEvent => {
     console.log('OneSignal: notification will show in foreground:', notificationReceivedEvent);
     let notification = notificationReceivedEvent.getNotification();
     console.log('notification: ', notification);

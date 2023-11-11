@@ -4,16 +4,16 @@ import { AuthState } from './auth.types';
 
 const initialState: AuthState = {
   refresh_token: '',
-  deviceid: '',
+  deviceId: '',
 };
 
-export const authReducer = createReducer(initialState, (builder) => {
+export const authReducer = createReducer(initialState, builder => {
   builder
     .addCase(authAddToken, (state, action) => {
       state.refresh_token = action.payload.refresh_token;
     })
     .addCase(authAddDevice, (state, action) => {
-      state.deviceid = action.payload.deviceid;
+      state.deviceId = action.payload.deviceId;
     })
     .addCase(authRemoveToken, (state, action) => {
       state.refresh_token = action.payload.refresh_token;

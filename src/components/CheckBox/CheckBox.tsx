@@ -1,10 +1,10 @@
 import React from 'react';
-import { CheckBox as NativeCheckBox } from 'react-native-elements';
-import { useTheme } from '../../theme';
+import { CheckBox as NativeCheckBox } from '@rneui/base';
 import styles from './CheckBox.styles';
+import { useTheme } from '../../theme';
 
 interface CheckboxProps {
-  onPressFunction: () => void;
+  onPress: () => void;
   checked: boolean;
   title?: string;
   widthFit?: boolean;
@@ -12,14 +12,7 @@ interface CheckboxProps {
   right?: boolean;
 }
 
-const CheckBox = ({
-  onPressFunction,
-  checked,
-  title,
-  widthFit,
-  extraStyle,
-  right,
-}: CheckboxProps) => {
+const CheckBox = ({ onPress, checked, title, widthFit, extraStyle, right }: CheckboxProps) => {
   const { colors } = useTheme();
   return (
     <NativeCheckBox
@@ -33,7 +26,7 @@ const CheckBox = ({
         extraStyle,
       ]}
       checked={checked}
-      onPress={onPressFunction}
+      onPress={onPress}
     />
   );
 };

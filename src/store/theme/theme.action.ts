@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import { LIGHT, DARK } from './theme.types';
+import { DARK, LIGHT } from './theme.types';
 
 export const lightOn = createAction(LIGHT, function prepare() {
   return {

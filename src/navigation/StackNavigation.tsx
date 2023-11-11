@@ -1,12 +1,12 @@
 import * as React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
 import {
   ForgetPasswordAndActivationPage,
   LanguagePage,
   LoginPage,
   SignupPage,
   SplashPage,
-} from '../pages';
-import { createStackNavigator } from '@react-navigation/stack';
+} from 'src/pages';
 import TabNavigation from './TabNavigation';
 
 const Stack = createStackNavigator();
@@ -17,8 +17,7 @@ function MyStack() {
       initialRouteName="Splash"
       screenOptions={{
         headerShown: false,
-      }}
-    >
+      }}>
       <Stack.Screen
         name="ForgetPasswordAndActivation"
         component={ForgetPasswordAndActivationPage}

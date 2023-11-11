@@ -1,7 +1,6 @@
 export * from './requests';
-
-import { ApiHelper } from './serverConnections/';
 import { API_URL } from '@env';
+import { ApiHelper } from './serverConnections/';
 
 console.log('API_URL : ', API_URL);
 const api = new ApiHelper({

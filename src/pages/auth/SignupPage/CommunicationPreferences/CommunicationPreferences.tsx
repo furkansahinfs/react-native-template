@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { CheckBox } from '../../../../components';
-import styles from './CommunicationPreferences.styles';
-import { useTheme } from '../../../../theme';
+import { Text, View } from 'react-native';
+import i18next from 'i18next';
 import { Controller } from 'react-hook-form';
+import { CheckBox } from 'src/components';
+import { useTheme } from 'src/theme';
 import { communicationPreferences, InputProp } from './CommunicationPreferences.helper';
-import { I18N } from '../../../../locales';
+import styles from './CommunicationPreferences.styles';
 
 interface CommunicationPreferencesProps {
   control: any;
@@ -17,7 +17,7 @@ const CommunicationPreferences = ({ control, errors }: CommunicationPreferencesP
   return (
     <View style={styles.mainView}>
       <Text style={[styles.communicationPreferencesHeader, { color: colors.text }]}>
-        {I18N.t('pages.signupPage.communicationPreferencesHeader')}
+        {i18next.t('pages.signupPage.communicationPreferencesHeader')}
       </Text>
       {communicationPreferences.map((input: InputProp) => {
         return (
@@ -33,7 +33,7 @@ const CommunicationPreferences = ({ control, errors }: CommunicationPreferencesP
                   <View style={styles.checkboxView}>
                     <CheckBox
                       checked={value}
-                      onPressFunction={() => onChange(!value)}
+                      onPress={() => onChange(!value)}
                       extraStyle={styles.checboxExtraStyle}
                     />
                   </View>

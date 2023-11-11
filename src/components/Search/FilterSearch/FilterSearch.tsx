@@ -41,7 +41,7 @@ export const FilterSearch = (props: IFilterSearch) => {
         <TextInput
           placeholder={'Ara..'}
           autoCapitalize={'characters'}
-          onChangeText={(text) => {
+          onChangeText={text => {
             setSearchText(text);
             getFilter(unfilteredList, text);
           }}

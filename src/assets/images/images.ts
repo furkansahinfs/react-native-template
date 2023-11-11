@@ -1,8 +1,7 @@
 const images = {
   defaultProfilePicture: require('./Profile/DefaultProfilePicture.png'),
   en: require('./Flag/en.png'),
-  marker: require('./Map/Marker.png'),
-  nodata: require('./nodata.png'),
+  nodata: require('./List/noData.png'),
   tr: require('./Flag/tr.png'),
 };
 

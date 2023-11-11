@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
+import { Image, ScrollView, TouchableOpacity, View } from 'react-native';
 import * as ImagePicker from 'react-native-image-picker';
 import { ImageLibraryOptions } from 'react-native-image-picker';
-import { Image, ScrollView, View, TouchableOpacity } from 'react-native';
-import styles from './ImageSelector.style';
-import { requestCameraPermission } from './ImageSelector.helper';
-import { Icon } from '../..';
-import ModalView from './Subcomponents/ModalView';
-import { FileProps } from '../../../interface';
 import VideoPlayer from 'react-native-video-controls';
+import { Icon } from 'src/components';
+import { FileProps } from 'src/interface';
+import { requestCameraPermission } from './ImageSelector.helper';
+import styles from './ImageSelector.style';
+import ModalView from './Subcomponents/ModalView';
 
 interface ImageSelectorProps {
   files: Array<FileProps>;
@@ -38,7 +38,7 @@ const ImageSelector = ({
       const response = await ImagePicker.launchCamera(options);
       const selectedFiles: Array<FileProps> = [];
       if (response.assets !== undefined && response.assets?.length > 0) {
-        response.assets.forEach((element) => {
+        response.assets.forEach(element => {
           if (element.uri) {
             const elementFile = getFilePropsObject(element);
             files.push(elementFile);
@@ -53,7 +53,7 @@ const ImageSelector = ({
     const response = await ImagePicker.launchImageLibrary(options);
     const selectedFiles: Array<FileProps> = [];
     if (response.assets !== undefined && response.assets?.length > 0) {
-      response.assets.forEach((element) => {
+      response.assets.forEach(element => {
         if (element.uri) {
           const elementFile = getFilePropsObject(element);
           selectedFiles.push(elementFile);
@@ -102,14 +102,14 @@ const ImageSelector = ({
                   paused
                   style={styles.videoStyle}
                 />
-                <Icon name={'times'} onPressFunction={() => deleteImage(value)} />
+                <Icon name={'times'} onPress={() => deleteImage(value)} />
               </View>
             );
           } else {
             return (
               <View style={styles.ImageSections} key={index}>
                 <Image source={{ uri: value?.uri }} style={styles.images} />
-                <Icon name={'times'} onPressFunction={() => deleteImage(value)} />
+                <Icon name={'times'} onPress={() => deleteImage(value)} />
               </View>
             );
           }
@@ -129,7 +129,7 @@ const ImageSelector = ({
 
       {files !== null && renderImages && renderFilesUri()}
       {OpenModalView === undefined && (
-        <Icon name={'camera'} onPressFunction={() => setModalVisible(true)} />
+        <Icon name={'camera'} onPress={() => setModalVisible(true)} />
       )}
       {OpenModalView !== undefined && (
         <TouchableOpacity onPress={() => setModalVisible(true)} children={OpenModalView} />

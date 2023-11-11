@@ -1,8 +1,8 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import styles from './BackButton.styles';
 import { useNavigation } from '@react-navigation/native';
+import { Icon } from '@rneui/base';
+import styles from './BackButton.styles';
 
 interface BackButtonProps {
   color: string;

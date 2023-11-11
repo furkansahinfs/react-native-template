@@ -1,5 +1,5 @@
-import { IResponse } from '../../../interface';
-import api from '../../index';
+import api from 'src/api';
+import { IResponse } from 'src/interface';
 
 const GOOGLE_SEARCH_API_KEY = '//GOOGLE_SEARCH_API_KEY_ENV';
 const GOOGLE_PLACES_URL = 'https://maps.googleapis.com/maps/api/place/autocomplete/json';

@@ -1,35 +1,25 @@
 import React from 'react';
-import { TextInput as NativeTextInput } from 'react-native-paper';
-import { useTheme } from '../../../theme';
+import { Input } from '@rneui/base';
+import { useTheme } from 'src/theme';
 import styles from './BigTextInput.styles';
 
 interface BigTextInputProps {
   placeholderText: string;
   val: string | undefined;
   maxLength?: number;
-  func: (text: string) => void;
+  onChangeText: (text: string) => void;
 }
 
-const BigTextInput = ({ placeholderText, val, func, maxLength }: BigTextInputProps) => {
+const BigTextInput = ({ placeholderText, val, onChangeText, maxLength }: BigTextInputProps) => {
   const { colors } = useTheme();
   return (
-    <NativeTextInput
-      mode="outlined"
+    <Input
       label={placeholderText}
       value={val}
       style={styles.input}
       maxLength={maxLength !== undefined ? maxLength : 500}
       multiline={true}
-      theme={{
-        colors: {
-          background: colors.textInput,
-          text: colors.text,
-          primary: '#7999FD',
-          placeholder: colors.border,
-        },
-        roundness: 8,
-      }}
-      onChangeText={func}
+      onChangeText={onChangeText}
     />
   );
 };

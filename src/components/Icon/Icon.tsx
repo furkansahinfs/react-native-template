@@ -1,19 +1,19 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { useTheme } from '../../theme';
+import { Icon } from '@rneui/base';
+import { useTheme } from 'src/theme';
 import styles from './Icon.styles';
 
 interface IconProps {
-  onPressFunction?: () => void;
   name: string;
   size?: number;
+  onPress?: () => void;
 }
 
-const IconView = ({ onPressFunction, name, size }: IconProps) => {
+const IconView = ({ name, onPress, size }: IconProps) => {
   const { colors } = useTheme();
   return (
-    <TouchableOpacity onPress={onPressFunction !== undefined ? onPressFunction : () => null}>
+    <TouchableOpacity onPress={onPress !== undefined ? onPress : () => null}>
       <Icon
         name={name}
         size={size ? size : styles.iconStyle.height}

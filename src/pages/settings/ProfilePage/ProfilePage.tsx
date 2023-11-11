@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { FileProps } from '../../../interface';
-import { Button, CustomSafeAreaView, ImageSelector } from '../../../components';
-import { I18N } from '../../../locales';
+import i18next from 'i18next';
+import { Button, CustomSafeAreaView, ImageSelector } from 'src/components';
+import { FileProps } from 'src/interface';
 import { sendPhoto } from './ProfilePage.helper';
 import styles from './ProfilePage.styles';
 
@@ -23,11 +23,11 @@ const ProfilePage = () => {
 
           {files.length > 0 && (
             <Button
-              text={I18N.t('pages.profilePage.sendPhoto')}
-              onPressFunction={async () => {
+              text={i18next.t('pages.profilePage.sendPhoto')}
+              onPress={async () => {
                 await sendPhoto(files);
               }}
-              mode={'contained'}
+              type={'solid'}
               hasMarginVertical={true}
             />
           )}

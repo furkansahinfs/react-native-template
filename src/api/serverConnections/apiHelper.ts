@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
-import { Toast } from '../../components';
-import { ReRequest } from '../requests';
+import { ReRequest } from 'src/api/requests';
+import { Toast } from 'src/components';
 
 export interface ApiHelperOptions {
   baseURL: string;

@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { MainPage, ProfilePage } from '../pages';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import i18next from 'i18next';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { MainPage, ProfilePage } from 'src/pages';
+import { useTheme } from 'src/theme';
 import styles from './TabNavigation.style';
-import { useTheme } from '../theme';
-import { I18N } from '../locales';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,8 +20,7 @@ function MainPageTabs() {
         tabBarHideOnKeyboard: false,
         tabBarShowLabel: false,
         tabBarStyle: [styles.bottomBar, { backgroundColor: colors.background }],
-      }}
-    >
+      }}>
       <Tab.Screen
         name="Home"
         component={MainPage}
@@ -30,7 +29,7 @@ function MainPageTabs() {
         })}
         options={{
           unmountOnBlur: true,
-          tabBarLabel: I18N.t('navigation.tabbar.main'),
+          tabBarLabel: i18next.t('navigation.tabbar.main'),
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home" color={color} size={styles.iconSize.height} />
           ),
@@ -44,7 +43,7 @@ function MainPageTabs() {
         })}
         options={{
           unmountOnBlur: true,
-          tabBarLabel: I18N.t('navigation.tabbar.profile'),
+          tabBarLabel: i18next.t('navigation.tabbar.profile'),
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="account-settings"

@@ -1,7 +1,7 @@
-import api, { RefreshToken } from '../api';
-import { getUserCredentials, loadUserCredentialsToRedux, setUserCredentials } from '.';
+import api, { RefreshToken } from 'src/api';
+import { navigate } from 'src/navigation';
 import { deleteUserCredentials } from './userCredentials';
-import { navigate } from '../navigation';
+import { getUserCredentials, loadUserCredentialsToRedux, setUserCredentials } from '.';
 
 /**
  * Get a new token from server and save it to the keychain

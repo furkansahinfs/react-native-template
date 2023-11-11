@@ -1,8 +1,8 @@
-import { Toast } from '../../../components';
-import { I18N } from '../../../locales/language';
-import api, { LoginRequest } from '../../../api';
-import { loadUserCredentialsToRedux, setUserCredentials } from '../../../helpers';
-import { navigationReset } from '../../../navigation';
+import i18next from 'i18next';
+import api, { LoginRequest } from 'src/api';
+import { Toast } from 'src/components';
+import { loadUserCredentialsToRedux, setUserCredentials } from 'src/helpers';
+import { navigationReset } from 'src/navigation';
 
 interface ResponseProps {
   refresh_token: string;
@@ -52,18 +52,18 @@ export interface InputProp {
 export const inputArray: Array<InputProp> = [
   {
     name: 'email',
-    placeHolder: I18N.t('pages.loginPage.input.email'),
+    placeHolder: i18next.t('pages.loginPage.input.email'),
     type: 'textinput',
-    errors: I18N.t('pages.loginPage.error.email'),
+    errors: i18next.t('pages.loginPage.error.email'),
     rules: { required: true },
     iconName: 'envelope',
     isSecureInput: false,
   },
   {
     name: 'password',
-    placeHolder: I18N.t('pages.loginPage.input.password'),
+    placeHolder: i18next.t('pages.loginPage.input.password'),
     type: 'textinput',
-    errors: I18N.t('pages.loginPage.error.password'),
+    errors: i18next.t('pages.loginPage.error.password'),
     rules: { required: true },
     iconName: 'key',
     isSecureInput: true,

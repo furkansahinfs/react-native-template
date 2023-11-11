@@ -1,16 +1,10 @@
-import { IResponse } from '../../../interface';
-import api from '../../index';
+import api from 'src/api';
+import { IResponse } from 'src/interface';
 
-const getProfileInfo = async () => {
+const getProfileInfo = async (): Promise<IResponse> => {
   const path = '/users/me';
 
-  return await api.GET(path, {}).then((result: IResponse) => {
-    if (result.success) {
-      return result.data;
-    } else {
-      return null;
-    }
-  });
+  return await api.GET(path, {});
 };
 
 export default getProfileInfo;

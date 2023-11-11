@@ -1,10 +1,11 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import MapView from 'react-native-map-clustering';
 import { useFocusEffect } from '@react-navigation/native';
-import { CustomSafeAreaView, Icon } from '../../../components';
-import { TestData } from '../../../assets';
-import { MarkerLessDetailedProps, PositionProps, RegionProps } from '../../../interface';
+import MapView from 'react-native-map-clustering';
+import { TestData } from 'src/assets';
+import { CustomSafeAreaView, Icon } from 'src/components';
+import { MarkerLessDetailedProps, PositionProps, RegionProps } from 'src/interface';
+import { useTheme } from 'src/theme';
 import {
   calculateScreenPolygon,
   findCoordinates,
@@ -12,9 +13,8 @@ import {
   handleMarkerChange,
   handleRegionChange,
 } from './MainPage.helper';
-import { MarkerView } from './MarkerView/';
-import { useTheme } from '../../../theme';
 import styles from './MainPage.styles';
+import { MarkerView } from './MarkerView/';
 
 export default function MainPage() {
   const mapRef: any = useRef(); // type is any because I cannot find the exact type
@@ -72,8 +72,7 @@ export default function MainPage() {
             showsUserLocation={true}
             showsMyLocationButton={false}
             zoomEnabled={true}
-            style={styles.map}
-          >
+            style={styles.map}>
             {markers.map((park: MarkerLessDetailedProps, index) => (
               <MarkerView
                 key={index}
@@ -89,12 +88,11 @@ export default function MainPage() {
 
           <TouchableOpacity
             onPress={async () => await findCoordinates(setRegion, mapRef)}
-            style={[styles.userLocationButton, { backgroundColor: colors.background }]}
-          >
+            style={[styles.userLocationButton, { backgroundColor: colors.background }]}>
             <Icon
               name={'map-pin'}
               size={styles.iconSize.height}
-              onPressFunction={async () => await findCoordinates(setRegion, mapRef)}
+              onPress={async () => await findCoordinates(setRegion, mapRef)}
             />
           </TouchableOpacity>
         </View>

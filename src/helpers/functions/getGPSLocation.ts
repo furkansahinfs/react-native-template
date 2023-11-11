@@ -1,6 +1,6 @@
 import { PermissionsAndroid, Platform } from 'react-native';
+import i18next from 'i18next';
 import Geolocation from 'react-native-geolocation-service';
-import { I18N } from '../../locales';
 
 /**
  * The function gets the user's location from GPS
@@ -24,7 +24,7 @@ async function getGPSLocation() {
 
       if (granted) {
         Geolocation.getCurrentPosition(
-          (position) => {
+          position => {
             const location = {
               latitude: position.coords.latitude,
               longitude: position.coords.longitude,
@@ -33,20 +33,20 @@ async function getGPSLocation() {
             };
             resolve(location);
           },
-          (error) => {
+          error => {
             // See error code charts below.
             console.log(error.code, error.message);
-            reject(I18N.t('locationPermissionDenied'));
+            reject(i18next.t('locationPermissionDenied'));
           },
           { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 },
         );
       } else {
         console.log('MainPage - Location : Permission denied');
-        reject(I18N.t('locationPermissionDenied'));
+        reject(i18next.t('locationPermissionDenied'));
       }
     } catch (err) {
       console.log('gps err', err);
-      reject(I18N.t('locationPermissionDenied'));
+      reject(i18next.t('locationPermissionDenied'));
     }
   });
 }

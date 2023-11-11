@@ -1,6 +1,6 @@
-import { Toast } from '../../../components';
-import { I18N } from '../../../locales/language';
-import { ForgetPasswordRequest, NewActivationRequest } from '../../../api/index';
+import i18next from 'i18next';
+import { ForgetPasswordRequest, NewActivationRequest } from 'src/api';
+import { Toast } from 'src/components';
 
 /**
  * If email is filled and ForgetPassword tab is selected, request to the server to reset password.
@@ -17,6 +17,6 @@ export async function send(email: string, selectedTab: string) {
       Toast(response, false);
     }
   } else {
-    Toast(I18N.t('pages.forgetPasswordAndActiovationPage.emptyEmail'), false);
+    Toast(i18next.t('pages.forgetPasswordAndActiovationPage.emptyEmail'), false);
   }
 }

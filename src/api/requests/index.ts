@@ -1,17 +1,6 @@
-export {
-  ForgetPasswordRequest,
-  LoginRequest,
-  LogoutRequest,
-  NewActivationRequest,
-  RefreshToken,
-  SignupRequest,
-} from './auth/';
-export { SendImageRequest } from './image';
-export { GetLocationsRequest, GetLocationOfGivenPlaceRequest, GetPlacesRequest } from './location';
-export { GetParkingWithIdRequest, GetParkingsRequest, SearchParkingsRequest } from './map';
-export {
-  GetProfileInfoRequest,
-  SetProfilePictureRequest,
-  UpdateProfileInfoRequest,
-} from './profile';
-export { default as ReRequest } from './rerequest';
+export * from './auth/';
+export * from './image';
+export * from './location';
+export * from './map';
+export * from './profile';
+export * from './rerequest';

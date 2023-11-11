@@ -1,4 +1,4 @@
-import { I18N } from '../../../../locales/language';
+import i18next from 'i18next';
 
 export interface InputProp {
   name: 'sms' | 'phone' | 'membership' | 'privacy';
@@ -11,16 +11,16 @@ export interface InputProp {
 export const communicationPreferences: Array<InputProp> = [
   {
     name: 'sms',
-    placeHolder: I18N.t('pages.signupPage.input.sms'),
+    placeHolder: i18next.t('pages.signupPage.input.sms'),
     type: 'checkbox',
-    errors: I18N.t('pages.signupPage.error.sms'),
+    errors: i18next.t('pages.signupPage.error.sms'),
     rules: { required: false },
   },
   {
     name: 'phone',
-    placeHolder: I18N.t('pages.signupPage.input.phone'),
+    placeHolder: i18next.t('pages.signupPage.input.phone'),
     type: 'checkbox',
-    errors: I18N.t('pages.signupPage.error.phone'),
+    errors: i18next.t('pages.signupPage.error.phone'),
     rules: { required: false },
   },
 ];

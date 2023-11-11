@@ -1,7 +1,7 @@
-import api from '../index';
-import { deleteUserCredentials, tokenRefresher } from '../../helpers/';
-import { navigate } from '../../navigation';
-import { IResponse } from '../../interface';
+import api from 'src/api';
+import { deleteUserCredentials, tokenRefresher } from 'src/helpers/';
+import { IResponse } from 'src/interface';
+import { navigate } from 'src/navigation';
 
 const controlResponse = async (response: IResponse) => {
   if (response.status >= 200 && response.status <= 208) {

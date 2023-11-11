@@ -1,17 +1,17 @@
 import React from 'react';
 import { Text } from 'react-native';
-import { Button } from 'react-native-paper';
+import { Button } from '@rneui/base';
 import styles from './TextButton.styles';
 import { useTheme } from '../../../theme';
 
 interface ButtonProps {
-  onPressFunction: () => void;
+  onPress: () => void;
   text: string;
   hasMarginVertical?: boolean;
   widthFit?: boolean;
 }
 
-const TextButton = ({ onPressFunction, text, hasMarginVertical, widthFit }: ButtonProps) => {
+const TextButton = ({ onPress, text, hasMarginVertical, widthFit }: ButtonProps) => {
   const { colors } = useTheme();
   return (
     <Button
@@ -20,9 +20,8 @@ const TextButton = ({ onPressFunction, text, hasMarginVertical, widthFit }: Butt
         hasMarginVertical ? styles.marginVertical : {},
         !widthFit ? styles.width : {},
       ]}
-      mode="text"
-      onPress={onPressFunction}
-    >
+      type="outline"
+      onPress={onPress}>
       <Text style={{ color: colors.text }}>{text}</Text>
     </Button>
   );
