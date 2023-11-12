@@ -7,10 +7,10 @@ import { FileProps } from '@src/interface';
  * @param photos Array<FileProps>
  */
 export async function sendPhoto(photos: Array<FileProps>) {
-  const response: any = await SendImageRequest(photos);
-  if (typeof response === 'string' || response instanceof String) {
-    Toast(response.toString(), false);
+  const response = await SendImageRequest(photos);
+  if (response.success) {
+    Toast(response.data, false);
   } else {
-    Toast(JSON.stringify(response), true);
+    Toast(response.error as string, true);
   }
 }
