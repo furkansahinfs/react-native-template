@@ -1,9 +1,9 @@
 import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Images } from 'src/assets';
-import { CustomSafeAreaView } from 'src/components';
-import { useTheme } from 'src/theme';
+import { Images } from '@src/assets';
+import { CustomSafeAreaView } from '@src/components';
+import { useTheme } from '@src/theme';
 import { adjust } from './LanguagePage.helper';
 import styles from './LanguagePage.styles';
 

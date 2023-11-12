@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import { Card } from '@rneui/base';
-import i18next from 'i18next';
-import { BackButton, Button, CustomSafeAreaView, TextInput } from 'src/components';
-import { stylesGlobal } from 'src/styles';
-import { useTheme } from 'src/theme';
+import { Card } from '@rneui/themed';
+import { BackButton, Button, CustomSafeAreaView, TextInput } from '@src/components';
+import { i18next } from '@src/locales';
+import { stylesGlobal } from '@src/styles';
+import { useTheme } from '@src/theme';
 import { send } from './ForgetPasswordAndActivation.helper';
 import styles from './ForgetPasswordAndActivation.styles';
 
@@ -100,7 +100,7 @@ const ForgetPassword = ({ route }: IForgetPassword) => {
                     val={email}
                   />
 
-                  <View style={globalStyles.buttonMargin}>
+                  <View style={globalStyles.smallMarginTop}>
                     <Button
                       type={'solid'}
                       onPress={async () => await send(email, selectedTab)}

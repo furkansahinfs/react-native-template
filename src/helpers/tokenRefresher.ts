@@ -1,5 +1,5 @@
-import api, { RefreshToken } from 'src/api';
-import { navigate } from 'src/navigation';
+import { API, RefreshToken } from '@src/api';
+import { navigate } from '@src/navigation';
 import { deleteUserCredentials } from './userCredentials';
 import { getUserCredentials, loadUserCredentialsToRedux, setUserCredentials } from '.';
 
@@ -19,7 +19,7 @@ async function tokenRefresher() {
     // and set the redux with new data
     await loadUserCredentialsToRedux();
     // set access_token
-    api.setToken(response.access_token);
+    API.setToken(response.access_token);
     return true;
   } else {
     console.log('TokenRefresher delete', response);

@@ -1,6 +1,6 @@
-import i18next from 'i18next';
-import { ForgetPasswordRequest, NewActivationRequest } from 'src/api';
-import { Toast } from 'src/components';
+import { ForgetPasswordRequest, NewActivationRequest } from '@src/api';
+import { Toast } from '@src/components';
+import { i18next } from '@src/locales';
 
 /**
  * If email is filled and ForgetPassword tab is selected, request to the server to reset password.

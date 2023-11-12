@@ -1,6 +1,6 @@
 import { PermissionsAndroid, Platform } from 'react-native';
-import i18next from 'i18next';
 import Geolocation from 'react-native-geolocation-service';
+import { i18next } from '@src/locales';
 
 /**
  * The function gets the user's location from GPS

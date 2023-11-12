@@ -1,9 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
-import { SearchBar as SearchBarUI } from '@rneui/base';
-import i18next from 'i18next';
-import { DefaultIcon } from 'src/components';
-import { useTheme } from 'src/theme';
+import { SearchBar as SearchBarUI } from '@rneui/themed';
+import { DefaultIcon } from '@src/components';
+import { i18next } from '@src/locales';
+import { useTheme } from '@src/theme';
 import { styles } from './SearchBar.styles';
 
 interface ISearchBar {

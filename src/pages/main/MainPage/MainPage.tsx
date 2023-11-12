@@ -2,10 +2,10 @@ import React, { useCallback, useRef, useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import MapView from 'react-native-map-clustering';
-import { TestData } from 'src/assets';
-import { CustomSafeAreaView, Icon } from 'src/components';
-import { MarkerLessDetailedProps, PositionProps, RegionProps } from 'src/interface';
-import { useTheme } from 'src/theme';
+import { TestData } from '@src/assets';
+import { CustomSafeAreaView, DefaultIcon, Icon } from '@src/components';
+import { MarkerLessDetailedProps, PositionProps, RegionProps } from '@src/interface';
+import { useTheme } from '@src/theme';
 import {
   calculateScreenPolygon,
   findCoordinates,
@@ -89,8 +89,9 @@ export default function MainPage() {
           <TouchableOpacity
             onPress={async () => await findCoordinates(setRegion, mapRef)}
             style={[styles.userLocationButton, { backgroundColor: colors.background }]}>
-            <Icon
+            <DefaultIcon
               name={'map-pin'}
+              color={colors.icon}
               size={styles.iconSize.height}
               onPress={async () => await findCoordinates(setRegion, mapRef)}
             />

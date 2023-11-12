@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { Controller } from 'react-hook-form';
-import { CheckBox } from 'src/components';
-import { useTheme } from 'src/theme';
+import { CheckBox } from '@src/components';
+import { useTheme } from '@src/theme';
 import { aggrementPreferences, InputProp } from './Aggrements.helper';
 import styles from './Aggrements.styles';
 

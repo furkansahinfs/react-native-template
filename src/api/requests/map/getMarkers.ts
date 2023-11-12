@@ -1,5 +1,5 @@
-import api from 'src/api';
-import { IResponse, PositionProps } from 'src/interface';
+import { API } from '@src/api/serverConnections';
+import { IResponse, PositionProps } from '@src/interface';
 
 function setSearchParams(coordinates: PositionProps, detail: string) {
   const searchParams = new URLSearchParams();
@@ -22,7 +22,7 @@ const getMarkers = async (coordinates: PositionProps, detail: string): Promise<I
   const path = '/markers';
   const searchParams = setSearchParams(coordinates, detail);
 
-  return await api.GET(path, {
+  return await API.GET(path, {
     params: searchParams,
   });
 };

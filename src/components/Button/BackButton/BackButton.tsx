@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Icon } from '@rneui/base';
+import { DefaultIcon } from '@src/components';
 import styles from './BackButton.styles';
 
 interface BackButtonProps {
@@ -13,7 +13,12 @@ const BackButton = ({ color }: BackButtonProps) => {
 
   return (
     <TouchableOpacity onPress={() => navigation.goBack()} style={styles.button}>
-      <Icon name="angle-left" size={styles.iconSize.height} color={color} />
+      <DefaultIcon
+        name="angle-left"
+        size={styles.iconSize.height}
+        color={color}
+        onPress={() => navigation.goBack()}
+      />
     </TouchableOpacity>
   );
 };

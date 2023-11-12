@@ -1,4 +1,4 @@
-import { getUserCredentials, tokenRefresher } from 'src/helpers';
+import { getUserCredentials, tokenRefresher } from '@src/helpers';
 import { loadUserCredentialsToRedux } from './userCredentials';
 
 /**

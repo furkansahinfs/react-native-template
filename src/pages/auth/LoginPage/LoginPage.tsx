@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
-import { Card } from '@rneui/base';
-import i18next from 'i18next';
+import { Card } from '@rneui/themed';
 import { Controller, useForm } from 'react-hook-form';
 import {
   ActivityIndicator,
@@ -9,10 +8,11 @@ import {
   CustomSafeAreaView,
   TextButton,
   TextInput,
-} from 'src/components/';
-import { navigate } from 'src/navigation';
-import { stylesGlobal } from 'src/styles';
-import { useTheme } from 'src/theme';
+} from '@src/components/';
+import { i18next } from '@src/locales';
+import { navigate } from '@src/navigation';
+import { stylesGlobal } from '@src/styles';
+import { useTheme } from '@src/theme';
 import { inputArray, InputProp, login } from './LoginPage.helper';
 import styles from './LoginPage.styles';
 
@@ -46,9 +46,7 @@ const LoginPage = () => {
           <ScrollView nestedScrollEnabled={true} keyboardShouldPersistTaps={'handled'}>
             <View style={styles.view}>
               <View style={styles.welcomeText}>
-                <Text style={globalStyles.headText}>
-                  {i18next.t('pages.loginPage.hello').toUpperCase()}
-                </Text>
+                <Text style={globalStyles.headText}>{i18next.t('pages.loginPage.loginBody')}</Text>
                 <Text style={globalStyles.bodyText}>{i18next.t('pages.loginPage.loginBody')}</Text>
               </View>
 
@@ -96,14 +94,14 @@ const LoginPage = () => {
                     }>
                     {i18next.t('pages.loginPage.newActivation')}
                   </Text>
-                  <View style={globalStyles.buttonMargin}>
+                  <View style={globalStyles.smallMarginTop}>
                     <Button
                       type={'solid'}
                       onPress={handleSubmit(onSubmit)}
                       text={i18next.t('pages.loginPage.loginButton')}
                     />
                   </View>
-                  <View style={globalStyles.buttonMargin}>
+                  <View style={globalStyles.smallMarginTop}>
                     <TextButton
                       onPress={() => navigate('Signup')}
                       text={i18next.t('pages.loginPage.signupButton')}

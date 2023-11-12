@@ -5,11 +5,11 @@ import {
   DrawerItem,
   DrawerItemList,
 } from '@react-navigation/drawer';
-import i18next from 'i18next';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { changeTheme, getTheme, logout } from 'src/helpers';
-import { MainPage, ProfilePage } from 'src/pages';
-import { useTheme } from 'src/theme';
+import { changeTheme, getTheme, logout } from '@src/helpers';
+import { i18next } from '@src/locales';
+import { MainPage, ProfilePage } from '@src/pages';
+import { useTheme } from '@src/theme';
 import styles from './TabNavigation.style';
 import { navigate } from '.';
 
@@ -68,8 +68,6 @@ const DrawerIcon = ({ iconName }: IDrawerIcon) => {
   );
 };
 
-
-
 function AppDrawer() {
   const { colors } = useTheme();
   return (
@@ -89,7 +87,7 @@ function AppDrawer() {
         options={{
           drawerLabel: i18next.t('navigation.tabbar.main'),
           headerTitle: i18next.t('navigation.tabbar.main'),
-          drawerIcon: () => ,
+          drawerIcon: () => <DrawerIcon iconName={'home'} />,
         }}
       />
       <Drawer.Screen

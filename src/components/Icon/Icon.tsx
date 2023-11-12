@@ -1,7 +1,6 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { Icon } from '@rneui/base';
-import { useTheme } from 'src/theme';
+import { Icon } from '@rneui/themed';
 import styles from './Icon.styles';
 
 interface IconProps {
@@ -11,14 +10,14 @@ interface IconProps {
 }
 
 const IconView = ({ name, onPress, size }: IconProps) => {
-  const { colors } = useTheme();
   return (
-    <TouchableOpacity onPress={onPress !== undefined ? onPress : () => null}>
+    <TouchableOpacity onPress={onPress}>
       <Icon
+        type="font-awesome"
         name={name}
-        size={size ? size : styles.iconStyle.height}
+        size={size ?? styles.iconStyle.height}
         style={styles.button}
-        color={colors.icon}
+        color={'white'}
       />
     </TouchableOpacity>
   );

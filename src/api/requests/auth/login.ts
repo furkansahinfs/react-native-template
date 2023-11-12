@@ -1,8 +1,8 @@
 import { API_CLIENT_ID } from '@env';
-import api from 'src/api';
-import { updateDeviceId } from 'src/helpers';
-import { IResponse } from 'src/interface';
-import store from 'src/store';
+import { API } from '@src/api/serverConnections';
+import { updateDeviceId } from '@src/helpers';
+import { IResponse } from '@src/interface';
+import store from '@src/store';
 
 async function getDeviceId() {
   let deviceId = store.getState().userCredentials.deviceId;
@@ -25,7 +25,7 @@ const login = async (email: string, password: string): Promise<IResponse> => {
   };
   const data = new URLSearchParams(json).toString();
 
-  return await api.POST(path, data, {
+  return await API.POST(path, data, {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
   });
 };

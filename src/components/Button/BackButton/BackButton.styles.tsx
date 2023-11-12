@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   iconSize: {
-    height: scale(30),
+    height: scale(35),
   },
 });
 

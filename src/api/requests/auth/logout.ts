@@ -1,6 +1,6 @@
-import api from 'src/api';
-import { IResponse } from 'src/interface';
-import store from 'src/store';
+import { API } from '@src/api/serverConnections';
+import { IResponse } from '@src/interface';
+import store from '@src/store';
 
 const logout = async (): Promise<IResponse> => {
   const path = '/auth/logout';
@@ -8,7 +8,7 @@ const logout = async (): Promise<IResponse> => {
   const searchParams = new URLSearchParams();
   searchParams.append('deviceId', deviceId);
 
-  return await api.GET(path, { params: searchParams });
+  return await API.GET(path, { params: searchParams });
 };
 
 export default logout;

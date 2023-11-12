@@ -1,6 +1,6 @@
-import { SendImageRequest } from 'src/api';
-import { Toast } from 'src/components';
-import { FileProps } from 'src/interface';
+import { SendImageRequest } from '@src/api';
+import { Toast } from '@src/components';
+import { FileProps } from '@src/interface';
 
 /**
  * The function send the shelf photo to the API

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { KeyboardTypeOptions } from 'react-native';
-import { Input } from '@rneui/base';
-import { useTheme } from 'src/theme';
+import { Input } from '@rneui/themed';
+import { useTheme } from '@src/theme';
 import styles from './FlatTextInput.styles';
 
 interface FlatTextInputProps {

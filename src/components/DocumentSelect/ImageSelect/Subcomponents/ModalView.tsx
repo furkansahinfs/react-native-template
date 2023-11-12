@@ -1,9 +1,9 @@
 import React from 'react';
 import { Modal, View } from 'react-native';
-import i18next from 'i18next';
-import { Icon, TextButton } from 'src/components';
-import { stylesGlobal } from 'src/styles';
-import { useTheme } from 'src/theme';
+import { DefaultIcon, TextButton } from '@src/components';
+import { i18next } from '@src/locales';
+import { stylesGlobal } from '@src/styles';
+import { useTheme } from '@src/theme';
 import styles from './ModalView.styles';
 
 interface ModalViewProps {
@@ -35,8 +35,9 @@ const ModalView = ({
         <View style={styles.modalContainerView}>
           <View style={[globalStyles.row]}>
             <View style={styles.iconStyle}>
-              <Icon
+              <DefaultIcon
                 name={'camera'}
+                color={colors.icon}
                 onPress={() => {
                   launchCamera();
                   setModalVisible(!isModalVisible);
@@ -44,8 +45,9 @@ const ModalView = ({
               />
             </View>
             <View style={styles.iconStyle}>
-              <Icon
+              <DefaultIcon
                 name={'photo'}
+                color={colors.icon}
                 onPress={() => {
                   launchImageLibrary();
                   setModalVisible(!isModalVisible);
@@ -59,7 +61,7 @@ const ModalView = ({
               setModalVisible(!isModalVisible);
             }}
             text={i18next.t('components.imageSelector.closeModal')}
-            widthFit={true}
+            fit={true}
             hasMarginVertical={true}
           />
         </View>

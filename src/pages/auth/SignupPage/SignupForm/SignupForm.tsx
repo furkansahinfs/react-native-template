@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import i18next from 'i18next';
 import { Controller } from 'react-hook-form';
 import DatePicker from 'react-native-date-picker';
-import { DropdownMenu, TextInput } from 'src/components';
-import { useTheme } from 'src/theme';
+import { DropdownMenu, TextInput } from '@src/components';
+import { i18next } from '@src/locales';
+import { useTheme } from '@src/theme';
 import { inputArray, InputProp } from './SignupForm.helper';
 import styles from './SignupForm.styles';
 
@@ -50,7 +50,9 @@ const SignupForm = ({ control, errors }: SignupFormProps) => {
                   <TouchableOpacity
                     style={[styles.dateTextInput, { borderColor: colors.border }]}
                     onPress={() => setOpenDateModal(true)}>
-                    <Text>{value ? new Date(value).toDateString() : input.placeHolder}</Text>
+                    <Text style={{ color: colors.text }}>
+                      {value ? new Date(value).toDateString() : input.placeHolder}
+                    </Text>
                   </TouchableOpacity>
 
                   <DatePicker

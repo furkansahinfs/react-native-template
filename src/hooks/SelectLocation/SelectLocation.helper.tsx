@@ -1,4 +1,4 @@
-import { GetLocationsRequest } from 'src/api';
+import { GetLocationsRequest } from '@src/api';
 
 export async function getLocations(id: number) {
   const result = await GetLocationsRequest(id);

@@ -1,10 +1,7 @@
 import { AppRegistry } from 'react-native';
-import { BRANCH } from '@env';
 import App from './App';
 import { name as appName } from './app.json';
 import { loadLanguageToRedux, loadThemeToRedux } from './src/helpers';
-
-console.log('branch=' + BRANCH);
 
 async function loadToRedux() {
   await loadThemeToRedux();

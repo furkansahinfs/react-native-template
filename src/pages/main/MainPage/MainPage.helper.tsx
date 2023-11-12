@@ -1,10 +1,10 @@
 import { PermissionsAndroid, Platform } from 'react-native';
-import i18next from 'i18next';
 import Geolocation from 'react-native-geolocation-service';
-import { GetMarkersRequest } from 'src/api';
-import { TestData } from 'src/assets';
-import { Toast } from 'src/components';
-import { MarkerLessDetailedProps, PositionProps, RegionProps } from 'src/interface';
+import { GetMarkersRequest } from '@src/api';
+import { TestData } from '@src/assets';
+import { Toast } from '@src/components';
+import { MarkerLessDetailedProps, PositionProps, RegionProps } from '@src/interface';
+import { i18next } from '@src/locales';
 
 export async function getMarkers(coordinates: PositionProps) {
   const result = await GetMarkersRequest(coordinates, 'LESS');

@@ -1,5 +1,5 @@
-import api from 'src/api';
-import { IResponse } from 'src/interface';
+import { API } from '@src/api/serverConnections';
+import { IResponse } from '@src/interface';
 
 const searchMarkers = async (text: string): Promise<IResponse> => {
   const path = '/markers';
@@ -9,7 +9,7 @@ const searchMarkers = async (text: string): Promise<IResponse> => {
   searchParam.append('name', text);
   searchParam.append('detail', 'LESS');
 
-  return await api.GET(path, {
+  return await API.GET(path, {
     params: searchParam,
   });
 };

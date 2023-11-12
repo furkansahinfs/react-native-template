@@ -7,9 +7,9 @@ import {
   loadLanguageToRedux,
   loadThemeToRedux,
   setOneSignal,
-} from 'src/helpers';
-import { NotificationEntity } from 'src/interface';
-import { navigationReset } from 'src/navigation';
+} from '@src/helpers';
+import { NotificationEntity } from '@src/interface';
+import { navigationReset } from '@src/navigation';
 import styles from './SplashPage.styles';
 
 const SplashPage = () => {

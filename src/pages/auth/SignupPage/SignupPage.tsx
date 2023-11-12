@@ -8,11 +8,10 @@ import {
   CustomSafeAreaView,
   DefaultIcon,
   Toast,
-} from 'src/components';
-import { stylesGlobal } from 'src/styles/';
-import { useTheme } from 'src/theme';
+} from '@src/components';
+import { stylesGlobal } from '@src/styles/';
+import { useTheme } from '@src/theme';
 import { Aggrements } from './Aggrements';
-import { CommunicationPreferences } from './CommunicationPreferences';
 import { SignupForm } from './SignupForm';
 import { register } from './SignupPage.helper';
 import styles from './SignupPage.styles';
@@ -68,9 +67,9 @@ const SignupPage = () => {
             </View>
 
             {SignupForm({ control, errors })}
-            {CommunicationPreferences({ control, errors })}
+
             <View>
-              <View style={globalStyles.rect} />
+              <View style={[globalStyles.rect, globalStyles.smallMarginTop]} />
               {Aggrements({ control, errors })}
             </View>
 

@@ -6,7 +6,7 @@ import {
   LoginPage,
   SignupPage,
   SplashPage,
-} from 'src/pages';
+} from '@src/pages';
 import TabNavigation from './TabNavigation';
 
 const Stack = createStackNavigator();
@@ -14,7 +14,7 @@ const Stack = createStackNavigator();
 function MyStack() {
   return (
     <Stack.Navigator
-      initialRouteName="Splash"
+      initialRouteName="Main"
       screenOptions={{
         headerShown: false,
       }}>

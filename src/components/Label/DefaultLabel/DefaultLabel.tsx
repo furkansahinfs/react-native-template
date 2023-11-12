@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import i18next from 'i18next';
-import { Icon } from 'src/components';
-import { useTheme } from 'src/theme';
+import { Icon } from '@src/components';
+import { i18next } from '@src/locales';
+import { useTheme } from '@src/theme';
 import styles from './DefaultLabel.styles';
 
 interface LabelProps {

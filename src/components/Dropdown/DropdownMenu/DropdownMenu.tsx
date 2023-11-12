@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import i18next from 'i18next';
-import { ActivityIndicator, CheckBox, FilterSearch, Icon } from 'src/components';
-import { useTheme } from 'src/theme';
+import { ActivityIndicator, CheckBox, DefaultIcon, FilterSearch } from '@src/components';
+import { i18next } from '@src/locales';
+import { useTheme } from '@src/theme';
 import { styles } from './DropdownMenu.style';
 
 //TODO NEED BIG Refactoring
@@ -123,7 +123,7 @@ const DropdownMenu = (props: IDropdownMenu) => {
                       closeOnSelection && setExpandState(false);
                     }}
                     title={titleKey ? choice[titleKey] : itemKey ? choice[itemKey] : choice}
-                    widthFit={false}
+                    fit={false}
                   />
                 </View>
               );
@@ -154,7 +154,7 @@ const DropdownMenu = (props: IDropdownMenu) => {
                     checked={selectedChoices[key]}
                     onPress={() => setChoiceStatus(choice, key, !selectedChoices[key])}
                     title={titleKey ? choice[titleKey] : itemKey ? choice[itemKey] : choice}
-                    widthFit={false}
+                    fit={false}
                   />
                 </View>
               );
@@ -219,7 +219,7 @@ const DropdownMenu = (props: IDropdownMenu) => {
         {dropdownTitle && <Text style={{ color: colors.text }}>{dropdownTitle}</Text>}
         <View style={styles.titleView}>
           <Text style={[styles.categoryNameStyle, { color: colors.text }]}>{getTitle()}</Text>
-          <Icon name={expandState ? 'angle-up' : 'angle-down'} />
+          <DefaultIcon name={expandState ? 'angle-up' : 'angle-down'} color={colors.icon} />
         </View>
       </TouchableOpacity>
       {renderContent()}

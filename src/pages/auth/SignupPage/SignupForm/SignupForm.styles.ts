@@ -4,13 +4,9 @@ import { scale } from 'react-native-size-matters';
 const styles = StyleSheet.create({
   dateTextInput: {
     borderWidth: 1,
-    borderRadius: 15,
+    borderRadius: scale(10),
     width: '100%',
-    alignItems: 'flex-start',
-    alignContent: 'center',
-    alignSelf: 'center',
-    padding: scale(17),
-    marginVertical: scale(10),
+    padding: scale(15),
   },
 
   errorText: {
@@ -20,11 +16,10 @@ const styles = StyleSheet.create({
 
   genderInput: {
     borderWidth: 1,
-    borderRadius: 15,
+    borderRadius: scale(10),
     width: '100%',
-    padding: scale(4),
-    paddingHorizontal: scale(8),
-    marginVertical: scale(5),
+    marginVertical: scale(10),
+    padding: scale(5),
   },
 
   inputContainer: {

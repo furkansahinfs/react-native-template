@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { useTheme } from 'src/theme';
+import { useTheme } from '@src/theme';
 import styles from './Header.styles';
 import { BackButton } from '../Button';
 

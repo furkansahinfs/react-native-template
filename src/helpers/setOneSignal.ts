@@ -1,11 +1,12 @@
 import { ONESIGNAL_APP_ID } from '@env';
 import OneSignal from 'react-native-onesignal';
-import store from 'src/store';
-import { authAddDevice } from 'src/store/auth';
+import store from '@src/store';
+import { authAddDevice } from '@src/store/auth';
 
 function setOneSignal() {
   //OneSignal Init Code
   OneSignal.setLogLevel(6, 0);
+  console.log(ONESIGNAL_APP_ID);
   OneSignal.setAppId(ONESIGNAL_APP_ID);
   //END OneSignal Init Code
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckBox as NativeCheckBox } from '@rneui/base';
+import { CheckBox as NativeCheckBox } from '@rneui/themed';
 import styles from './CheckBox.styles';
 import { useTheme } from '../../theme';
 
@@ -7,12 +7,12 @@ interface CheckboxProps {
   onPress: () => void;
   checked: boolean;
   title?: string;
-  widthFit?: boolean;
+  fit?: boolean;
   extraStyle?: any;
   right?: boolean;
 }
 
-const CheckBox = ({ onPress, checked, title, widthFit, extraStyle, right }: CheckboxProps) => {
+const CheckBox = ({ onPress, checked, title, fit, extraStyle, right }: CheckboxProps) => {
   const { colors } = useTheme();
   return (
     <NativeCheckBox
@@ -22,9 +22,12 @@ const CheckBox = ({ onPress, checked, title, widthFit, extraStyle, right }: Chec
       containerStyle={[
         styles.box,
         { borderColor: colors.border },
-        widthFit ? {} : styles.widthAll,
+        fit ? {} : styles.widthAll,
         extraStyle,
       ]}
+      iconType="font-awesome"
+      checkedIcon="check-circle"
+      uncheckedIcon="check-circle-o"
       checked={checked}
       onPress={onPress}
     />

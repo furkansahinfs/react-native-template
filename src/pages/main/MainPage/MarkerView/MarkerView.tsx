@@ -1,8 +1,8 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
 import { Marker } from 'react-native-maps';
-import { Images } from 'src/assets';
-import { MarkerLessDetailedProps } from 'src/interface';
+import { Images } from '@src/assets';
+import { MarkerLessDetailedProps } from '@src/interface';
 import styles from './MarkerView.styles';
 
 interface Props {

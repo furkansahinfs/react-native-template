@@ -1,6 +1,6 @@
 import React from 'react';
-import { Input } from '@rneui/base';
-import { useTheme } from 'src/theme';
+import { Input } from '@rneui/themed';
+import { useTheme } from '@src/theme';
 import styles from './DisabledTextInput.styles';
 
 interface TextInputProps {

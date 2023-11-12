@@ -1,8 +1,8 @@
-import i18next from 'i18next';
-import { SignupRequest } from 'src/api';
-import { Toast } from 'src/components';
-import { SignupProps } from 'src/interface';
-import { navigate } from 'src/navigation';
+import { SignupRequest } from '@src/api';
+import { Toast } from '@src/components';
+import { SignupProps } from '@src/interface';
+import { i18next } from '@src/locales';
+import { navigate } from '@src/navigation';
 
 /**
  * The function requests to the API to register user.

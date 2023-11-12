@@ -1,5 +1,4 @@
-import i18next from 'i18next';
-
+import { i18next } from '@src/locales';
 export interface InputProp {
   name: 'sms' | 'phone' | 'membership' | 'privacy';
   placeHolder: string;

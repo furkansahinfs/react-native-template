@@ -2,15 +2,27 @@ import { StyleSheet } from 'react-native';
 import { scale } from 'react-native-size-matters';
 
 const styles = StyleSheet.create({
-  input: {
-    width: '100%',
+  label: {
     fontSize: scale(12),
-    paddingHorizontal: scale(5),
-    marginBottom: scale(8),
+  },
+  input: {
+    fontSize: scale(12),
     alignSelf: 'center',
   },
+  inputContainer: {
+    margin: 0,
+    borderWidth: 1,
+    paddingHorizontal: scale(10),
+    paddingVertical: scale(5),
+    borderRadius: scale(10),
+    width: '105%',
+    right: '10%',
+  },
+  iconStyle: {
+    paddingRight: scale(7),
+  },
   iconSize: {
-    height: scale(10),
+    height: scale(13),
   },
 });
 

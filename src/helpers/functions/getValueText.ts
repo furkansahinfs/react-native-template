@@ -1,4 +1,4 @@
-import i18next from 'i18next';
+import { i18next } from '@src/locales';
 
 function getValueText(value: any) {
   if (typeof value === 'boolean') {

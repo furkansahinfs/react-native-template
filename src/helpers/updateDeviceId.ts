@@ -1,6 +1,6 @@
 import OneSignal from 'react-native-onesignal';
-import store from 'src/store';
-import { authAddDevice } from 'src/store/auth';
+import store from '@src/store';
+import { authAddDevice } from '@src/store/auth';
 
 /**
  * Sometimes device id can be undefined.

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { DefaultIcon } from 'src/components';
-import { useTheme } from 'src/theme';
+import { DefaultIcon } from '@src/components';
+import { useTheme } from '@src/theme';
 import styles from './Error.styles';
 
 interface ErrorProps {

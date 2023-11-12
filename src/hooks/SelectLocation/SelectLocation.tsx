@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
-import i18next from 'i18next';
-import { DropdownMenu } from 'src/components';
+import { DropdownMenu } from '@src/components';
+import { i18next } from '@src/locales';
 import {
   getCityOfExistingLocation,
   getDistrictOfExistingLocation,

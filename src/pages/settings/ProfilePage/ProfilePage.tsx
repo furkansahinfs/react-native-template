@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import i18next from 'i18next';
-import { Button, CustomSafeAreaView, ImageSelector } from 'src/components';
-import { FileProps } from 'src/interface';
+import { Button, CustomSafeAreaView, ImageSelector } from '@src/components';
+import { FileProps } from '@src/interface';
+import { i18next } from '@src/locales';
 import { sendPhoto } from './ProfilePage.helper';
 import styles from './ProfilePage.styles';
 

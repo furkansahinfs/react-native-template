@@ -1,5 +1,5 @@
-import api from 'src/api';
-import { FileProps, IResponse } from 'src/interface';
+import { API } from '@src/api/serverConnections';
+import { FileProps, IResponse } from '@src/interface';
 
 const sendImage = async (photos: Array<FileProps>): Promise<IResponse> => {
   const path = '/rentals';
@@ -19,7 +19,7 @@ const sendImage = async (photos: Array<FileProps>): Promise<IResponse> => {
     type: 'application/json',
   });
 
-  return await api.POST(path, formData, {
+  return await API.POST(path, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
 };

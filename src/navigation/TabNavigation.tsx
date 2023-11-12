@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import i18next from 'i18next';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { MainPage, ProfilePage } from 'src/pages';
-import { useTheme } from 'src/theme';
+import { Icon } from '@rneui/themed';
+import { i18next } from '@src/locales';
+import { MainPage, ProfilePage } from '@src/pages';
+import { useTheme } from '@src/theme';
 import styles from './TabNavigation.style';
 
 const Tab = createBottomTabNavigator();
@@ -31,7 +31,7 @@ function MainPageTabs() {
           unmountOnBlur: true,
           tabBarLabel: i18next.t('navigation.tabbar.main'),
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="home" color={color} size={styles.iconSize.height} />
+            <Icon type="font-awesome" name="home" color={color} size={styles.iconSize.height} />
           ),
         }}
       />
@@ -45,11 +45,7 @@ function MainPageTabs() {
           unmountOnBlur: true,
           tabBarLabel: i18next.t('navigation.tabbar.profile'),
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="account-settings"
-              color={color}
-              size={styles.iconSize.height}
-            />
+            <Icon type="font-awesome" name="user" color={color} size={styles.iconSize.height} />
           ),
         }}
       />

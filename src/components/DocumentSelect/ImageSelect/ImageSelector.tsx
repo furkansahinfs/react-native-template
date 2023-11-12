@@ -3,8 +3,9 @@ import { Image, ScrollView, TouchableOpacity, View } from 'react-native';
 import * as ImagePicker from 'react-native-image-picker';
 import { ImageLibraryOptions } from 'react-native-image-picker';
 import VideoPlayer from 'react-native-video-controls';
-import { Icon } from 'src/components';
-import { FileProps } from 'src/interface';
+import { DefaultIcon } from '@src/components';
+import { FileProps } from '@src/interface';
+import { useTheme } from '@src/theme';
 import { requestCameraPermission } from './ImageSelector.helper';
 import styles from './ImageSelector.style';
 import ModalView from './Subcomponents/ModalView';
@@ -26,7 +27,9 @@ const ImageSelector = ({
   OpenModalView,
   renderImages,
 }: ImageSelectorProps) => {
-  const [isModalVisible, setModalVisible] = useState<boolean>(false);
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+  const { colors } = useTheme();
+
   let options: ImageLibraryOptions = {
     selectionLimit: multiple ? 0 : 1,
     mediaType: mediaType,
@@ -102,14 +105,22 @@ const ImageSelector = ({
                   paused
                   style={styles.videoStyle}
                 />
-                <Icon name={'times'} onPress={() => deleteImage(value)} />
+                <DefaultIcon
+                  color={colors.icon}
+                  name={'times'}
+                  onPress={() => deleteImage(value)}
+                />
               </View>
             );
           } else {
             return (
               <View style={styles.ImageSections} key={index}>
                 <Image source={{ uri: value?.uri }} style={styles.images} />
-                <Icon name={'times'} onPress={() => deleteImage(value)} />
+                <DefaultIcon
+                  color={colors.icon}
+                  name={'times'}
+                  onPress={() => deleteImage(value)}
+                />
               </View>
             );
           }
@@ -122,17 +133,17 @@ const ImageSelector = ({
     <View>
       <ModalView
         isModalVisible={isModalVisible}
-        setModalVisible={setModalVisible}
+        setModalVisible={setIsModalVisible}
         launchCamera={launchCamera}
         launchImageLibrary={launchImageLibrary}
       />
 
       {files !== null && renderImages && renderFilesUri()}
       {OpenModalView === undefined && (
-        <Icon name={'camera'} onPress={() => setModalVisible(true)} />
+        <DefaultIcon name={'camera'} onPress={() => setIsModalVisible(true)} color={colors.icon} />
       )}
       {OpenModalView !== undefined && (
-        <TouchableOpacity onPress={() => setModalVisible(true)} children={OpenModalView} />
+        <TouchableOpacity onPress={() => setIsModalVisible(true)} children={OpenModalView} />
       )}
     </View>
   );

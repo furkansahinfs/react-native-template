@@ -1,6 +1,8 @@
 import axios, { AxiosInstance } from 'axios';
-import { ReRequest } from 'src/api/requests';
-import { Toast } from 'src/components';
+import { Toast } from '@src/components';
+import { deleteUserCredentials, tokenRefresher } from '@src/helpers';
+import { IResponse } from '@src/interface';
+import { navigate } from '@src/navigation';
 
 export interface ApiHelperOptions {
   baseURL: string;
@@ -114,7 +116,7 @@ export default class ApiHelper {
     }
   };
 
-  controlResponse = async (response: any) => {
+  controlResponse = async (response: any, isRerequest: boolean = false): Promise<IResponse> => {
     if (response.status >= 200 && response.status <= 208) {
       return {
         data: response.data,
@@ -122,7 +124,19 @@ export default class ApiHelper {
         status: response.status,
       };
     } else if (response.status === 401 && response.config.url !== '/auth/login') {
-      return await ReRequest(response.config);
+      if (isRerequest) {
+        console.log('Rerequest delete', response);
+        await deleteUserCredentials();
+        navigate('Login');
+        return {
+          data: { error: 'Unauthorized' },
+          error: 'Unauthorized',
+          success: false,
+          status: 401,
+        };
+      } else {
+        return await this.reRequest(response.config);
+      }
     } else {
       return {
         data: response.data,
@@ -134,6 +148,28 @@ export default class ApiHelper {
             : 'Error',
         success: false,
         status: response.status,
+      };
+    }
+  };
+
+  reRequest = async (config: object) => {
+    const isAuth = await tokenRefresher();
+    if (isAuth) {
+      return this.api
+        .request(config)
+        .then((response: any) => {
+          return this.controlResponse(response, true);
+        })
+        .catch((error: any) => {
+          console.log(error);
+          return this.controlResponse(error.response, true);
+        });
+    } else {
+      return {
+        data: { error: 'Unauthorized' },
+        error: 'Unauthorized',
+        success: false,
+        status: 401,
       };
     }
   };

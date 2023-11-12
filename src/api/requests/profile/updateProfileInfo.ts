@@ -1,5 +1,5 @@
-import api from 'src/api';
-import { ChangeableProfileData, IResponse } from 'src/interface';
+import { API } from '@src/api/serverConnections';
+import { ChangeableProfileData, IResponse } from '@src/interface';
 
 const updateProfileInfo = async (info: ChangeableProfileData): Promise<IResponse> => {
   const path = '/users/me/update';
@@ -9,7 +9,7 @@ const updateProfileInfo = async (info: ChangeableProfileData): Promise<IResponse
     surname: info.surname,
     phone: info.phone,
   };
-  return await api.POST(path, json, {});
+  return await API.POST(path, json, {});
 };
 
 export default updateProfileInfo;

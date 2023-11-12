@@ -1,8 +1,8 @@
-import i18next from 'i18next';
-import api, { LoginRequest } from 'src/api';
-import { Toast } from 'src/components';
-import { loadUserCredentialsToRedux, setUserCredentials } from 'src/helpers';
-import { navigationReset } from 'src/navigation';
+import { API, LoginRequest } from '@src/api';
+import { Toast } from '@src/components';
+import { loadUserCredentialsToRedux, setUserCredentials } from '@src/helpers';
+import { i18next } from '@src/locales';
+import { navigationReset } from '@src/navigation';
 
 interface ResponseProps {
   refresh_token: string;
@@ -19,7 +19,7 @@ async function saveUserCredentials(response: ResponseProps) {
   // Load credentials to the redux
   await loadUserCredentialsToRedux();
   // set access_token
-  api.setToken(response.access_token);
+  API.setToken(response.access_token);
 }
 
 /**

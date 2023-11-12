@@ -2,16 +2,19 @@ import { StyleSheet } from 'react-native';
 import { scale } from 'react-native-size-matters';
 
 const styles = StyleSheet.create({
-  buttonText: {
+  button: {
     alignSelf: 'center',
     justifyContent: 'center',
-    borderWidth: 0,
+    borderRadius: scale(10),
+  },
+  buttonText: {
+    fontSize: scale(14),
   },
   marginVertical: {
     marginVertical: scale(2),
   },
   width: {
-    width: '70%',
+    width: '80%',
   },
 });
 

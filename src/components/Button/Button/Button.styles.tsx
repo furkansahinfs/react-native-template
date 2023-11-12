@@ -7,11 +7,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: scale(10),
   },
+  buttonText: {
+    fontSize: scale(14),
+  },
   marginVertical: {
     marginVertical: scale(5),
   },
   width: {
-    width: '70%',
+    width: '80%',
   },
 });
 

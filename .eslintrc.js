@@ -16,7 +16,7 @@ module.exports = {
             position: 'before',
           },
           {
-            pattern: 'src/**',
+            pattern: '@src/**',
             group: 'internal',
           },
         ],

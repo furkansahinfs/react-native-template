@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, StatusBar } from 'react-native';
-import { useTheme } from 'src/theme';
+import { useTheme } from '@src/theme';
 import styles from './CustomSafeAreaView.style';
 
 interface CustomSafeAreaViewProps {

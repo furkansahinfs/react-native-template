@@ -1,7 +1,7 @@
 import React from 'react';
 import { KeyboardTypeOptions } from 'react-native';
-import { Input } from '@rneui/base';
-import { useTheme } from 'src/theme';
+import { Input } from '@rneui/themed';
+import { useTheme } from '@src/theme';
 import styles from './TextInput.styles';
 
 interface TextInputProps {
@@ -26,14 +26,31 @@ const TextInput = ({
   const { colors } = useTheme();
   return (
     <Input
-      label={placeholderText}
+      placeholder={placeholderText}
       value={val}
       keyboardType={keyboardType}
       secureTextEntry={secureText}
-      multiline={multiline !== undefined ? multiline : false}
+      multiline={multiline ?? false}
       style={styles.input}
+      labelStyle={[styles.label, { color: colors.text }]}
+      inputStyle={[{ color: colors.text }]}
+      placeholderTextColor={colors.text}
+      inputContainerStyle={[
+        styles.inputContainer,
+        {
+          borderColor: colors.textInputBorder,
+          backgroundColor: colors.textInput,
+        },
+      ]}
       onChangeText={onChangeText}
-      leftIcon={{ type: 'font-awesome', name: iconName }}
+      leftIcon={{
+        type: 'font-awesome',
+        name: iconName,
+        size: styles.iconSize.height,
+        color: colors.icon,
+        style: styles.iconStyle,
+      }}
+      underlineColorAndroid={'transparent'}
     />
   );
 };
