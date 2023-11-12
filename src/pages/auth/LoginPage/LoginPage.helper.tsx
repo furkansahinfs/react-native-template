@@ -31,11 +31,11 @@ async function saveUserCredentials(response: ResponseProps) {
  * @param password : user password
  */
 export async function login(email: string, password: string) {
-  const response: any = await LoginRequest(email, password);
-  if (!response?.access_token) {
-    Toast(response, false);
+  const response = await LoginRequest(email, password);
+  if (!response?.success) {
+    Toast(response.error as string, false);
   } else {
-    await saveUserCredentials(response);
+    await saveUserCredentials(response.data);
     navigationReset('Main');
   }
 }

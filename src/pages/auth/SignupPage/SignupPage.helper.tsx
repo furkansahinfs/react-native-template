@@ -11,9 +11,9 @@ import { navigate } from '@src/navigation';
  * @param json : SignupProps
  */
 export async function register(json: SignupProps) {
-  const response: any = await SignupRequest(json);
-  if (!response?.email) {
-    Toast(response, true);
+  const response = await SignupRequest(json);
+  if (!response.success) {
+    Toast(response.error as string, true);
   } else {
     Toast(i18next.t('pages.signupPage.signupSuccessfull'), true);
     navigate('Login');

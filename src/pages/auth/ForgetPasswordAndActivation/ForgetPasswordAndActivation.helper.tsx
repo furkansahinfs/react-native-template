@@ -10,11 +10,11 @@ import { i18next } from '@src/locales';
 export async function send(email: string, selectedTab: string) {
   if (email) {
     if (selectedTab === 'ForgetPassword') {
-      const response: any = await ForgetPasswordRequest(email);
-      Toast(response, false);
+      const response = await ForgetPasswordRequest(email);
+      Toast(response.success ? response.data : response.error, false);
     } else {
-      const response: any = await NewActivationRequest(email);
-      Toast(response, false);
+      const response = await NewActivationRequest(email);
+      Toast(response.success ? response.data : response.error, false);
     }
   } else {
     Toast(i18next.t('pages.forgetPasswordAndActiovationPage.emptyEmail'), false);

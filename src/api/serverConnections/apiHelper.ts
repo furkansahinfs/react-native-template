@@ -138,14 +138,15 @@ export default class ApiHelper {
         return await this.reRequest(response.config);
       }
     } else {
+      const error =
+        response?.data?.error?.message !== undefined
+          ? response.data.error.message
+          : response?.data?.message !== undefined
+          ? response.data.message
+          : 'Error';
       return {
         data: response.data,
-        error:
-          response?.data?.error?.message !== undefined
-            ? response.data.error.message
-            : response?.data?.message !== undefined
-            ? response.data.message
-            : 'Error',
+        error: typeof error === 'string' ? error : JSON.stringify(error),
         success: false,
         status: response.status,
       };
