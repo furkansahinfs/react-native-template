@@ -43,19 +43,19 @@
         },
         "loginPage": {
             "error": {
-                "email": "Provide a valid e-mail",
-                "password": "Provide password information."
+                "email": "Geçerli bir e-posta girin.",
+                "password": "Parola boş olamaz."
             },
             "input": {
-                "email": "E-mail",
-                "password": "Password"
+                "email": "E-posta",
+                "password": "Parola"
             },
-            "forgetPassword": "Forget Password",
-            "hello": "Welcome",
-            "loginBody": "Login to continue to the app.",
-            "loginButton": "Login",
-            "newActivation": "New Activation Mail",
-            "signupButton": "Sign Up"
+            "forgetPassword": "Parolamı Unuttum",
+            "hello": "Merhaba",
+            "loginBody": "Uygulamayı kullanmak için giriş yapın.",
+            "loginButton": "Giriş Yap",
+            "newActivation": "Aktivasyon Maili",
+            "signupButton": "Kayıt Ol"
         },
         "profilePage": {
             "sendPhoto": "Fotoğrafı Gönder"
@@ -83,7 +83,7 @@
             },
             "input": {
                 "birthday": "Doğum Günü",
-                "email": "E-mail",
+                "email": "E-posta",
                 "password": "Parola",
                 "confirmPassword": "Parolayı Doğrula",
                 "gender": "Cinsiyet",
@@ -91,15 +91,15 @@
                 "surname": "Soyad",
                 "sms": "SMS",
                 "phone": "Telefon",
-                "membership": "I have read and agree to the ",
-                "privacy": "I have read and agree to the ",
+                "membership": "Okudum ve onaylıyorum : ",
+                "privacy": "Okudum ve onaylıyorum :",
                 "underlinedMembership": "Üyelik Sözleşmesi.",
                 "underlinedPrivacy": "Gizlilik Sözleşmesi"
             },
-            "signupBody": "Please fill in the form below to sign up. Make sure that you enter all the required information.",
-            "signupButton": "Sign Up",
-            "signupHead": "Sign Up",
-            "signupSuccessfull": "Registered successfully. Please verify your account via the email sent."
+            "signupBody": "Kayıt olmak için lütfen aşağıdaki formu doldurunuz. Gerekli tüm bilgileri girdiğinizden emin olun",
+            "signupButton": "Kayıt Ol",
+            "signupHead": "Kayıt Ol",
+            "signupSuccessfull": "Başarıyla kayıt oldu. Lütfen gönderilen e-posta yoluyla hesabınızı doğrulayın."
         }
     },
     "days": {

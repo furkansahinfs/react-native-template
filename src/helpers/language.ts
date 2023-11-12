@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { API } from '@src/api';
+import { LANGUAGE } from '@src/assets';
 import { i18next } from '@src/locales';
 import store from '@src/store';
 import { languageAdd, languageClear } from '@src/store/language';
@@ -19,8 +20,9 @@ export function getLanguage() {
 export async function loadLanguageToRedux() {
   try {
     const language = await AsyncStorage.getItem('LANGUAGE');
-    API.setLanguage(language || ''); // set api language
-    i18next.language = language || ''; // set I18N locale
+    API.setLanguage(language ?? LANGUAGE.EN); // set api language
+    i18next.language = language ?? LANGUAGE.EN; // set I18N locale
+    i18next.changeLanguage(language ?? LANGUAGE.EN);
     if (language) {
       store.dispatch(languageAdd(language)); // Update language from reducer
     } else {
