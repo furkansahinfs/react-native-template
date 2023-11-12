@@ -1,20 +1,15 @@
-import api from '../../index';
 import { API_CLIENT_ID } from '@env';
-import { IResponse } from '../../../interface';
+import { API } from '@src/api/serverConnections';
+import { IResponse } from '@src/interface';
 
-const forgetPassword = async (email: string) => {
+const forgetPassword = async (email: string): Promise<IResponse> => {
   const path = '/auth/forgot-password';
   const json = {
     client_id: API_CLIENT_ID,
     email: email,
   };
-  return await api.POST(path, json, {}).then((result: IResponse) => {
-    if (!result.success) {
-      return result.error;
-    } else {
-      return result.data?.data?.message;
-    }
-  });
+
+  return await API.POST(path, json, {});
 };
 
 export default forgetPassword;

@@ -1,33 +1,35 @@
 import React from 'react';
-import { Button as NativeButton } from 'react-native-paper';
+import { Button as UIButton } from '@rneui/themed';
 import styles from './Button.styles';
 import { useTheme } from '../../../theme';
 
 interface ButtonProps {
-  onPressFunction: () => void;
+  onPress: () => void;
   text: string;
-  mode: 'text' | 'outlined' | 'contained';
+  type: 'solid' | 'clear' | 'outline';
   hasMarginVertical?: boolean;
-  widthFit?: boolean;
+  fit?: boolean;
+  iconName?: string;
 }
 
-const Button = ({ onPressFunction, text, mode, hasMarginVertical, widthFit }: ButtonProps) => {
+const Button = ({ onPress, text, type, hasMarginVertical, fit, iconName }: ButtonProps) => {
   const { colors } = useTheme();
   return (
-    <NativeButton
-      style={[
+    <UIButton
+      buttonStyle={[
         styles.button,
-        hasMarginVertical ? styles.marginVertical : {},
-        !widthFit ? styles.width : {},
-        mode === 'contained'
+        hasMarginVertical && styles.marginVertical,
+        !fit && styles.width,
+        type === 'solid'
           ? { backgroundColor: colors.button }
           : { borderWidth: 1, borderColor: colors.border },
       ]}
-      mode={mode}
-      onPress={onPressFunction}
-    >
-      {text.toLocaleLowerCase('TR')}
-    </NativeButton>
+      titleStyle={styles.buttonText}
+      type={type}
+      icon={iconName ? { name: iconName } : undefined}
+      onPress={onPress}>
+      {text}
+    </UIButton>
   );
 };
 

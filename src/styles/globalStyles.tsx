@@ -10,13 +10,10 @@ const makeStyles = (colors: any) =>
       color: colors.text,
     },
 
-    buttonMargin: {
-      marginTop: scale(10),
-    },
-
     card: {
       backgroundColor: colors.card,
       justifyContent: 'center',
+      borderWidth: 0,
       paddingVertical: '10%',
       borderRadius: scale(15),
       shadowColor: 'grey',
@@ -84,6 +81,10 @@ const makeStyles = (colors: any) =>
       fontWeight: 'normal',
       fontSize: scale(15),
       color: colors.text,
+    },
+
+    smallMarginTop: {
+      marginTop: scale(15),
     },
 
     modalView: {

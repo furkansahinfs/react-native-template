@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import { Image, ScrollView, TouchableOpacity, View } from 'react-native';
 import * as ImagePicker from 'react-native-image-picker';
 import { ImageLibraryOptions } from 'react-native-image-picker';
-import { Image, ScrollView, View, TouchableOpacity } from 'react-native';
-import styles from './ImageSelector.style';
-import { requestCameraPermission } from './ImageSelector.helper';
-import { Icon } from '../..';
-import ModalView from './Subcomponents/ModalView';
-import { FileProps } from '../../../interface';
 import VideoPlayer from 'react-native-video-controls';
+import { DefaultIcon } from '@src/components';
+import { FileProps } from '@src/interface';
+import { useTheme } from '@src/theme';
+import { requestCameraPermission } from './ImageSelector.helper';
+import styles from './ImageSelector.style';
+import ModalView from './Subcomponents/ModalView';
 
 interface ImageSelectorProps {
   files: Array<FileProps>;
@@ -26,7 +27,9 @@ const ImageSelector = ({
   OpenModalView,
   renderImages,
 }: ImageSelectorProps) => {
-  const [isModalVisible, setModalVisible] = useState<boolean>(false);
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+  const { colors } = useTheme();
+
   let options: ImageLibraryOptions = {
     selectionLimit: multiple ? 0 : 1,
     mediaType: mediaType,
@@ -38,7 +41,7 @@ const ImageSelector = ({
       const response = await ImagePicker.launchCamera(options);
       const selectedFiles: Array<FileProps> = [];
       if (response.assets !== undefined && response.assets?.length > 0) {
-        response.assets.forEach((element) => {
+        response.assets.forEach(element => {
           if (element.uri) {
             const elementFile = getFilePropsObject(element);
             files.push(elementFile);
@@ -53,7 +56,7 @@ const ImageSelector = ({
     const response = await ImagePicker.launchImageLibrary(options);
     const selectedFiles: Array<FileProps> = [];
     if (response.assets !== undefined && response.assets?.length > 0) {
-      response.assets.forEach((element) => {
+      response.assets.forEach(element => {
         if (element.uri) {
           const elementFile = getFilePropsObject(element);
           selectedFiles.push(elementFile);
@@ -102,14 +105,22 @@ const ImageSelector = ({
                   paused
                   style={styles.videoStyle}
                 />
-                <Icon name={'times'} onPressFunction={() => deleteImage(value)} />
+                <DefaultIcon
+                  color={colors.icon}
+                  name={'times'}
+                  onPress={() => deleteImage(value)}
+                />
               </View>
             );
           } else {
             return (
               <View style={styles.ImageSections} key={index}>
                 <Image source={{ uri: value?.uri }} style={styles.images} />
-                <Icon name={'times'} onPressFunction={() => deleteImage(value)} />
+                <DefaultIcon
+                  color={colors.icon}
+                  name={'times'}
+                  onPress={() => deleteImage(value)}
+                />
               </View>
             );
           }
@@ -122,17 +133,17 @@ const ImageSelector = ({
     <View>
       <ModalView
         isModalVisible={isModalVisible}
-        setModalVisible={setModalVisible}
+        setModalVisible={setIsModalVisible}
         launchCamera={launchCamera}
         launchImageLibrary={launchImageLibrary}
       />
 
       {files !== null && renderImages && renderFilesUri()}
       {OpenModalView === undefined && (
-        <Icon name={'camera'} onPressFunction={() => setModalVisible(true)} />
+        <DefaultIcon name={'camera'} onPress={() => setIsModalVisible(true)} color={colors.icon} />
       )}
       {OpenModalView !== undefined && (
-        <TouchableOpacity onPress={() => setModalVisible(true)} children={OpenModalView} />
+        <TouchableOpacity onPress={() => setIsModalVisible(true)} children={OpenModalView} />
       )}
     </View>
   );

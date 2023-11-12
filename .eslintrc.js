@@ -1,23 +1,48 @@
 module.exports = {
   root: true,
-  extends: '@react-native-community',
+  extends: ['eslint:recommended', 'plugin:prettier/recommended', '@react-native'],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
-  rules: {'prettier/prettier': ['error', {endOfLine: 'auto'}]},
+  plugins: ['prettier', 'import'],
+  rules: {
+    'sort-imports': ['error', { ignoreCase: true, ignoreDeclarationSort: true }],
+    'import/order': [
+      'error',
+      {
+        groups: [['external', 'builtin'], 'internal', ['sibling', 'parent'], 'index'],
+        pathGroups: [
+          {
+            pattern: '@(react|react-native)',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '@src/**',
+            group: 'internal',
+          },
+        ],
+        pathGroupsExcludedImportTypes: ['internal', 'react'],
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
+      },
+    ],
+  },
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
       rules: {
-        '@typescript-eslint/no-shadow': ['error'],
-        'no-shadow': 'off',
-        'no-undef': 'off',
+        'object-curly-spacing': ['error', 'always'],
       },
     },
   ],
   settings: {
     'import/resolver': {
       alias: {
-        map: [['@env', 'react-native-dotenv']],
+        map: [
+          ['@src', './src'],
+          ['@env', 'react-native-dotenv'],
+        ],
         extensions: ['.ts', '.js', '.jsx', '.json'],
       },
     },

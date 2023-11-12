@@ -4,7 +4,7 @@ import { ThemeState } from './theme.types';
 
 const initialState: ThemeState = { theme: 'LIGHT' };
 
-export const themeReducer = createReducer(initialState, (builder) => {
+export const themeReducer = createReducer(initialState, builder => {
   builder
     .addCase(lightOn, (state, action) => {
       state.theme = action.payload.theme;

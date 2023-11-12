@@ -1,24 +1,26 @@
 import * as React from 'react';
-import { MainPage, ProfilePage } from '../pages';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
-  DrawerItemList,
   DrawerItem,
+  DrawerItemList,
 } from '@react-navigation/drawer';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { changeTheme, getTheme, logout } from '@src/helpers';
+import { i18next } from '@src/locales';
+import { MainPage, ProfilePage } from '@src/pages';
+import { useTheme } from '@src/theme';
 import styles from './TabNavigation.style';
-import { I18N } from '../locales';
-import { useTheme } from '../theme';
 import { navigate } from '.';
-import { changeTheme, getTheme, logout } from '../helpers';
 
 const Drawer = createDrawerNavigator();
 
 const getThemeLabel = () => {
   const selectedTheme = getTheme();
   const isDark = selectedTheme === 'DARK';
-  return isDark ? I18N.t('navigation.drawer.lightTheme') : I18N.t('navigation.drawer.darkTheme');
+  return isDark
+    ? i18next.t('navigation.drawer.lightTheme')
+    : i18next.t('navigation.drawer.darkTheme');
 };
 
 interface IDrawerItemComponent {
@@ -44,12 +46,12 @@ function CustomDrawerContent(props: any) {
     <DrawerContentScrollView {...props} style={{ backgroundColor: colors.background }}>
       <DrawerItemList {...props} />
       <DrawerItemComponent
-        labelName={I18N.t('navigation.drawer.selectLanguage')}
+        labelName={i18next.t('navigation.drawer.selectLanguage')}
         onPress={() => navigate('Language', { page: 'Main' })}
       />
       <DrawerItemComponent labelName={getThemeLabel()} onPress={async () => await changeTheme()} />
       <DrawerItemComponent
-        labelName={I18N.t('navigation.drawer.logout')}
+        labelName={i18next.t('navigation.drawer.logout')}
         onPress={async () => await logout()}
       />
     </DrawerContentScrollView>
@@ -78,14 +80,13 @@ function AppDrawer() {
         headerStyle: { backgroundColor: colors.background },
         unmountOnBlur: false,
       }}
-      drawerContent={(props: any) => <CustomDrawerContent {...props} />}
-    >
+      drawerContent={(props: any) => <CustomDrawerContent {...props} />}>
       <Drawer.Screen
         name="Home"
         component={MainPage}
         options={{
-          drawerLabel: I18N.t('navigation.tabbar.main'),
-          headerTitle: I18N.t('navigation.tabbar.main'),
+          drawerLabel: i18next.t('navigation.tabbar.main'),
+          headerTitle: i18next.t('navigation.tabbar.main'),
           drawerIcon: () => <DrawerIcon iconName={'home'} />,
         }}
       />
@@ -93,8 +94,8 @@ function AppDrawer() {
         name="Profile"
         component={ProfilePage}
         options={{
-          drawerLabel: I18N.t('navigation.tabbar.profile'),
-          headerTitle: I18N.t('navigation.tabbar.profile'),
+          drawerLabel: i18next.t('navigation.tabbar.profile'),
+          headerTitle: i18next.t('navigation.tabbar.profile'),
           drawerIcon: () => <DrawerIcon iconName={'account-settings'} />,
         }}
       />

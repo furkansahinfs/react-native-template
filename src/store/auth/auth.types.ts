@@ -5,7 +5,7 @@ export const AUTH_REMOVE_TOKEN = 'auth/removeToken';
 
 export type AuthState = {
   refresh_token: string;
-  deviceid: string;
+  deviceId: string;
 };
 
 export interface AuthAddTokenAction {
@@ -18,7 +18,7 @@ export interface AuthAddTokenAction {
 export interface AuthAddDeviceAction {
   type: typeof AUTH_ADD_DEVICE;
   payload: {
-    deviceid: string;
+    deviceId: string;
   };
 }
 

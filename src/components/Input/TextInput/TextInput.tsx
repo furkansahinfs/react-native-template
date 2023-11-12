@@ -1,15 +1,14 @@
 import React from 'react';
 import { KeyboardTypeOptions } from 'react-native';
-import { TextInput as NativeTextInput } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import { useTheme } from '../../../theme';
+import { Input } from '@rneui/themed';
+import { useTheme } from '@src/theme';
 import styles from './TextInput.styles';
 
 interface TextInputProps {
   placeholderText: string;
   val: string | undefined;
   keyboardType: KeyboardTypeOptions;
-  func: (text: string) => void;
+  onChangeText: (text: string) => void;
   secureText: boolean;
   iconName?: string;
   multiline?: boolean;
@@ -19,38 +18,39 @@ const TextInput = ({
   placeholderText,
   val,
   keyboardType,
-  func,
+  onChangeText,
   secureText,
   iconName,
   multiline,
 }: TextInputProps) => {
   const { colors } = useTheme();
   return (
-    <NativeTextInput
-      mode="outlined"
-      label={placeholderText}
+    <Input
+      placeholder={placeholderText}
       value={val}
       keyboardType={keyboardType}
       secureTextEntry={secureText}
-      multiline={multiline !== undefined ? multiline : false}
+      multiline={multiline ?? false}
       style={styles.input}
-      theme={{
-        colors: {
-          background: colors.textInput,
-          text: colors.text,
-          primary: '#7999FD',
-          placeholder: colors.border,
+      labelStyle={[styles.label, { color: colors.text }]}
+      inputStyle={[{ color: colors.text }]}
+      placeholderTextColor={colors.text}
+      inputContainerStyle={[
+        styles.inputContainer,
+        {
+          borderColor: colors.textInputBorder,
+          backgroundColor: colors.textInput,
         },
-        roundness: 8,
+      ]}
+      onChangeText={onChangeText}
+      leftIcon={{
+        type: 'font-awesome',
+        name: iconName,
+        size: styles.iconSize.height,
+        color: colors.icon,
+        style: styles.iconStyle,
       }}
-      onChangeText={func}
-      left={
-        iconName ? (
-          <NativeTextInput.Icon
-            name={() => <Icon name={iconName} color="#7999FD" size={styles.iconSize.height} />}
-          />
-        ) : null
-      }
+      underlineColorAndroid={'transparent'}
     />
   );
 };

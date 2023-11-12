@@ -1,7 +1,7 @@
-import { ChangeableProfileData, IResponse } from '../../../interface';
-import api from '../../index';
+import { API } from '@src/api/serverConnections';
+import { ChangeableProfileData, IResponse } from '@src/interface';
 
-const updateProfileInfo = async (info: ChangeableProfileData) => {
+const updateProfileInfo = async (info: ChangeableProfileData): Promise<IResponse> => {
   const path = '/users/me/update';
 
   const json = {
@@ -9,13 +9,7 @@ const updateProfileInfo = async (info: ChangeableProfileData) => {
     surname: info.surname,
     phone: info.phone,
   };
-  return await api.POST(path, json, {}).then((result: IResponse) => {
-    if (result.success) {
-      return true;
-    } else {
-      return result.error;
-    }
-  });
+  return await API.POST(path, json, {});
 };
 
 export default updateProfileInfo;

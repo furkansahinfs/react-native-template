@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
   },
 
   inputContainer: {
+    marginVertical: scale(5),
     width: '85%',
     alignSelf: 'center',
   },

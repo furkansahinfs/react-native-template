@@ -1,7 +1,7 @@
 import React from 'react';
-import { ActivityIndicator } from 'react-native-paper';
-import { useTheme } from '../../theme';
+import { ActivityIndicator } from 'react-native';
 import styles from './ActivityIndicator.styles';
+import { useTheme } from '../../theme';
 
 interface IIndicator {
   size?: number;

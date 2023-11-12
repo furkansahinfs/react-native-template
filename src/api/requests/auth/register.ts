@@ -1,7 +1,13 @@
-import { IResponse, SignupProps } from '../../../interface';
-import api from '../../index';
+import { API } from '@src/api/serverConnections';
+import { IResponse, SignupProps } from '@src/interface';
 
-const register = async ({ email, name, password, phone, surname }: SignupProps) => {
+const register = async ({
+  email,
+  name,
+  password,
+  phone,
+  surname,
+}: SignupProps): Promise<IResponse> => {
   const path = '/auth/register';
   const json = {
     email,
@@ -10,13 +16,8 @@ const register = async ({ email, name, password, phone, surname }: SignupProps) 
     phone,
     surname,
   };
-  return await api.POST(path, json, {}).then((result: IResponse) => {
-    if (result.success) {
-      return result.data;
-    } else {
-      return result.error;
-    }
-  });
+
+  return await API.POST(path, json, {});
 };
 
 export default register;

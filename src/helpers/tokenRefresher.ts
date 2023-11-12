@@ -1,7 +1,7 @@
-import api, { RefreshToken } from '../api';
-import { getUserCredentials, loadUserCredentialsToRedux, setUserCredentials } from '.';
+import { API, RefreshToken } from '@src/api';
+import { navigate } from '@src/navigation';
 import { deleteUserCredentials } from './userCredentials';
-import { navigate } from '../navigation';
+import { getUserCredentials, loadUserCredentialsToRedux, setUserCredentials } from '.';
 
 /**
  * Get a new token from server and save it to the keychain
@@ -19,7 +19,7 @@ async function tokenRefresher() {
     // and set the redux with new data
     await loadUserCredentialsToRedux();
     // set access_token
-    api.setToken(response.access_token);
+    API.setToken(response.access_token);
     return true;
   } else {
     console.log('TokenRefresher delete', response);

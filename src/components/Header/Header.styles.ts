@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { scale, moderateScale } from 'react-native-size-matters';
+import { moderateScale, scale } from 'react-native-size-matters';
+
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',

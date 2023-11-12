@@ -1,9 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
-import { SearchBar as NativeSearchBar } from 'react-native-elements';
-import { I18N } from '../../locales';
-import { useTheme } from '../../theme';
-import { DefaultIcon } from '../Icon';
+import { SearchBar as SearchBarUI } from '@rneui/themed';
+import { DefaultIcon } from '@src/components';
+import { i18next } from '@src/locales';
+import { useTheme } from '@src/theme';
 import { styles } from './SearchBar.styles';
 
 interface ISearchBar {
@@ -23,8 +23,8 @@ const SearchBar = ({
 }: ISearchBar) => {
   const { dark, colors } = useTheme();
   return (
-    <NativeSearchBar
-      cancelButtonTitle={I18N.t('searchBar.cancel')}
+    <SearchBarUI
+      cancelButtonTitle={i18next.t('searchBar.cancel')}
       containerStyle={[
         {
           backgroundColor: colors.background,
@@ -44,16 +44,11 @@ const SearchBar = ({
       }}
       onChangeText={(text: string) => setSearchText(text)}
       onEndEditing={() => onEndEditing(searchText)}
-      placeholder={I18N.t('searchBar.search')}
+      placeholder={i18next.t('searchBar.search')}
       value={searchText}
-      noIcon={true}
       searchIcon={
         <View style={styles.searchIcon}>
-          <DefaultIcon
-            name="search"
-            onPressFunction={() => onEndEditing(searchText)}
-            color={colors.icon}
-          />
+          <DefaultIcon name="search" onPress={() => onEndEditing(searchText)} color={colors.icon} />
         </View>
       }
     />

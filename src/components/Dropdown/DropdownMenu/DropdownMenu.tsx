@@ -1,11 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { CheckBox } from '../..';
-import { I18N } from '../../../locales';
-import { useTheme } from '../../../theme';
-import { ActivityIndicator } from '../../ActivityIndicator';
-import { Icon } from '../../Icon';
-import { FilterSearch } from '../../Search';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, CheckBox, DefaultIcon, FilterSearch } from '@src/components';
+import { i18next } from '@src/locales';
+import { useTheme } from '@src/theme';
 import { styles } from './DropdownMenu.style';
 
 //TODO NEED BIG Refactoring
@@ -117,7 +114,7 @@ const DropdownMenu = (props: IDropdownMenu) => {
                 <View key={i} style={styles.multipleChoiceContainer}>
                   <CheckBox
                     checked={currentChoice === choice || currentChoice[itemKey] === choice[itemKey]}
-                    onPressFunction={() => {
+                    onPress={() => {
                       if (currentChoice === choice) {
                         setChoice(null);
                       } else {
@@ -126,7 +123,7 @@ const DropdownMenu = (props: IDropdownMenu) => {
                       closeOnSelection && setExpandState(false);
                     }}
                     title={titleKey ? choice[titleKey] : itemKey ? choice[itemKey] : choice}
-                    widthFit={false}
+                    fit={false}
                   />
                 </View>
               );
@@ -137,7 +134,7 @@ const DropdownMenu = (props: IDropdownMenu) => {
     } else {
       return (
         expandState && (
-          <Text style={styles.choiceStyle}>{I18N.t('components.dropdownMenu.noChoice')}</Text>
+          <Text style={styles.choiceStyle}>{i18next.t('components.dropdownMenu.noChoice')}</Text>
         )
       );
     }
@@ -155,9 +152,9 @@ const DropdownMenu = (props: IDropdownMenu) => {
                 <View key={i} style={styles.multipleChoiceContainer}>
                   <CheckBox
                     checked={selectedChoices[key]}
-                    onPressFunction={() => setChoiceStatus(choice, key, !selectedChoices[key])}
+                    onPress={() => setChoiceStatus(choice, key, !selectedChoices[key])}
                     title={titleKey ? choice[titleKey] : itemKey ? choice[itemKey] : choice}
-                    widthFit={false}
+                    fit={false}
                   />
                 </View>
               );
@@ -168,7 +165,7 @@ const DropdownMenu = (props: IDropdownMenu) => {
     } else {
       return (
         expandState && (
-          <Text style={styles.choiceStyle}>{I18N.t('components.dropdownMenu.noChoice')}</Text>
+          <Text style={styles.choiceStyle}>{i18next.t('components.dropdownMenu.noChoice')}</Text>
         )
       );
     }
@@ -180,7 +177,7 @@ const DropdownMenu = (props: IDropdownMenu) => {
         <View>
           {itemKey ? (
             <FilterSearch
-              setFilteredList={(filtered) => setFilteredChoices(filtered)}
+              setFilteredList={filtered => setFilteredChoices(filtered)}
               unfilteredList={choices}
               searchKeys={[titleKey ? titleKey : 'name', 'fullName']}
               containerStyle={styles.searchBarContainer}
@@ -188,7 +185,7 @@ const DropdownMenu = (props: IDropdownMenu) => {
             />
           ) : (
             <FilterSearch
-              setFilteredList={(filtered) => setFilteredChoices(filtered)}
+              setFilteredList={filtered => setFilteredChoices(filtered)}
               unfilteredList={choices}
               containerStyle={styles.searchBarContainer}
               textStyle={[styles.searchBarText, { color: colors.text }]}
@@ -218,12 +215,11 @@ const DropdownMenu = (props: IDropdownMenu) => {
         disabled={loading}
         style={[styles.categoryHeaderStyle, { borderColor: colors.border }]}
         onPress={() => setExpandState(!expandState)}
-        activeOpacity={1}
-      >
+        activeOpacity={1}>
         {dropdownTitle && <Text style={{ color: colors.text }}>{dropdownTitle}</Text>}
         <View style={styles.titleView}>
           <Text style={[styles.categoryNameStyle, { color: colors.text }]}>{getTitle()}</Text>
-          <Icon name={expandState ? 'angle-up' : 'angle-down'} />
+          <DefaultIcon name={expandState ? 'angle-up' : 'angle-down'} color={colors.icon} />
         </View>
       </TouchableOpacity>
       {renderContent()}

@@ -1,28 +1,30 @@
 import React from 'react';
 import { Text } from 'react-native';
-import { Button } from 'react-native-paper';
+import { Button } from '@rneui/themed';
 import styles from './TextButton.styles';
 import { useTheme } from '../../../theme';
 
 interface ButtonProps {
-  onPressFunction: () => void;
+  onPress: () => void;
   text: string;
   hasMarginVertical?: boolean;
-  widthFit?: boolean;
+  hasBorder?: boolean;
+  fit?: boolean;
 }
 
-const TextButton = ({ onPressFunction, text, hasMarginVertical, widthFit }: ButtonProps) => {
+const TextButton = ({ onPress, text, hasMarginVertical, hasBorder = false, fit }: ButtonProps) => {
   const { colors } = useTheme();
   return (
     <Button
-      style={[
-        styles.buttonText,
-        hasMarginVertical ? styles.marginVertical : {},
-        !widthFit ? styles.width : {},
+      buttonStyle={[
+        styles.button,
+        hasMarginVertical && styles.marginVertical,
+        !fit && styles.width,
+        hasBorder && { borderWidth: 1, borderColor: colors.border },
       ]}
-      mode="text"
-      onPress={onPressFunction}
-    >
+      titleStyle={[styles.buttonText, { color: colors.text }]}
+      type="outline"
+      onPress={onPress}>
       <Text style={{ color: colors.text }}>{text}</Text>
     </Button>
   );

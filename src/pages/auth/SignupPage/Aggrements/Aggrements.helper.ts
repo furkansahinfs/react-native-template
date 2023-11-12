@@ -1,4 +1,4 @@
-import { I18N } from '../../../../locales/language';
+import { i18next } from '@src/locales';
 
 export interface InputProp {
   name: 'sms' | 'phone' | 'membership' | 'privacy';
@@ -13,20 +13,20 @@ export interface InputProp {
 export const aggrementPreferences: Array<InputProp> = [
   {
     name: 'membership',
-    placeHolder: I18N.t('pages.signupPage.input.membership'),
-    underlinedPlaceholder: I18N.t('pages.signupPage.input.underlinedMembership'),
+    placeHolder: i18next.t('pages.signupPage.input.membership'),
+    underlinedPlaceholder: i18next.t('pages.signupPage.input.underlinedMembership'),
     type: 'checkbox',
-    errors: I18N.t('pages.signupPage.error.membership'),
+    errors: i18next.t('pages.signupPage.error.membership'),
     rules: {
       required: false,
     },
   },
   {
     name: 'privacy',
-    placeHolder: I18N.t('pages.signupPage.input.privacy'),
-    underlinedPlaceholder: I18N.t('pages.signupPage.input.underlinedPrivacy'),
+    placeHolder: i18next.t('pages.signupPage.input.privacy'),
+    underlinedPlaceholder: i18next.t('pages.signupPage.input.underlinedPrivacy'),
     type: 'checkbox',
-    errors: I18N.t('pages.signupPage.error.privacy'),
+    errors: i18next.t('pages.signupPage.error.privacy'),
     rules: { required: true },
   },
 ];

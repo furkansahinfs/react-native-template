@@ -1,23 +1,23 @@
-import api from '../../index';
 import { API_CLIENT_ID } from '@env';
-import store from '../../../store';
-import { updateDeviceId } from '../../../helpers';
-import { IResponse } from '../../../interface';
+import { API } from '@src/api/serverConnections';
+import { updateDeviceId } from '@src/helpers';
+import { IResponse } from '@src/interface';
+import store from '@src/store';
 
 async function getDeviceId() {
-  let device_id = store.getState().userCredentials.deviceid;
-  if (device_id === '' || device_id === undefined) {
-    device_id = await updateDeviceId();
+  let deviceId = store.getState().userCredentials.deviceId;
+  if (deviceId === '' || deviceId === undefined) {
+    deviceId = await updateDeviceId();
   }
-  return device_id;
+  return deviceId;
 }
 
-const login = async (email: string, password: string) => {
+const login = async (email: string, password: string): Promise<IResponse> => {
   const path = '/auth/login';
-  const deviceid = await getDeviceId();
+  const deviceId = await getDeviceId();
   const json = {
     client_id: API_CLIENT_ID,
-    client_secret: deviceid,
+    client_secret: deviceId,
     grant_type: 'password',
     password: password,
     refresh_token: '',
@@ -25,17 +25,9 @@ const login = async (email: string, password: string) => {
   };
   const data = new URLSearchParams(json).toString();
 
-  return await api
-    .POST(path, data, {
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    })
-    .then((result: IResponse) => {
-      if (result.success) {
-        return result.data;
-      } else {
-        return result.error;
-      }
-    });
+  return await API.POST(path, data, {
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  });
 };
 
 export default login;

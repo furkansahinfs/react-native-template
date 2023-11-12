@@ -1,3 +1,3 @@
-export { ForgetPasswordAndActivationPage, LoginPage, SignupPage, SplashPage } from './auth';
-export { MainPage } from './main';
-export { LanguagePage, ProfilePage } from './settings';
+export * from './auth';
+export * from './main';
+export * from './settings';

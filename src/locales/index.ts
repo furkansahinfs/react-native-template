@@ -1,1 +1,1 @@
-export {I18N} from './language';
+export { default as i18next } from './i18next';

@@ -7,9 +7,9 @@ export const authAddToken = createAction(AUTH_ADD_TOKEN, function prepare(refres
   };
 });
 
-export const authAddDevice = createAction(AUTH_ADD_DEVICE, function prepare(deviceid: string) {
+export const authAddDevice = createAction(AUTH_ADD_DEVICE, function prepare(deviceId: string) {
   return {
-    payload: { deviceid },
+    payload: { deviceId },
   };
 });
 
@@ -17,7 +17,7 @@ export const authClear = createAction(AUTH_CLEAR, function prepare() {
   return {
     payload: {
       refresh_token: '',
-      deviceid: '',
+      deviceId: '',
     },
   };
 });

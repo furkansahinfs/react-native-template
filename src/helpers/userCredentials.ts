@@ -1,9 +1,9 @@
 import * as Keychain from 'react-native-keychain';
-import api, { LogoutRequest } from '../api';
-import { Toast } from '../components';
-import { navigationReset } from '../navigation';
-import store from '../store';
-import { authAddToken, authRemoveToken } from '../store/auth';
+import { API, LogoutRequest } from '@src/api';
+import { Toast } from '@src/components';
+import { navigationReset } from '@src/navigation';
+import store from '@src/store';
+import { authAddToken, authRemoveToken } from '@src/store/auth';
 
 /**
  * Get the user credentials using redux
@@ -25,7 +25,7 @@ export async function loadUserCredentialsToRedux() {
     store.dispatch(authAddToken(refresh_token_keychain.password)); // Update user credentials from reducer
   } else {
     store.dispatch(authRemoveToken()); // Clear refresh token of user credentials from reducer
-    api.setToken(''); // set api token
+    API.setToken(''); // set api token
   }
 }
 
@@ -49,7 +49,7 @@ export async function deleteUserCredentials() {
   // delete data in keychain
   await Keychain.resetInternetCredentials('CREDENTIALS');
   store.dispatch(authRemoveToken());
-  api.setToken('');
+  API.setToken('');
 }
 
 /**

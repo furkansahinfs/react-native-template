@@ -1,19 +1,18 @@
 import React from 'react';
 import { Modal, View } from 'react-native';
-import { Icon } from '../../../../components';
-import { stylesGlobal } from '../../../../styles';
-import { useTheme } from '../../../../theme';
+import { DefaultIcon, TextButton } from '@src/components';
+import { i18next } from '@src/locales';
+import { stylesGlobal } from '@src/styles';
+import { useTheme } from '@src/theme';
 import styles from './ModalView.styles';
-import { I18N } from '../../../../locales';
-import { TextButton } from '../../../Button';
 
 interface ModalViewProps {
   setModalVisible: (visibility: boolean) => void;
   isModalVisible: boolean;
-
   launchCamera: () => void;
   launchImageLibrary: () => void;
 }
+
 const ModalView = ({
   setModalVisible,
   isModalVisible,
@@ -31,24 +30,25 @@ const ModalView = ({
       visible={isModalVisible}
       onRequestClose={() => {
         setModalVisible(false);
-      }}
-    >
+      }}>
       <View style={styles.modalView}>
         <View style={styles.modalContainerView}>
           <View style={[globalStyles.row]}>
             <View style={styles.iconStyle}>
-              <Icon
+              <DefaultIcon
                 name={'camera'}
-                onPressFunction={() => {
+                color={colors.icon}
+                onPress={() => {
                   launchCamera();
                   setModalVisible(!isModalVisible);
                 }}
               />
             </View>
             <View style={styles.iconStyle}>
-              <Icon
+              <DefaultIcon
                 name={'photo'}
-                onPressFunction={() => {
+                color={colors.icon}
+                onPress={() => {
                   launchImageLibrary();
                   setModalVisible(!isModalVisible);
                 }}
@@ -57,11 +57,11 @@ const ModalView = ({
           </View>
 
           <TextButton
-            onPressFunction={() => {
+            onPress={() => {
               setModalVisible(!isModalVisible);
             }}
-            text={I18N.t('components.imageSelector.closeModal')}
-            widthFit={true}
+            text={i18next.t('components.imageSelector.closeModal')}
+            fit={true}
             hasMarginVertical={true}
           />
         </View>

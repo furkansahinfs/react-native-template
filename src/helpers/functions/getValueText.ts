@@ -1,11 +1,11 @@
-import { I18N } from '../../locales';
+import { i18next } from '@src/locales';
 
 function getValueText(value: any) {
   if (typeof value === 'boolean') {
     if (value) {
-      return I18N.t('boolean.true');
+      return i18next.t('boolean.true');
     } else {
-      return I18N.t('boolean.false');
+      return i18next.t('boolean.false');
     }
   } else if (typeof value === 'number') {
     return value.toString();

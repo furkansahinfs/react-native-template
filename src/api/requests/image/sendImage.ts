@@ -1,10 +1,10 @@
-import { FileProps, IResponse } from '../../../interface';
-import api from '../../index';
+import { API } from '@src/api/serverConnections';
+import { FileProps, IResponse } from '@src/interface';
 
-const sendImage = async (photos: Array<FileProps>) => {
+const sendImage = async (photos: Array<FileProps>): Promise<IResponse> => {
   const path = '/rentals';
   const formData = new FormData();
-  photos.forEach((element) => {
+  photos.forEach(element => {
     formData.append('files', element);
   });
 
@@ -19,17 +19,9 @@ const sendImage = async (photos: Array<FileProps>) => {
     type: 'application/json',
   });
 
-  return await api
-    .POST(path, formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    })
-    .then((result: IResponse) => {
-      if (result.success) {
-        return result.data;
-      } else {
-        return result.error;
-      }
-    });
+  return await API.POST(path, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
 };
 
 export default sendImage;

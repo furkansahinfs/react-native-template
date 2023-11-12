@@ -1,5 +1,5 @@
 'use strict';
-import { ToastAndroid, Platform, Alert } from 'react-native';
+import { Alert, Platform, ToastAndroid } from 'react-native';
 
 /**
  * The function displays a toast at the bottom with given message

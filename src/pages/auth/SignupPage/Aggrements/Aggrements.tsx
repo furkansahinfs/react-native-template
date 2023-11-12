@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { CheckBox } from '../../../../components';
-import styles from './Aggrements.styles';
-import { useTheme } from '../../../../theme';
+import { Text, View } from 'react-native';
 import { Controller } from 'react-hook-form';
+import { CheckBox } from '@src/components';
+import { useTheme } from '@src/theme';
 import { aggrementPreferences, InputProp } from './Aggrements.helper';
+import styles from './Aggrements.styles';
 
 interface AggrementsProps {
   control: any;
@@ -31,7 +31,7 @@ const Aggrements = ({ control, errors }: AggrementsProps) => {
                   <View style={styles.checkboxView}>
                     <CheckBox
                       checked={value}
-                      onPressFunction={() => onChange(!value)}
+                      onPress={() => onChange(!value)}
                       extraStyle={styles.checboxExtraStyle}
                     />
                   </View>

@@ -1,8 +1,32 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { useTheme } from '@src/theme';
 import styles from './Header.styles';
-import { BackButtonInHeader } from '..';
-import { useTheme } from '../../theme';
+import { BackButton } from '../Button';
+
+const Left = (colors: any) => {
+  return (
+    <View>
+      <BackButton color={colors.text} />
+    </View>
+  );
+};
+
+interface IRight {
+  rightIcon: React.ReactNode;
+  onRightIconPress: () => void;
+}
+
+const Right = ({ rightIcon, onRightIconPress }: IRight) => {
+  return (
+    <TouchableOpacity
+      activeOpacity={rightIcon ? 0.5 : 1}
+      style={styles.iconWrapper}
+      onPress={() => (rightIcon ? onRightIconPress : null)}>
+      {rightIcon}
+    </TouchableOpacity>
+  );
+};
 
 interface IHeader {
   back?: boolean;
@@ -14,26 +38,6 @@ interface IHeader {
 
 const Header = ({ back, title, subtitle, rightIcon, onRightIconPress }: IHeader) => {
   const { colors } = useTheme();
-
-  const Left = () => {
-    return (
-      <View>
-        <BackButtonInHeader color={colors.text} />
-      </View>
-    );
-  };
-
-  const Right = () => {
-    return (
-      <TouchableOpacity
-        activeOpacity={rightIcon ? 0.5 : 1}
-        style={styles.iconWrapper}
-        onPress={() => (rightIcon ? onRightIconPress : null)}
-      >
-        {rightIcon}
-      </TouchableOpacity>
-    );
-  };
 
   return (
     <View style={styles.container}>
@@ -47,7 +51,7 @@ const Header = ({ back, title, subtitle, rightIcon, onRightIconPress }: IHeader)
           )}
           {subtitle && <Text style={styles.subTitle}> {subtitle} </Text>}
         </View>
-        {rightIcon && <Right />}
+        {rightIcon && <Right onRightIconPress={() => onRightIconPress} rightIcon={rightIcon} />}
       </View>
     </View>
   );

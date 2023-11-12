@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Text } from 'react-native';
-import { Card } from 'react-native-elements';
+import { ScrollView, Text, View } from 'react-native';
+import { Card } from '@rneui/themed';
 import { Controller, useForm } from 'react-hook-form';
 import {
   ActivityIndicator,
@@ -8,13 +8,13 @@ import {
   CustomSafeAreaView,
   TextButton,
   TextInput,
-} from '../../../components/';
-import { I18N } from '../../../locales';
+} from '@src/components/';
+import { i18next } from '@src/locales';
+import { navigate } from '@src/navigation';
+import { stylesGlobal } from '@src/styles';
+import { useTheme } from '@src/theme';
 import { inputArray, InputProp, login } from './LoginPage.helper';
 import styles from './LoginPage.styles';
-import { stylesGlobal } from '../../../styles/';
-import { useTheme } from '../../../theme';
-import { navigate } from '../../../navigation';
 
 const LoginPage = () => {
   const [showLoading, setShowLoading] = useState(false);
@@ -46,10 +46,8 @@ const LoginPage = () => {
           <ScrollView nestedScrollEnabled={true} keyboardShouldPersistTaps={'handled'}>
             <View style={styles.view}>
               <View style={styles.welcomeText}>
-                <Text style={globalStyles.headText}>
-                  {I18N.t('pages.loginPage.hello').toUpperCase()}
-                </Text>
-                <Text style={globalStyles.bodyText}>{I18N.t('pages.loginPage.loginBody')}</Text>
+                <Text style={globalStyles.headText}>{i18next.t('pages.loginPage.loginBody')}</Text>
+                <Text style={globalStyles.bodyText}>{i18next.t('pages.loginPage.loginBody')}</Text>
               </View>
 
               <Card containerStyle={globalStyles.card}>
@@ -64,7 +62,7 @@ const LoginPage = () => {
                             <TextInput
                               placeholderText={input.placeHolder}
                               secureText={input.isSecureInput}
-                              func={onChange}
+                              onChangeText={onChange}
                               val={value}
                               keyboardType="default"
                               iconName={input.iconName}
@@ -83,9 +81,8 @@ const LoginPage = () => {
                       navigate('ForgetPasswordAndActivation', {
                         type: 'ForgetPassword',
                       })
-                    }
-                  >
-                    {I18N.t('pages.loginPage.forgetPassword')}
+                    }>
+                    {i18next.t('pages.loginPage.forgetPassword')}
                   </Text>
 
                   <Text
@@ -94,21 +91,20 @@ const LoginPage = () => {
                       navigate('ForgetPasswordAndActivation', {
                         type: 'NewActivationMail',
                       })
-                    }
-                  >
-                    {I18N.t('pages.loginPage.newActivation')}
+                    }>
+                    {i18next.t('pages.loginPage.newActivation')}
                   </Text>
-                  <View style={globalStyles.buttonMargin}>
+                  <View style={globalStyles.smallMarginTop}>
                     <Button
-                      mode={'contained'}
-                      onPressFunction={handleSubmit(onSubmit)}
-                      text={I18N.t('pages.loginPage.loginButton')}
+                      type={'solid'}
+                      onPress={handleSubmit(onSubmit)}
+                      text={i18next.t('pages.loginPage.loginButton')}
                     />
                   </View>
-                  <View style={globalStyles.buttonMargin}>
+                  <View style={globalStyles.smallMarginTop}>
                     <TextButton
-                      onPressFunction={() => navigate('Signup')}
-                      text={I18N.t('pages.loginPage.signupButton')}
+                      onPress={() => navigate('Signup')}
+                      text={i18next.t('pages.loginPage.signupButton')}
                     />
                   </View>
                 </View>

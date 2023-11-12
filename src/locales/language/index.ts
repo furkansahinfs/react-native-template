@@ -1,1 +1,2 @@
-export { default as I18N } from './_i18n';
+export { default as en } from './en';
+export { default as tr } from './tr';

@@ -1,20 +1,14 @@
-import api from '../../index';
-import store from '../../../store';
-import { IResponse } from '../../../interface';
+import { API } from '@src/api/serverConnections';
+import { IResponse } from '@src/interface';
+import store from '@src/store';
 
-const logout = async () => {
+const logout = async (): Promise<IResponse> => {
   const path = '/auth/logout';
-  const device_id = store.getState().userCredentials.deviceid;
+  const deviceId = store.getState().userCredentials.deviceId;
   const searchParams = new URLSearchParams();
-  searchParams.append('device_id', device_id);
+  searchParams.append('deviceId', deviceId);
 
-  return await api.GET(path, { params: searchParams }).then((result: IResponse) => {
-    if (result.success) {
-      return true;
-    } else {
-      return result.error;
-    }
-  });
+  return await API.GET(path, { params: searchParams });
 };
 
 export default logout;

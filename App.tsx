@@ -1,8 +1,9 @@
 import React from 'react';
-import { StackNavigation } from './src/navigation';
 import { NavigationContainer } from '@react-navigation/native';
-import { navigationRef } from './src/navigation';
 import { Provider as StoreProvider } from 'react-redux';
+import { StackNavigation } from './src/navigation';
+import { navigationRef } from './src/navigation';
+import 'react-native-gesture-handler';
 import store from './src/store';
 
 export default function App() {

@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
+import OneSignal from 'react-native-onesignal';
 import {
-  isAuthenticated,
   getLanguage,
+  isAuthenticated,
   loadLanguageToRedux,
   loadThemeToRedux,
   setOneSignal,
-} from '../../../helpers';
+} from '@src/helpers';
+import { NotificationEntity } from '@src/interface';
+import { navigationReset } from '@src/navigation';
 import styles from './SplashPage.styles';
-import OneSignal from 'react-native-onesignal';
-import { NotificationEntity } from '../../../interface';
-import { navigationReset } from '../../../navigation';
 
 const SplashPage = () => {
   let isAuth = false;

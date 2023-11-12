@@ -1,8 +1,8 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import styles from './BackButton.styles';
 import { useNavigation } from '@react-navigation/native';
+import { DefaultIcon } from '@src/components';
+import styles from './BackButton.styles';
 
 interface BackButtonProps {
   color: string;
@@ -13,7 +13,12 @@ const BackButton = ({ color }: BackButtonProps) => {
 
   return (
     <TouchableOpacity onPress={() => navigation.goBack()} style={styles.button}>
-      <Icon name="angle-left" size={styles.iconSize.height} color={color} />
+      <DefaultIcon
+        name="angle-left"
+        size={styles.iconSize.height}
+        color={color}
+        onPress={() => navigation.goBack()}
+      />
     </TouchableOpacity>
   );
 };

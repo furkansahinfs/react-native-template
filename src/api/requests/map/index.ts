@@ -1,3 +1,3 @@
-export { default as GetParkingsRequest } from './getParkings';
-export { default as GetParkingWithIdRequest } from './getParkingWithId';
-export { default as SearchParkingsRequest } from './searchParkings';
+export { default as GetMarkersRequest } from './getMarkers';
+export { default as GetMarkerWithIdRequest } from './getMarkerWithId';
+export { default as SearchMarkersRequest } from './searchMarkers';

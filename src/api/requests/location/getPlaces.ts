@@ -1,5 +1,5 @@
-import { IResponse } from '../../../interface';
-import api from '../../index';
+import { API } from '@src/api/serverConnections';
+import { IResponse } from '@src/interface';
 
 const GOOGLE_SEARCH_API_KEY = '//GOOGLE_SEARCH_API_KEY_ENV';
 const GOOGLE_PLACES_URL = 'https://maps.googleapis.com/maps/api/place/autocomplete/json';
@@ -14,7 +14,8 @@ export const getPlaces = async (input: string) => {
     GOOGLE_PLACES_RADIUS +
     '&key=' +
     GOOGLE_SEARCH_API_KEY;
-  return await api.GET(url, {}).then((result: IResponse) => {
+
+  return await API.GET(url, {}).then((result: IResponse) => {
     if (result.status === 200) {
       return result.data?.predictions;
     } else {

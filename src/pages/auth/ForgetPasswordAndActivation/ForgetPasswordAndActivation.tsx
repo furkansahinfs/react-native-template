@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
-import { Card } from 'react-native-elements';
-import { BackButton, Button, CustomSafeAreaView, TextInput } from '../../../components';
-import { I18N } from '../../../locales';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Card } from '@rneui/themed';
+import { BackButton, Button, CustomSafeAreaView, TextInput } from '@src/components';
+import { i18next } from '@src/locales';
+import { stylesGlobal } from '@src/styles';
+import { useTheme } from '@src/theme';
 import { send } from './ForgetPasswordAndActivation.helper';
 import styles from './ForgetPasswordAndActivation.styles';
-import { stylesGlobal } from '../../../styles/';
-import { useTheme } from '../../../theme';
 
 interface IForgetPassword {
   route: any;
@@ -50,12 +50,12 @@ const ForgetPassword = ({ route }: IForgetPassword) => {
               {selectedTab === 'ForgetPassword' && (
                 <View style={styles.welcomeText}>
                   <Text style={globalStyles.headText}>
-                    {I18N.t(
-                      'pages.forgetPasswordAndActiovationPage.forgetPasswordHead',
-                    ).toUpperCase()}
+                    {i18next
+                      .t('pages.forgetPasswordAndActiovationPage.forgetPasswordHead')
+                      .toUpperCase()}
                   </Text>
                   <Text style={globalStyles.bodyText}>
-                    {I18N.t('pages.forgetPasswordAndActiovationPage.forgetPasswordBody')}
+                    {i18next.t('pages.forgetPasswordAndActiovationPage.forgetPasswordBody')}
                   </Text>
                 </View>
               )}
@@ -63,12 +63,12 @@ const ForgetPassword = ({ route }: IForgetPassword) => {
               {selectedTab === 'NewActivationMail' && (
                 <View style={styles.welcomeText}>
                   <Text style={globalStyles.headText}>
-                    {I18N.t(
-                      'pages.forgetPasswordAndActiovationPage.newActivationHead',
-                    ).toUpperCase()}
+                    {i18next
+                      .t('pages.forgetPasswordAndActiovationPage.newActivationHead')
+                      .toUpperCase()}
                   </Text>
                   <Text style={globalStyles.bodyText}>
-                    {I18N.t('pages.forgetPasswordAndActiovationPage.newActivationBody')}
+                    {i18next.t('pages.forgetPasswordAndActiovationPage.newActivationBody')}
                   </Text>
                 </View>
               )}
@@ -77,36 +77,34 @@ const ForgetPassword = ({ route }: IForgetPassword) => {
                 <View style={globalStyles.tabStyles}>
                   <TouchableOpacity
                     style={getTabStyle('ForgetPassword')}
-                    onPress={() => setSelectedTab('ForgetPassword')}
-                  >
+                    onPress={() => setSelectedTab('ForgetPassword')}>
                     <Text style={getTextStyle('ForgetPassword')}>
-                      {I18N.t('pages.forgetPasswordAndActiovationPage.forgetPassword')}
+                      {i18next.t('pages.forgetPasswordAndActiovationPage.forgetPassword')}
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     style={getTabStyle('NewActivationMail')}
-                    onPress={() => setSelectedTab('NewActivationMail')}
-                  >
+                    onPress={() => setSelectedTab('NewActivationMail')}>
                     <Text style={getTextStyle('NewActivationMail')}>
-                      {I18N.t('pages.forgetPasswordAndActiovationPage.newActivation')}
+                      {i18next.t('pages.forgetPasswordAndActiovationPage.newActivation')}
                     </Text>
                   </TouchableOpacity>
                 </View>
                 <View>
                   <TextInput
-                    func={(value) => setEmail(value)}
+                    onChangeText={value => setEmail(value)}
                     iconName={'envelope'}
                     keyboardType={'default'}
-                    placeholderText={I18N.t('pages.forgetPasswordAndActiovationPage.email')}
+                    placeholderText={i18next.t('pages.forgetPasswordAndActiovationPage.email')}
                     secureText={false}
                     val={email}
                   />
 
-                  <View style={globalStyles.buttonMargin}>
+                  <View style={globalStyles.smallMarginTop}>
                     <Button
-                      mode={'contained'}
-                      onPressFunction={async () => await send(email, selectedTab)}
-                      text={I18N.t('pages.forgetPasswordAndActiovationPage.send')}
+                      type={'solid'}
+                      onPress={async () => await send(email, selectedTab)}
+                      text={i18next.t('pages.forgetPasswordAndActiovationPage.send')}
                     />
                   </View>
                 </View>

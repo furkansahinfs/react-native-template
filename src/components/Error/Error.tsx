@@ -1,12 +1,13 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { useTheme } from '../../theme';
-import { DefaultIcon } from '../Icon';
+import { DefaultIcon } from '@src/components';
+import { useTheme } from '@src/theme';
 import styles from './Error.styles';
 
 interface ErrorProps {
   errorString: string;
 }
+
 const Error = ({ errorString }: ErrorProps) => {
   const { colors } = useTheme();
   return (
