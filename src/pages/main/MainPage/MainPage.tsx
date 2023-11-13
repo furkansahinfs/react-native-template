@@ -3,7 +3,7 @@ import { TouchableOpacity, View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import MapView from 'react-native-map-clustering';
 import { TestData } from '@src/assets';
-import { CustomSafeAreaView, DefaultIcon, Icon } from '@src/components';
+import { CustomSafeAreaView, DefaultIcon } from '@src/components';
 import { MarkerLessDetailedProps, PositionProps, RegionProps } from '@src/interface';
 import { useTheme } from '@src/theme';
 import {
@@ -61,43 +61,41 @@ export default function MainPage() {
   }
 
   return (
-    <CustomSafeAreaView
-      InnerView={
-        <View>
-          <MapView
-            ref={mapRef}
-            initialRegion={region}
-            onMapReady={async () => await findCoordinates(setRegion, mapRef)}
-            onRegionChangeComplete={handlePositionChange}
-            showsUserLocation={true}
-            showsMyLocationButton={false}
-            zoomEnabled={true}
-            style={styles.map}>
-            {markers.map((park: MarkerLessDetailedProps, index) => (
-              <MarkerView
-                key={index}
-                isSelected={park.id === selectedMarker?.id}
-                click={(parkMarker: MarkerLessDetailedProps) => {
-                  handleMarkerChange(parkMarker, mapRef);
-                  setSelectedMarker(park);
-                }}
-                park={park}
-              />
-            ))}
-          </MapView>
-
-          <TouchableOpacity
-            onPress={async () => await findCoordinates(setRegion, mapRef)}
-            style={[styles.userLocationButton, { backgroundColor: colors.background }]}>
-            <DefaultIcon
-              name={'map-pin'}
-              color={colors.icon}
-              size={styles.iconSize.height}
-              onPress={async () => await findCoordinates(setRegion, mapRef)}
+    <CustomSafeAreaView>
+      <View>
+        <MapView
+          ref={mapRef}
+          initialRegion={region}
+          onMapReady={async () => await findCoordinates(setRegion, mapRef)}
+          onRegionChangeComplete={handlePositionChange}
+          showsUserLocation={true}
+          showsMyLocationButton={false}
+          zoomEnabled={true}
+          style={styles.map}>
+          {markers.map((park: MarkerLessDetailedProps, index) => (
+            <MarkerView
+              key={index}
+              isSelected={park.id === selectedMarker?.id}
+              click={(parkMarker: MarkerLessDetailedProps) => {
+                handleMarkerChange(parkMarker, mapRef);
+                setSelectedMarker(park);
+              }}
+              park={park}
             />
-          </TouchableOpacity>
-        </View>
-      }
-    />
+          ))}
+        </MapView>
+
+        <TouchableOpacity
+          onPress={async () => await findCoordinates(setRegion, mapRef)}
+          style={[styles.userLocationButton, { backgroundColor: colors.background }]}>
+          <DefaultIcon
+            name={'map-pin'}
+            color={colors.icon}
+            size={styles.iconSize.height}
+            onPress={async () => await findCoordinates(setRegion, mapRef)}
+          />
+        </TouchableOpacity>
+      </View>
+    </CustomSafeAreaView>
   );
 }

@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   input: {
-    fontSize: scale(14),
+    fontSize: scale(12),
     flex: 1,
   },
 });

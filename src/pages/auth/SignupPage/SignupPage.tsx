@@ -51,42 +51,40 @@ const SignupPage = () => {
   };
 
   return (
-    <CustomSafeAreaView
-      InnerView={
-        <View style={[styles.mainView, { backgroundColor: colors.background }]}>
-          <ScrollView
-            nestedScrollEnabled={true}
-            keyboardShouldPersistTaps={'handled'}
-            contentContainerStyle={styles.scrollView}>
-            <BackButton color={colors.icon} />
-            <View style={styles.textView}>
-              <Text style={globalStyles.headText}>{i18next.t('pages.signupPage.signupHead')}</Text>
-              <Text style={[globalStyles.bodyText, styles.bodyText]}>
-                {i18next.t('pages.signupPage.signupBody')}
-              </Text>
-            </View>
+    <CustomSafeAreaView>
+      <View style={[styles.mainView, { backgroundColor: colors.background }]}>
+        <ScrollView
+          nestedScrollEnabled={true}
+          keyboardShouldPersistTaps={'handled'}
+          contentContainerStyle={styles.scrollView}>
+          <BackButton color={colors.icon} />
+          <View style={styles.textView}>
+            <Text style={globalStyles.headText}>{i18next.t('pages.signupPage.signupHead')}</Text>
+            <Text style={[globalStyles.bodyText, styles.bodyText]}>
+              {i18next.t('pages.signupPage.signupBody')}
+            </Text>
+          </View>
 
-            {SignupForm({ control, errors })}
+          <SignupForm control={control} errors={errors} />
 
-            <View>
-              <View style={[globalStyles.rect, globalStyles.smallMarginTop]} />
-              {Aggrements({ control, errors })}
-            </View>
+          <View>
+            <View style={[globalStyles.rect, globalStyles.smallMarginTop]} />
+            <Aggrements control={control} errors={errors} />
+          </View>
 
-            <TouchableOpacity onPress={handleSubmit(onSubmit)} style={styles.nextIcon}>
-              <DefaultIcon
-                color="white"
-                name="arrow-right"
-                onPress={handleSubmit(onSubmit)}
-                size={styles.nextIcon.iconSize}
-              />
-            </TouchableOpacity>
-          </ScrollView>
+          <TouchableOpacity onPress={handleSubmit(onSubmit)} style={styles.nextIcon}>
+            <DefaultIcon
+              color="white"
+              name="arrow-right"
+              onPress={handleSubmit(onSubmit)}
+              size={styles.nextIcon.iconSize}
+            />
+          </TouchableOpacity>
+        </ScrollView>
 
-          {showLoading && <ActivityIndicator />}
-        </View>
-      }
-    />
+        {showLoading && <ActivityIndicator />}
+      </View>
+    </CustomSafeAreaView>
   );
 };
 export default SignupPage;

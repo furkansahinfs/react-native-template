@@ -8,6 +8,13 @@
             "selectPhoto": "Select Photo"
         }
     },
+    "constants": {
+        "gender": {
+            "male": "Male",
+            "female": "Female",
+            "other": "Other"
+        }
+    },
     "navigation": {
         "drawer": {
             "darkTheme": "Dark Theme",
@@ -72,6 +79,7 @@
                 "surname": "Surname is required",
                 "sms": "SMS is required",
                 "phone": "Phone is required",
+                "countryLiving": "Information about the country you live in is required",
                 "membership": "You have to accept the Membership aggrement",
                 "privacy": "You have to accept the Privacy Policy aggrement",
                 "passwordNotMatched": "Password doesn't matched with confirm password!"
@@ -91,6 +99,7 @@
                 "surname": "Surname",
                 "sms": "SMS",
                 "phone": "Phone",
+                "countryLiving": "Country you live",
                 "membership": "I have read and agree to the ",
                 "privacy": "I have read and agree to the ",
                 "underlinedMembership": "Membership Aggrement.",

@@ -12,10 +12,10 @@ export const FilterSearch = (props: IFilterSearch) => {
   }, []);
 
   const getFilter = (unfilteredListParam: any, input: any) => {
-    const trimmedInput: string = input.split(' ').join('').toLocaleUpperCase('TR');
+    const trimmedInput: string = input.split(' ').join('').toLocaleLowerCase('TR');
     const filteredList = unfilteredListParam.filter(function (el: any) {
       if (!searchKeys) {
-        const stringToBeSearched = el.split(' ').join('').toLocaleUpperCase('TR');
+        const stringToBeSearched = el.split(' ').join('').toLocaleLowerCase('TR');
         return (
           stringToBeSearched.startsWith(trimmedInput) || stringToBeSearched.includes(trimmedInput)
         );
@@ -26,7 +26,7 @@ export const FilterSearch = (props: IFilterSearch) => {
             stringToBeSearched = stringToBeSearched + el[searchKeys[i]];
           }
         }
-        stringToBeSearched = stringToBeSearched.split(' ').join('').toLocaleUpperCase('TR');
+        stringToBeSearched = stringToBeSearched.split(' ').join('').toLocaleLowerCase('TR');
         return (
           stringToBeSearched.startsWith(trimmedInput) || stringToBeSearched.includes(trimmedInput)
         );
@@ -37,7 +37,7 @@ export const FilterSearch = (props: IFilterSearch) => {
 
   if (unfilteredList.length !== 0) {
     return (
-      <View style={containerStyle ? containerStyle : styles.container}>
+      <View style={containerStyle ?? styles.container}>
         <TextInput
           placeholder={'Ara..'}
           autoCapitalize={'characters'}
@@ -45,7 +45,7 @@ export const FilterSearch = (props: IFilterSearch) => {
             setSearchText(text);
             getFilter(unfilteredList, text);
           }}
-          style={textStyle ? textStyle : styles.input}
+          style={textStyle ?? styles.input}
           placeholderTextColor={textStyle?.[1].color ? textStyle?.[1].color : 'blue'}
           value={searchText}
         />

@@ -88,3 +88,8 @@ export interface SignupProps {
   phone?: string;
   surname?: string;
 }
+
+export interface DropdownChoice {
+  title: string;
+  value: string;
+}

@@ -4,12 +4,12 @@ import { useTheme } from '@src/theme';
 import styles from './CustomSafeAreaView.style';
 
 interface CustomSafeAreaViewProps {
-  InnerView: React.ReactNode;
+  children: React.ReactNode;
   extraStyle?: any;
   secondBackgroundColor?: boolean;
 }
 const CustomSafeAreaView = ({
-  InnerView,
+  children,
   extraStyle,
   secondBackgroundColor,
 }: CustomSafeAreaViewProps) => {
@@ -21,7 +21,7 @@ const CustomSafeAreaView = ({
   return (
     <SafeAreaView style={[styles.safeAreaView, { backgroundColor: backColor }, extraStyle]}>
       <StatusBar backgroundColor={backColor} barStyle={dark ? 'light-content' : 'dark-content'} />
-      {InnerView}
+      {children}
     </SafeAreaView>
   );
 };

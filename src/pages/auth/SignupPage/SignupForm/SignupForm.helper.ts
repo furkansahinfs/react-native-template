@@ -1,3 +1,5 @@
+import { KeyboardTypeOptions } from 'react-native';
+import { countriesJson, GENDER } from '@src/assets';
 import { i18next } from '@src/locales';
 
 export interface InputProp {
@@ -7,15 +9,20 @@ export interface InputProp {
     | 'email'
     | 'password'
     | 'confirmPassword'
+    | 'phone'
     | 'gender'
     | 'birthday'
+    | 'countryLiving'
     | 'communication';
   placeHolder: string;
   type: string;
   errors: string;
   rules: Object;
-  isSecureText?: boolean;
+  isSecureTextOnTextInput?: boolean;
   choices?: Array<{ title: string; value: string }>;
+  hasMultipleChoiceOnSelectbox?: boolean;
+  hasSearchOnSelectbox?: boolean;
+  keyboardTypOnTextInput?: KeyboardTypeOptions;
 }
 export const inputArray: Array<InputProp> = [
   {
@@ -57,7 +64,7 @@ export const inputArray: Array<InputProp> = [
         message: i18next.t('pages.signupPage.error.password'),
       },
     },
-    isSecureText: true,
+    isSecureTextOnTextInput: true,
   },
   {
     name: 'confirmPassword',
@@ -67,7 +74,17 @@ export const inputArray: Array<InputProp> = [
     rules: {
       required: true,
     },
-    isSecureText: true,
+    isSecureTextOnTextInput: true,
+  },
+  {
+    name: 'phone',
+    placeHolder: i18next.t('pages.signupPage.input.phone'),
+    type: 'textinput',
+    keyboardTypOnTextInput: 'numeric',
+    errors: i18next.t('pages.signupPage.error.phone'),
+    rules: {
+      required: true,
+    },
   },
   {
     name: 'gender',
@@ -75,20 +92,21 @@ export const inputArray: Array<InputProp> = [
     type: 'selectbox',
     errors: i18next.t('pages.signupPage.error.gender'),
     rules: { required: true },
-    choices: [
-      {
-        title: i18next.t('pages.signupPage.choice.male'),
-        value: 'male',
-      },
-      {
-        title: i18next.t('pages.signupPage.choice.female'),
-        value: 'female',
-      },
-      {
-        title: i18next.t('pages.signupPage.choice.not'),
-        value: 'not',
-      },
-    ],
+    choices: Object.entries(GENDER).map(entry => {
+      return {
+        title: entry[1],
+        value: entry[0].toLowerCase(),
+      };
+    }),
+  },
+  {
+    name: 'countryLiving',
+    placeHolder: i18next.t('pages.signupPage.input.countryLiving'),
+    type: 'selectbox',
+    errors: i18next.t('pages.signupPage.error.countryLiving'),
+    rules: { required: true },
+    choices: countriesJson,
+    hasSearchOnSelectbox: true,
   },
   {
     name: 'birthday',

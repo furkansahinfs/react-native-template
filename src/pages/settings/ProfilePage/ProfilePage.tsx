@@ -10,30 +10,28 @@ const ProfilePage = () => {
   const [files, setFiles] = useState<Array<FileProps>>([]);
 
   return (
-    <CustomSafeAreaView
-      InnerView={
-        <View style={styles.view}>
-          <ImageSelector
-            files={files}
-            mediaType={'photo'}
-            multiple={true}
-            setFiles={(selectedFile: Array<FileProps>) => setFiles(selectedFile)}
-            renderImages={true}
-          />
+    <CustomSafeAreaView>
+      <View style={styles.view}>
+        <ImageSelector
+          files={files}
+          mediaType={'photo'}
+          multiple={true}
+          setFiles={(selectedFile: Array<FileProps>) => setFiles(selectedFile)}
+          renderImages={true}
+        />
 
-          {files.length > 0 && (
-            <Button
-              text={i18next.t('pages.profilePage.sendPhoto')}
-              onPress={async () => {
-                await sendPhoto(files);
-              }}
-              type={'solid'}
-              hasMarginVertical={true}
-            />
-          )}
-        </View>
-      }
-    />
+        {files.length > 0 && (
+          <Button
+            text={i18next.t('pages.profilePage.sendPhoto')}
+            onPress={async () => {
+              await sendPhoto(files);
+            }}
+            type={'solid'}
+            hasMarginVertical={true}
+          />
+        )}
+      </View>
+    </CustomSafeAreaView>
   );
 };
 export default ProfilePage;

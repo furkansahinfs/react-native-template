@@ -179,7 +179,7 @@ const DropdownMenu = (props: IDropdownMenu) => {
             <FilterSearch
               setFilteredList={filtered => setFilteredChoices(filtered)}
               unfilteredList={choices}
-              searchKeys={[titleKey ? titleKey : 'name', 'fullName']}
+              searchKeys={[titleKey ?? 'name', 'fullName']}
               containerStyle={styles.searchBarContainer}
               textStyle={[styles.searchBarText, { color: colors.text }]}
             />

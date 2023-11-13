@@ -3,7 +3,6 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { Controller } from 'react-hook-form';
 import DatePicker from 'react-native-date-picker';
 import { DropdownMenu, TextInput } from '@src/components';
-import { i18next } from '@src/locales';
 import { useTheme } from '@src/theme';
 import { inputArray, InputProp } from './SignupForm.helper';
 import styles from './SignupForm.styles';
@@ -27,10 +26,10 @@ const SignupForm = ({ control, errors }: SignupFormProps) => {
               render={({ field: { onChange, value } }) => (
                 <TextInput
                   placeholderText={input.placeHolder}
-                  secureText={input?.isSecureText ? input.isSecureText : false}
+                  secureText={input?.isSecureTextOnTextInput ?? false}
                   onChangeText={onChange}
-                  val={value}
-                  keyboardType="default"
+                  value={value}
+                  keyboardType={input?.keyboardTypOnTextInput ?? 'default'}
                 />
               )}
               name={input.name}
@@ -48,7 +47,10 @@ const SignupForm = ({ control, errors }: SignupFormProps) => {
               render={({ field: { onChange, value } }) => (
                 <>
                   <TouchableOpacity
-                    style={[styles.dateTextInput, { borderColor: colors.border }]}
+                    style={[
+                      styles.dateTextInput,
+                      { borderColor: colors.textInputBorder, backgroundColor: colors.textInput },
+                    ]}
                     onPress={() => setOpenDateModal(true)}>
                     <Text style={{ color: colors.text }}>
                       {value ? new Date(value).toDateString() : input.placeHolder}
@@ -83,14 +85,18 @@ const SignupForm = ({ control, errors }: SignupFormProps) => {
               control={control}
               rules={input.rules}
               render={({ field: { onChange, value } }) => (
-                <View style={[styles.genderInput, { borderColor: colors.border }]}>
+                <View
+                  style={[
+                    styles.selectboxInput,
+                    { borderColor: colors.textInputBorder, backgroundColor: colors.textInput },
+                  ]}>
                   <DropdownMenu
                     choices={input.choices ? input.choices : []}
                     currentChoice={
                       value
                         ? {
-                            title: i18next.t('pages.signupPage.choice.' + value),
-                            value: value,
+                            title: value.title,
+                            value: value.value,
                           }
                         : {
                             title: input.placeHolder,
@@ -99,7 +105,10 @@ const SignupForm = ({ control, errors }: SignupFormProps) => {
                     }
                     itemKey={'value'}
                     titleKey={'title'}
-                    setChoice={choice => onChange(choice.value)}
+                    multipleChoice={input?.hasMultipleChoiceOnSelectbox}
+                    searchBar={input?.hasSearchOnSelectbox}
+                    multipleChoiceDropdownTitle={input.placeHolder}
+                    setChoice={choice => onChange(choice)}
                     closeOnSelection={true}
                   />
                 </View>
@@ -111,7 +120,7 @@ const SignupForm = ({ control, errors }: SignupFormProps) => {
         );
 
       default:
-        return <></>;
+        return null;
     }
   });
 };

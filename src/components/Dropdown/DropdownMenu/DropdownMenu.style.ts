@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: scale(20),
   },
   searchBarText: {
-    fontSize: scale(14),
+    fontSize: scale(12),
     flex: 1,
   },
 

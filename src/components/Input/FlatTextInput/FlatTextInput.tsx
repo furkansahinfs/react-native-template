@@ -6,10 +6,10 @@ import styles from './FlatTextInput.styles';
 
 interface FlatTextInputProps {
   placeholderText: string;
-  val: string | undefined | null;
-  keyboardType: KeyboardTypeOptions;
+  value: string | undefined | null;
   onChangeText: (text: string) => void;
   secureText: boolean;
+  keyboardType: KeyboardTypeOptions;
   iconName?: string;
   multiline?: boolean;
   length?: number;
@@ -17,24 +17,24 @@ interface FlatTextInputProps {
 
 const FlatTextInput = ({
   placeholderText,
-  val,
-  keyboardType,
+  value,
   onChangeText,
-  secureText,
+  keyboardType = 'default',
+  secureText = false,
   iconName,
   multiline,
   length,
 }: FlatTextInputProps) => {
   const { colors } = useTheme();
-  const [currentValue, setCurrentValue] = useState<string>(val ? val : '');
+  const [currentValue, setCurrentValue] = useState<string>(value ?? '');
   return (
     <Input
       label={placeholderText}
       value={currentValue}
       keyboardType={keyboardType}
       secureTextEntry={secureText}
-      maxLength={length !== undefined ? length : 250}
-      multiline={multiline !== undefined ? multiline : false}
+      maxLength={length ?? 250}
+      multiline={multiline ?? false}
       onChangeText={(newValue: string) => setCurrentValue(newValue)}
       onEndEditing={() => onChangeText(currentValue)}
       leftIcon={{ type: 'font-awesome', name: iconName }}

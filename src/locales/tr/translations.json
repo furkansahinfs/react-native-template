@@ -8,6 +8,13 @@
             "selectPhoto": "Fotoğraf Seç"
         }
     },
+    "constants": {
+        "gender": {
+            "male": "Erkek",
+            "female": "Kadın",
+            "other": "Diğer"
+        }
+    },
     "navigation": {
         "drawer": {
             "darkTheme": "Koyu Tema",
@@ -72,6 +79,7 @@
                 "surname": "Soyad bilgisi gereklidir",
                 "sms": "SMS gereklidir",
                 "phone": "Telefon gereklidir",
+                "countryLiving": "Yaşadığınız ülke bilgisi gereklidir",
                 "membership": "Üyelik sözleşmesini kabul etmelisiniz.",
                 "privacy": "Gizlilik sözleşmesini kabul etmelisiniz.",
                 "passwordNotMatched": "Parola doğrulama eşleşmedi!"
@@ -91,6 +99,7 @@
                 "surname": "Soyad",
                 "sms": "SMS",
                 "phone": "Telefon",
+                "countryLiving": "Yaşadığınız ülke",
                 "membership": "Okudum ve onaylıyorum : ",
                 "privacy": "Okudum ve onaylıyorum :",
                 "underlinedMembership": "Üyelik Sözleşmesi.",

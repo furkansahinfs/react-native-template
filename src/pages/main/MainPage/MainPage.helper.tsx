@@ -8,7 +8,7 @@ import { i18next } from '@src/locales';
 
 export async function getMarkers(coordinates: PositionProps) {
   const result = await GetMarkersRequest(coordinates, 'LESS');
-  return result.data instanceof Array ? result : [];
+  return result.data instanceof Array ? result.data : [];
 }
 
 export function calculateScreenPolygon(reg: RegionProps) {

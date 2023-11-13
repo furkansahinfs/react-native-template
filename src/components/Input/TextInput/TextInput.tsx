@@ -6,20 +6,20 @@ import styles from './TextInput.styles';
 
 interface TextInputProps {
   placeholderText: string;
-  val: string | undefined;
-  keyboardType: KeyboardTypeOptions;
+  value: string | undefined;
   onChangeText: (text: string) => void;
-  secureText: boolean;
+  keyboardType?: KeyboardTypeOptions;
+  secureText?: boolean;
   iconName?: string;
   multiline?: boolean;
 }
 
 const TextInput = ({
   placeholderText,
-  val,
-  keyboardType,
+  value,
   onChangeText,
-  secureText,
+  keyboardType = 'default',
+  secureText = false,
   iconName,
   multiline,
 }: TextInputProps) => {
@@ -27,7 +27,7 @@ const TextInput = ({
   return (
     <Input
       placeholder={placeholderText}
-      value={val}
+      value={value}
       keyboardType={keyboardType}
       secureTextEntry={secureText}
       multiline={multiline ?? false}

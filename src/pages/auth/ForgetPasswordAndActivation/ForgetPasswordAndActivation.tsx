@@ -41,79 +41,77 @@ const ForgetPassword = ({ route }: IForgetPassword) => {
   }
 
   return (
-    <CustomSafeAreaView
-      InnerView={
-        <View style={[styles.mainView, { backgroundColor: colors.background }]}>
-          <ScrollView nestedScrollEnabled={true} keyboardShouldPersistTaps={'handled'}>
-            <BackButton color={colors.icon} />
-            <View style={styles.view}>
-              {selectedTab === 'ForgetPassword' && (
-                <View style={styles.welcomeText}>
-                  <Text style={globalStyles.headText}>
-                    {i18next
-                      .t('pages.forgetPasswordAndActiovationPage.forgetPasswordHead')
-                      .toUpperCase()}
-                  </Text>
-                  <Text style={globalStyles.bodyText}>
-                    {i18next.t('pages.forgetPasswordAndActiovationPage.forgetPasswordBody')}
-                  </Text>
-                </View>
-              )}
+    <CustomSafeAreaView>
+      <View style={[styles.mainView, { backgroundColor: colors.background }]}>
+        <ScrollView nestedScrollEnabled={true} keyboardShouldPersistTaps={'handled'}>
+          <BackButton color={colors.icon} />
+          <View style={styles.view}>
+            {selectedTab === 'ForgetPassword' && (
+              <View style={styles.welcomeText}>
+                <Text style={globalStyles.headText}>
+                  {i18next
+                    .t('pages.forgetPasswordAndActiovationPage.forgetPasswordHead')
+                    .toUpperCase()}
+                </Text>
+                <Text style={globalStyles.bodyText}>
+                  {i18next.t('pages.forgetPasswordAndActiovationPage.forgetPasswordBody')}
+                </Text>
+              </View>
+            )}
 
-              {selectedTab === 'NewActivationMail' && (
-                <View style={styles.welcomeText}>
-                  <Text style={globalStyles.headText}>
-                    {i18next
-                      .t('pages.forgetPasswordAndActiovationPage.newActivationHead')
-                      .toUpperCase()}
-                  </Text>
-                  <Text style={globalStyles.bodyText}>
-                    {i18next.t('pages.forgetPasswordAndActiovationPage.newActivationBody')}
-                  </Text>
-                </View>
-              )}
+            {selectedTab === 'NewActivationMail' && (
+              <View style={styles.welcomeText}>
+                <Text style={globalStyles.headText}>
+                  {i18next
+                    .t('pages.forgetPasswordAndActiovationPage.newActivationHead')
+                    .toUpperCase()}
+                </Text>
+                <Text style={globalStyles.bodyText}>
+                  {i18next.t('pages.forgetPasswordAndActiovationPage.newActivationBody')}
+                </Text>
+              </View>
+            )}
 
-              <Card containerStyle={globalStyles.card}>
-                <View style={globalStyles.tabStyles}>
-                  <TouchableOpacity
-                    style={getTabStyle('ForgetPassword')}
-                    onPress={() => setSelectedTab('ForgetPassword')}>
-                    <Text style={getTextStyle('ForgetPassword')}>
-                      {i18next.t('pages.forgetPasswordAndActiovationPage.forgetPassword')}
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={getTabStyle('NewActivationMail')}
-                    onPress={() => setSelectedTab('NewActivationMail')}>
-                    <Text style={getTextStyle('NewActivationMail')}>
-                      {i18next.t('pages.forgetPasswordAndActiovationPage.newActivation')}
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-                <View>
-                  <TextInput
-                    onChangeText={value => setEmail(value)}
-                    iconName={'envelope'}
-                    keyboardType={'default'}
-                    placeholderText={i18next.t('pages.forgetPasswordAndActiovationPage.email')}
-                    secureText={false}
-                    val={email}
+            <Card containerStyle={globalStyles.card}>
+              <View style={globalStyles.tabStyles}>
+                <TouchableOpacity
+                  style={getTabStyle('ForgetPassword')}
+                  onPress={() => setSelectedTab('ForgetPassword')}>
+                  <Text style={getTextStyle('ForgetPassword')}>
+                    {i18next.t('pages.forgetPasswordAndActiovationPage.forgetPassword')}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={getTabStyle('NewActivationMail')}
+                  onPress={() => setSelectedTab('NewActivationMail')}>
+                  <Text style={getTextStyle('NewActivationMail')}>
+                    {i18next.t('pages.forgetPasswordAndActiovationPage.newActivation')}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TextInput
+                  onChangeText={value => setEmail(value)}
+                  iconName={'envelope'}
+                  keyboardType={'default'}
+                  placeholderText={i18next.t('pages.forgetPasswordAndActiovationPage.email')}
+                  secureText={false}
+                  val={email}
+                />
+
+                <View style={globalStyles.smallMarginTop}>
+                  <Button
+                    type={'solid'}
+                    onPress={async () => await send(email, selectedTab)}
+                    text={i18next.t('pages.forgetPasswordAndActiovationPage.send')}
                   />
-
-                  <View style={globalStyles.smallMarginTop}>
-                    <Button
-                      type={'solid'}
-                      onPress={async () => await send(email, selectedTab)}
-                      text={i18next.t('pages.forgetPasswordAndActiovationPage.send')}
-                    />
-                  </View>
                 </View>
-              </Card>
-            </View>
-          </ScrollView>
-        </View>
-      }
-    />
+              </View>
+            </Card>
+          </View>
+        </ScrollView>
+      </View>
+    </CustomSafeAreaView>
   );
 };
 

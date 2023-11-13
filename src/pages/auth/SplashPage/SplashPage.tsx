@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
 import OneSignal from 'react-native-onesignal';
+import { CustomSafeAreaView } from '@src/components';
 import {
   getLanguage,
   isAuthenticated,
@@ -99,9 +100,11 @@ const SplashPage = () => {
   }
 
   return (
-    <View style={styles.view}>
-      <Text style={styles.headText}>Template</Text>
-    </View>
+    <CustomSafeAreaView>
+      <View style={styles.view}>
+        <Text style={styles.headText}>Template</Text>
+      </View>
+    </CustomSafeAreaView>
   );
 };
 export default SplashPage;

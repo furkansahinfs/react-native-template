@@ -5,19 +5,19 @@ import styles from './BigTextInput.styles';
 
 interface BigTextInputProps {
   placeholderText: string;
-  val: string | undefined;
+  value: string | undefined;
   maxLength?: number;
   onChangeText: (text: string) => void;
 }
 
-const BigTextInput = ({ placeholderText, val, onChangeText, maxLength }: BigTextInputProps) => {
+const BigTextInput = ({ placeholderText, value, onChangeText, maxLength }: BigTextInputProps) => {
   const { colors } = useTheme();
   return (
     <Input
       label={placeholderText}
-      value={val}
+      value={value}
       style={styles.input}
-      maxLength={maxLength !== undefined ? maxLength : 500}
+      maxLength={maxLength ?? 500}
       multiline={true}
       onChangeText={onChangeText}
     />

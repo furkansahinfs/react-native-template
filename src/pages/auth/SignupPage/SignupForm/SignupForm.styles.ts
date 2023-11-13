@@ -7,19 +7,22 @@ const styles = StyleSheet.create({
     borderRadius: scale(10),
     width: '100%',
     padding: scale(15),
+    paddingVertical: scale(20),
+    marginBottom: scale(20),
   },
 
   errorText: {
-    marginBottom: scale(10),
+    marginBottom: scale(20),
     color: 'red',
   },
 
-  genderInput: {
+  selectboxInput: {
     borderWidth: 1,
     borderRadius: scale(10),
     width: '100%',
-    marginVertical: scale(10),
+    marginBottom: scale(20),
     padding: scale(5),
+    paddingVertical: scale(10),
   },
 
   inputContainer: {

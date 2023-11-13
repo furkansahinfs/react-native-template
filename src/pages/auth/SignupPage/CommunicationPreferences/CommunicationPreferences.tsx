@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import { Controller } from 'react-hook-form';
 import { CheckBox } from '@src/components';
 import { i18next } from '@src/locales';
 import { useTheme } from '@src/theme';
-import { Controller } from 'react-hook-form';
 import { communicationPreferences, InputProp } from './CommunicationPreferences.helper';
 import styles from './CommunicationPreferences.styles';
 
