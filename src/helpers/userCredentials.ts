@@ -20,12 +20,15 @@ export function getUserCredentials() {
  *
  */
 export async function loadUserCredentialsToRedux() {
-  const refresh_token_keychain = await Keychain.getInternetCredentials('CREDENTIALS');
-  if (refresh_token_keychain) {
-    store.dispatch(authAddToken(refresh_token_keychain.password)); // Update user credentials from reducer
-  } else {
-    store.dispatch(authRemoveToken()); // Clear refresh token of user credentials from reducer
-    API.setToken(''); // set api token
+  try {
+    const refresh_token_keychain = await Keychain.getInternetCredentials('CREDENTIALS');
+    if (refresh_token_keychain) {
+      store.dispatch(authAddToken(refresh_token_keychain.password)); // Update user credentials from reducer
+    } else {
+      deleteUserCredentials();
+    }
+  } catch (error) {
+    deleteUserCredentials();
   }
 }
 

@@ -10,5 +10,6 @@ export * from './Icon';
 export * from './Input';
 export * from './Label';
 export * from './Notify';
+export * from './PageComponents';
 export * from './Search';
 export * from './SearchBar';

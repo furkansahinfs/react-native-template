@@ -1,3 +1,5 @@
+import { KeyboardTypeOptions } from "react-native";
+
 export interface FileProps {
   uri: string;
   type: string;
@@ -92,4 +94,30 @@ export interface SignupProps {
 export interface DropdownChoice {
   title: string;
   value: string;
+  [key: string]: string;
+}
+
+export interface AgreementProp {
+  name: string;
+  placeHolder: string;
+  underlinedPlaceholder?: string;
+  type: string;
+  errors: string;
+  rules: Object;
+}
+
+export interface InputProp {
+  name: string;
+  placeHolder: string;
+  type: string;
+  errors: string;
+  rules: Object;
+  isSecureTextOnTextInput?: boolean;
+  choices?: Array<{ title: string; value: string; extra?: any }>;
+  maxDate?: Date;
+  hasMultipleChoiceOnSelectbox?: boolean;
+  hasSearchOnSelectbox?: boolean;
+  keyboardTypeOnTextInput?: KeyboardTypeOptions;
+  iconName?: string;
+  editable?: boolean;
 }

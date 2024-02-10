@@ -7,13 +7,13 @@ import {
   BackButton,
   CustomSafeAreaView,
   DefaultIcon,
+  DynamicForm,
   Toast,
 } from '@src/components';
 import { stylesGlobal } from '@src/styles/';
 import { useTheme } from '@src/theme';
 import { Aggrements } from './Aggrements';
-import { SignupForm } from './SignupForm';
-import { register } from './SignupPage.helper';
+import { inputArray, register } from './SignupPage.helper';
 import styles from './SignupPage.styles';
 
 const SignupPage = () => {
@@ -25,6 +25,7 @@ const SignupPage = () => {
     control,
     handleSubmit,
     formState: { errors },
+    trigger
   } = useForm({
     defaultValues: {
       name: '',
@@ -34,8 +35,8 @@ const SignupPage = () => {
       birthday: '',
       password: '',
       confirmPassword: '',
+      phone: '',
       sms: false,
-      phone: false,
       membership: false,
       privacy: false,
     },
@@ -65,7 +66,7 @@ const SignupPage = () => {
             </Text>
           </View>
 
-          <SignupForm control={control} errors={errors} />
+          <DynamicForm control={control} errors={errors} trigger={trigger} inputArray={inputArray} />
 
           <View>
             <View style={[globalStyles.rect, globalStyles.smallMarginTop]} />

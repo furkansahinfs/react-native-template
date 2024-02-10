@@ -4,6 +4,7 @@ import { scale } from 'react-native-size-matters';
 const styles = StyleSheet.create({
   label: {
     fontSize: scale(12),
+    marginBottom: scale(5)
   },
   input: {
     fontSize: scale(12),

@@ -8,32 +8,44 @@ interface TextInputProps {
   placeholderText: string;
   value: string | undefined;
   onChangeText: (text: string) => void;
+  label?: string;
   keyboardType?: KeyboardTypeOptions;
   secureText?: boolean;
   iconName?: string;
   multiline?: boolean;
+  editable?: boolean;
+  extraInputContainerStyle?: any;
+  extraInputStyle?: any;
+  extraStyle?: any;
 }
 
 const TextInput = ({
   placeholderText,
   value,
   onChangeText,
+  label,
   keyboardType = 'default',
   secureText = false,
   iconName,
   multiline,
+  editable,
+  extraInputContainerStyle,
+  extraInputStyle,
+  extraStyle,
 }: TextInputProps) => {
   const { colors } = useTheme();
   return (
     <Input
       placeholder={placeholderText}
+      label={label}
       value={value}
       keyboardType={keyboardType}
       secureTextEntry={secureText}
+      editable={editable}
       multiline={multiline ?? false}
-      style={styles.input}
+      style={[styles.input, extraStyle]}
       labelStyle={[styles.label, { color: colors.text }]}
-      inputStyle={[{ color: colors.text }]}
+      inputStyle={[{ color: colors.text }, extraInputStyle]}
       placeholderTextColor={colors.text}
       inputContainerStyle={[
         styles.inputContainer,
@@ -41,6 +53,7 @@ const TextInput = ({
           borderColor: colors.textInputBorder,
           backgroundColor: colors.textInput,
         },
+        extraInputContainerStyle
       ]}
       onChangeText={onChangeText}
       leftIcon={{

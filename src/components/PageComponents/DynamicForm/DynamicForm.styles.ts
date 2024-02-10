@@ -12,8 +12,14 @@ const styles = StyleSheet.create({
   },
 
   errorText: {
-    marginBottom: scale(20),
+    marginBottom: scale(10),
     color: 'red',
+  },
+
+  inputLabel: {
+    marginLeft: scale(10),
+    marginBottom: scale(5),
+    fontWeight: 'bold',
   },
 
   selectboxInput: {

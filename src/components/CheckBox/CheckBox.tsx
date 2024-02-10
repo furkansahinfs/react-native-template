@@ -12,7 +12,7 @@ interface CheckboxProps {
   right?: boolean;
 }
 
-const CheckBox = ({ onPress, checked, title, fit, extraStyle, right }: CheckboxProps) => {
+const CheckBox = ({ onPress, checked, title, fit = true, extraStyle, right }: CheckboxProps) => {
   const { colors } = useTheme();
   return (
     <NativeCheckBox

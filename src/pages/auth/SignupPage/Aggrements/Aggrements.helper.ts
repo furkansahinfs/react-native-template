@@ -1,16 +1,8 @@
+import { AgreementProp } from '@src/interface';
 import { i18next } from '@src/locales';
 
-export interface InputProp {
-  name: 'sms' | 'phone' | 'membership' | 'privacy';
-  placeHolder: string;
-  underlinedPlaceholder: string;
-  type: string;
-  errors: string;
-  rules: Object;
-  choices?: Array<{ title: string; value: string }>;
-}
 
-export const aggrementPreferences: Array<InputProp> = [
+export const aggrementPreferences: Array<AgreementProp> = [
   {
     name: 'membership',
     placeHolder: i18next.t('pages.signupPage.input.membership'),
